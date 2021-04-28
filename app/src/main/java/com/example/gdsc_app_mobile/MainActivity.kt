@@ -118,6 +118,15 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                             )
                             .commit()
                 }
+            R.id.nav_suggestions -> {
+                supportFragmentManager
+                        .beginTransaction()
+                        .replace(
+                                R.id.container_fragment,
+                                FragmentSuggestions()
+                        )
+                        .commit()
+            }
         }
         drawerLayout.closeDrawer(GravityCompat.START)
         return true
