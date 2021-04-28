@@ -20,6 +20,11 @@
             android:title="@string/articles"
             app:showAsAction="never" />
         <item
+            android:id="@+id/nav_faq"
+            android:icon="@drawable/ic_nav_faq"
+            android:title="@string/nav_faq"
+            app:showAsAction="never" />
+        <item
             android:id="@+id/nav_teams"
             android:icon="@drawable/outline_teams_24"
             android:title="@string/teams"

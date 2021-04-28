@@ -99,6 +99,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                         )
                         .commit()
             }
+<<<<<<< HEAD
             R.id.nav_teams -> {
                 supportFragmentManager
                         .beginTransaction()
@@ -107,6 +108,16 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                                 FragmentTeams()
                         )
                         .commit()
+=======
+            R.id.nav_faq ->{
+                supportFragmentManager
+                    .beginTransaction()
+                    .replace(
+                        R.id.container_fragment,
+                        FragmentFaq()
+                    )
+                    .commit()
+>>>>>>> faqFragment
             }
         }
         drawerLayout.closeDrawer(GravityCompat.START)
