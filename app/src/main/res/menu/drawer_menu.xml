@@ -30,15 +30,15 @@
             android:title="@string/teams"
             app:showAsAction="never"/>
         <item
-<<<<<<< HEAD
+
             android:id="@+id/nav_suggestions"
             android:icon="@drawable/outline_suggestions_24"
             android:title="@string/suggestions"
-=======
+            app:showAsAction="never"/>
+        <item
             android:id="@+id/nav_options"
             android:icon="@drawable/ic_nav_options"
             android:title="@string/nav_options"
->>>>>>> optionsFragment
             app:showAsAction="never"/>
     </group>
 </menu>
