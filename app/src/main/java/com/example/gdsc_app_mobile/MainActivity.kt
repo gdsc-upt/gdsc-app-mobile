@@ -90,12 +90,21 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                     )
                     .commit()
             }
-            R.id.nav_articles ->{
+            R.id.nav_articles -> {
                 supportFragmentManager
                         .beginTransaction()
                         .replace(
                                 R.id.container_fragment,
                                 FragmentArticles()
+                        )
+                        .commit()
+            }
+            R.id.nav_teams -> {
+                supportFragmentManager
+                        .beginTransaction()
+                        .replace(
+                                R.id.container_fragment,
+                                FragmentTeams()
                         )
                         .commit()
             }
