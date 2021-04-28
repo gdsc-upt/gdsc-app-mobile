@@ -8,5 +8,10 @@
             android:icon="@drawable/ic_nav_contact2"
             android:title="@string/nav_contact"
             app:showAsAction="never" />
+        <item
+            android:id="@+id/nav_about_us"
+            android:icon="@drawable/ic_nav_about_us"
+            android:title="@string/nav_about_us"
+            app:showAsAction="never"/>
     </group>
 </menu>
