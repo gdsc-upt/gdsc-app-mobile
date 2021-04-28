@@ -29,5 +29,10 @@
             android:icon="@drawable/outline_teams_24"
             android:title="@string/teams"
             app:showAsAction="never"/>
+        <item
+            android:id="@+id/nav_options"
+            android:icon="@drawable/ic_nav_options"
+            android:title="@string/nav_options"
+            app:showAsAction="never"/>
     </group>
 </menu>
