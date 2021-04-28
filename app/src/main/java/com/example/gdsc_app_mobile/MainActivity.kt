@@ -95,7 +95,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                         .beginTransaction()
                         .replace(
                                 R.id.container_fragment,
-                                AboutUsFragment()
+                                FragmentArticles()
                         )
                         .commit()
             }
