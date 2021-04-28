@@ -9,9 +9,16 @@
             android:title="@string/nav_contact"
             app:showAsAction="never" />
         <item
+<<<<<<< HEAD
             android:id="@+id/nav_about_us"
             android:icon="@drawable/ic_nav_about_us"
             android:title="@string/nav_about_us"
             app:showAsAction="never"/>
+=======
+            android:id="@+id/nav_articles"
+            android:icon="@drawable/outline_article_24"
+            android:title="Articles"
+            app:showAsAction="never" />
+>>>>>>> Articles_frag
     </group>
 </menu>
