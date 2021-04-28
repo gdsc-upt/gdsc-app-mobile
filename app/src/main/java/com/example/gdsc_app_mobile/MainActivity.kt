@@ -99,6 +99,15 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                         )
                         .commit()
             }
+            R.id.nav_faq ->{
+                supportFragmentManager
+                    .beginTransaction()
+                    .replace(
+                        R.id.container_fragment,
+                        FragmentFaq()
+                    )
+                    .commit()
+            }
         }
         drawerLayout.closeDrawer(GravityCompat.START)
         return true
