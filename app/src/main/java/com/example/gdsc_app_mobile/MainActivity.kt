@@ -42,6 +42,8 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         // set toolbar
         toolbar = findViewById(R.id.nav_toolbar_toolbar)
         setSupportActionBar(toolbar)
+        var title = findViewById<TextView>(R.id.toolbar_title)
+        title.text = getString(R.string.app_name)
         // get layout
         drawerLayout = findViewById(R.id.drawer_layout)
 

@@ -40,5 +40,6 @@
             android:icon="@drawable/ic_nav_options"
             android:title="@string/nav_options"
             app:showAsAction="never"/>
+
     </group>
 </menu>
