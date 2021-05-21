@@ -1,5 +1,19 @@
 package com.example.gdsc_app_mobile
 
-class FragmentContact : FragmentBase() {
-    override val layout = R.layout.fragment_contact
+import android.os.Bundle
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import androidx.fragment.app.Fragment
+
+class FragmentContact : Fragment() {
+
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+
+        return inflater.inflate(R.layout.fragment_contact, container, false)
+    }
 }

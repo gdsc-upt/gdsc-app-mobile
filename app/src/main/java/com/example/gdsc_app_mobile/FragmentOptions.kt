@@ -7,17 +7,16 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.appcompat.widget.SwitchCompat
+import androidx.fragment.app.Fragment
 
-class FragmentOptions : FragmentBase() {
-    override val layout = R.layout.fragment_options
-
+class FragmentOptions : Fragment() {
     private lateinit var switchDarkMode: SwitchCompat
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val view = inflater.inflate(layout, container, false)
+        val view = inflater.inflate(R.layout.fragment_options, container, false)
 
         switchDarkMode = view.findViewById(R.id.switch_dark_mode)
 
