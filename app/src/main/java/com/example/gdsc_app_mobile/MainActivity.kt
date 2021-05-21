@@ -1,11 +1,13 @@
 package com.example.gdsc_app_mobile
 
+import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.ActionBarDrawerToggle
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.appcompat.widget.Toolbar
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
@@ -29,6 +31,20 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         if (savedInstanceState == null) {
             addFragment(FragmentContact())
             navigationView.setCheckedItem(R.id.nav_contact)
+        }
+
+        setupMode()
+    }
+
+    private fun setupMode() {
+        val sharedPreferences: SharedPreferences = this.getSharedPreferences("save", 0)
+        val state: Boolean = sharedPreferences.getBoolean("dark_mode", true)
+
+        if (state) {
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+        }
+        else {
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
         }
     }
 
