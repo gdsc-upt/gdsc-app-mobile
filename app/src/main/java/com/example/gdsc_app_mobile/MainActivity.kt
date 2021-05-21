@@ -1,11 +1,13 @@
 package com.example.gdsc_app_mobile
 
+import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.ActionBarDrawerToggle
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.appcompat.widget.Toolbar
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
@@ -36,13 +38,26 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             navigationView.setCheckedItem(R.id.nav_contact)
         }
 
+        setupMode()
+    }
+
+    private fun setupMode() {
+        val sharedPreferences: SharedPreferences = this.getSharedPreferences("save", 0)
+        val state: Boolean = sharedPreferences.getBoolean("dark_mode", true)
+
+        if (state) {
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+        }
+        else {
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+        }
     }
 
     private fun setupDrawer() {
         // set toolbar
         toolbar = findViewById(R.id.nav_toolbar_toolbar)
         setSupportActionBar(toolbar)
-        var title = findViewById<TextView>(R.id.toolbar_title)
+        val title = findViewById<TextView>(R.id.toolbar_title)
         title.text = getString(R.string.app_name)
         // get layout
         drawerLayout = findViewById(R.id.drawer_layout)
