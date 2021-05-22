@@ -1,8 +1,13 @@
 package com.example.gdsc_app_mobile
 
+import android.content.Intent
 import android.content.SharedPreferences
+import android.content.res.Configuration
+import android.content.res.Resources
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.DisplayMetrics
+import android.util.Log
 import android.view.MenuItem
 import android.widget.ImageView
 import android.widget.TextView
@@ -14,6 +19,7 @@ import androidx.drawerlayout.widget.DrawerLayout
 import com.google.android.material.navigation.NavigationView
 import com.squareup.picasso.Picasso
 import jp.wasabeef.picasso.transformations.CropCircleTransformation
+import java.util.*
 
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener{
     lateinit var drawerLayout : DrawerLayout
@@ -44,6 +50,9 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     private fun setupMode() {
         val sharedPreferences: SharedPreferences = this.getSharedPreferences("save", 0)
         val state: Boolean = sharedPreferences.getBoolean("dark_mode", true)
+        val language = sharedPreferences.getString("language","en")
+
+        val lastFragment = sharedPreferences.getString("lastFragment","aboutUs")
 
         if (state) {
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
@@ -51,6 +60,45 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         else {
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
         }
+
+        if (language != resources.configuration.locale.toString()) {
+            val locale = Locale(language)
+            val res: Resources = resources
+            val dm: DisplayMetrics = res.getDisplayMetrics()
+            val conf: Configuration = res.getConfiguration()
+            conf.locale = locale
+            res.updateConfiguration(conf, dm)
+            val refresh = Intent(this,MainActivity::class.java)
+            refresh.putExtra("lang",locale)
+            startActivity(refresh)
+            val editor = sharedPreferences.edit()
+            editor.putString("language",language)
+            editor.apply()
+        }
+        lastFragment?.let { Log.d("lastFrag", it) }
+        when (lastFragment){
+            "aboutUs" -> {
+                    supportFragmentManager
+                        .beginTransaction()
+                        .replace(
+                            R.id.container_fragment,
+                            AboutUsFragment()
+                        )
+                        .commit()
+            }
+
+            "options" -> {
+                supportFragmentManager
+                    .beginTransaction()
+                    .replace(
+                        R.id.container_fragment,
+                        FragmentOptions()
+                    )
+                    .commit()
+            }
+        }
+
+
     }
 
     private fun setupDrawer() {

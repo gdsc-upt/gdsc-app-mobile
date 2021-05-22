@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">gdsc-app-mobile</string>
+    <string name="nav_contact">Contact</string>
+    <string name="nav_about_us">Despre Noi</string>
+    <string name="nav_faq">FAQ</string>
+    <string name="nav_options">Optiuni</string>
+    <string name="hello_blank_fragment">Salut fragment gol</string>
+    <string name="open">deschide</string>
+    <string name="close">inchide</string>
+    <string name="articles">Articole</string>
+    <string name="teams">Echipe</string>
+    <string name="suggestions">Sugestii</string>
+    <string name="welcome_to_dsc">Bine ai venit la DSC</string>
+    <string name="language">Limba</string>
+</resources>
