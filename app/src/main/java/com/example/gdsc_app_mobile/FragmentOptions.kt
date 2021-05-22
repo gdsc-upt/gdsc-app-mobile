@@ -13,7 +13,7 @@ import androidx.fragment.app.Fragment
 
 class FragmentOptions : Fragment() {
 
-    lateinit var switch_dark_mode: SwitchCompat
+    lateinit var switchDarkMode: SwitchCompat
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -21,7 +21,7 @@ class FragmentOptions : Fragment() {
     ): View? {
         val view = inflater.inflate(R.layout.fragment_options, container, false)
 
-        switch_dark_mode = view.findViewById(R.id.switch_dark_mode)
+        switchDarkMode = view.findViewById(R.id.switch_dark_mode)
 
         setupMode()
 
@@ -31,16 +31,16 @@ class FragmentOptions : Fragment() {
     private fun setupMode() {
         val sharedPreferences: SharedPreferences = activity!!.getSharedPreferences("save", 0)
 
-        switch_dark_mode.isChecked = sharedPreferences.getBoolean("dark_mode", true)
+        switchDarkMode.isChecked = sharedPreferences.getBoolean("dark_mode", true)
 
-        if (switch_dark_mode.isChecked) {
+        if (switchDarkMode.isChecked) {
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
         }
         else {
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
         }
 
-        switch_dark_mode.setOnCheckedChangeListener { _, isChecked ->
+        switchDarkMode.setOnCheckedChangeListener { _, isChecked ->
             if (isChecked) {
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
                 val editor: SharedPreferences.Editor =
