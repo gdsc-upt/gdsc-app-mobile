@@ -52,7 +52,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         val state: Boolean = sharedPreferences.getBoolean("dark_mode", true)
         val language = sharedPreferences.getString("language","en")
 
-        val lastFragment = sharedPreferences.getString("lastFragment","aboutUs")
+        //val lastFragment = sharedPreferences.getString("lastFragment","aboutUs")
 
         if (state) {
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
@@ -75,6 +75,8 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             editor.putString("language",language)
             editor.apply()
         }
+
+        /*
         lastFragment?.let { Log.d("lastFrag", it) }
         when (lastFragment){
             "aboutUs" -> {
@@ -97,6 +99,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                     .commit()
             }
         }
+        */
 
 
     }

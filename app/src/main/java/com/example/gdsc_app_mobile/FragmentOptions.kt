@@ -18,7 +18,7 @@ import androidx.fragment.app.Fragment
 import java.util.*
 
 
-class FragmentOptions : Fragment(), AdapterView.OnItemSelectedListener{
+class FragmentOptions : Fragment() {
 
     lateinit var switch_dark_mode: SwitchCompat
     lateinit var language_spinner : Spinner
@@ -31,13 +31,9 @@ class FragmentOptions : Fragment(), AdapterView.OnItemSelectedListener{
 
         switch_dark_mode = view.findViewById(R.id.switch_dark_mode)
         language_spinner = view.findViewById(R.id.language_spinner)
-        language_spinner.onItemSelectedListener = this;
 
-
-        activity!!.getSharedPreferences("save", 0).edit().putString("lastFragment","options")
-        activity!!.getSharedPreferences("save", 0).edit().commit()
-
-
+        //activity!!.getSharedPreferences("save", 0).edit().putString("lastFragment","options")
+        //activity!!.getSharedPreferences("save", 0).edit().commit()
 
         setupMode()
         setupLanguage()
@@ -60,6 +56,9 @@ class FragmentOptions : Fragment(), AdapterView.OnItemSelectedListener{
                 "ro" -> {
                     myLocale = Locale("ro")
                 }
+                else -> {
+                    myLocale = Locale("en")
+                }
 
             }
 
@@ -78,6 +77,19 @@ class FragmentOptions : Fragment(), AdapterView.OnItemSelectedListener{
     }
 
     private fun setupLanguage() {
+        language_spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+            }
+
+            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+                when (position)
+                {
+                    0 -> {changeLanguage("en")}
+                    1-> {changeLanguage("ro")}
+                }
+            }
+        }
+
         val sharedPreferences: SharedPreferences = activity!!.getSharedPreferences("save", 0)
 
         this.context?.let {
@@ -125,17 +137,5 @@ class FragmentOptions : Fragment(), AdapterView.OnItemSelectedListener{
                 editor.apply()
             }
         }
-    }
-
-
-    override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-        when (position)
-        {
-            0 -> {changeLanguage("en")}
-            1-> {changeLanguage("ro")}
-        }
-    }
-
-    override fun onNothingSelected(parent: AdapterView<*>?) {
     }
 }
