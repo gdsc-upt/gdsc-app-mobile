@@ -14,4 +14,10 @@ class FragmentArticles: Fragment() {
 
         return inflater.inflate(R.layout.fragment_articles, container, false)
     }
+
+    private fun saveLastFragment(){
+        val editor = activity!!.getSharedPreferences("save", 0).edit()
+        editor.putString("lastFragment","options")
+        editor.apply()
+    }
 }

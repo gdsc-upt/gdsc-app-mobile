@@ -18,4 +18,5 @@ class FragmentContact : Fragment() {
         return view
     }
 
+
 }

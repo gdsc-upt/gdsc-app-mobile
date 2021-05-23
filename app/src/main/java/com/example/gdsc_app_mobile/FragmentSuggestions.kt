@@ -14,4 +14,6 @@ class FragmentSuggestions : Fragment() {
 
         return inflater.inflate(R.layout.fragment_suggestions, container, false)
     }
+
+
 }

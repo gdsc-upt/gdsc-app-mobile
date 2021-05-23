@@ -14,4 +14,6 @@ class FragmentTeams : Fragment() {
 
         return inflater.inflate(R.layout.fragment_teams, container, false)
     }
+
+
 }

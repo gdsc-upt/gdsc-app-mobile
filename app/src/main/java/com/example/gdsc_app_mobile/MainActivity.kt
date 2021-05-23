@@ -16,6 +16,7 @@ import androidx.appcompat.app.AppCompatDelegate
 import androidx.appcompat.widget.Toolbar
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
+import androidx.fragment.app.Fragment
 import com.google.android.material.navigation.NavigationView
 import com.squareup.picasso.Picasso
 import jp.wasabeef.picasso.transformations.CropCircleTransformation
@@ -45,6 +46,57 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         }
 
         setupMode()
+        restoreFragment()
+    }
+
+    private fun restoreFragment(){
+        val sharedPreferences: SharedPreferences = this.getSharedPreferences("save", 0)
+        val lastFragmentName = sharedPreferences.getString("lastFragment","options")
+
+        lastFragmentName?.let { Log.d("lastFrag", it) }
+
+
+
+        var lastFragment : Fragment = Fragment()
+        when (lastFragmentName){
+            "aboutUs" -> {
+                lastFragment = FragmentAboutUs()
+                navigationView.setCheckedItem(R.id.nav_about_us)
+            }
+            "options" -> {
+                lastFragment = FragmentOptions()
+                navigationView.setCheckedItem(R.id.nav_options)
+            }
+            "suggestions"->{
+                lastFragment = FragmentSuggestions()
+                navigationView.setCheckedItem(R.id.nav_suggestions)
+            }
+            "faq"->{
+                lastFragment = FragmentFaq()
+                navigationView.setCheckedItem(R.id.nav_faq)
+            }
+            "teams"->{
+                lastFragment = FragmentTeams()
+                navigationView.setCheckedItem(R.id.nav_teams)
+            }
+            "articles"->{
+                lastFragment = FragmentArticles()
+                navigationView.setCheckedItem(R.id.nav_articles)
+            }
+            "contact"->{
+                lastFragment = FragmentContact()
+                navigationView.setCheckedItem(R.id.nav_contact)
+            }
+        }
+
+        supportFragmentManager
+            .beginTransaction()
+            .replace(
+                R.id.container_fragment,
+                lastFragment
+            )
+            .commit()
+
     }
 
     private fun setupMode() {
@@ -52,7 +104,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         val state: Boolean = sharedPreferences.getBoolean("dark_mode", true)
         val language = sharedPreferences.getString("language","en")
 
-        //val lastFragment = sharedPreferences.getString("lastFragment","aboutUs")
 
         if (state) {
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
@@ -75,33 +126,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             editor.putString("language",language)
             editor.apply()
         }
-
-        /*
-        lastFragment?.let { Log.d("lastFrag", it) }
-        when (lastFragment){
-            "aboutUs" -> {
-                    supportFragmentManager
-                        .beginTransaction()
-                        .replace(
-                            R.id.container_fragment,
-                            AboutUsFragment()
-                        )
-                        .commit()
-            }
-
-            "options" -> {
-                supportFragmentManager
-                    .beginTransaction()
-                    .replace(
-                        R.id.container_fragment,
-                        FragmentOptions()
-                    )
-                    .commit()
-            }
-        }
-        */
-
-
     }
 
     private fun setupDrawer() {
@@ -154,7 +178,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                     .beginTransaction()
                     .replace(
                         R.id.container_fragment,
-                        AboutUsFragment()
+                        FragmentAboutUs()
                     )
                     .commit()
             }

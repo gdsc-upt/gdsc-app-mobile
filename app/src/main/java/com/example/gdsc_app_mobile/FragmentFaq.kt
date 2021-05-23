@@ -16,4 +16,6 @@ class FragmentFaq : Fragment() {
 
         return view
     }
+
+
 }

@@ -6,6 +6,7 @@ import android.content.res.Configuration
 import android.content.res.Resources
 import android.os.Bundle
 import android.util.DisplayMetrics
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -18,7 +19,7 @@ import androidx.fragment.app.Fragment
 import java.util.*
 
 
-class FragmentOptions : Fragment() {
+class FragmentOptions : DscFragment("options") {
 
     lateinit var switch_dark_mode: SwitchCompat
     lateinit var language_spinner : Spinner
@@ -32,11 +33,9 @@ class FragmentOptions : Fragment() {
         switch_dark_mode = view.findViewById(R.id.switch_dark_mode)
         language_spinner = view.findViewById(R.id.language_spinner)
 
-        //activity!!.getSharedPreferences("save", 0).edit().putString("lastFragment","options")
-        //activity!!.getSharedPreferences("save", 0).edit().commit()
-
         setupMode()
         setupLanguage()
+        saveLastFragment()
         return view
     }
 
@@ -138,4 +137,5 @@ class FragmentOptions : Fragment() {
             }
         }
     }
+
 }
