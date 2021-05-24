@@ -38,7 +38,7 @@
             android:layout_centerVertical="true"
             android:backgroundTint="@color/primary_grey"
             android:ems="10"
-            android:hint="Enter your name..."
+            android:hint="Enter your username"
             android:inputType="textPersonName"/>
 
     </RelativeLayout>
@@ -62,12 +62,12 @@
             android:id="@+id/activity_sign_up_password"
             android:layout_width="250dp"
             android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
             android:layout_marginStart="5dp"
             android:layout_toEndOf="@+id/activity_sign_up_password_icon"
-            android:layout_centerVertical="true"
             android:backgroundTint="@color/primary_grey"
             android:ems="10"
-            android:hint="Enter your pass..."
+            android:hint="Enter your password"
             android:inputType="textPassword" />
 
     </RelativeLayout>
@@ -108,5 +108,36 @@
             android:text="Register" />
     </LinearLayout>
 
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:orientation="horizontal"
+            android:layout_alignParentBottom="true">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:srcCompat="@drawable/ic_favorite_24" />
+
+            <TextView
+                android:id="@+id/text_ending"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/made_by_gdsc_upt_team"
+                android:textStyle="bold"
+                android:textSize="20sp" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:srcCompat="@drawable/ic_favorite_24" />
+        </LinearLayout>
+
+    </RelativeLayout>
 
 </LinearLayout>

@@ -11,4 +11,10 @@
     <string name="teams">Teams</string>
     <string name="suggestions">Suggestions</string>
     <string name="welcome_to_dsc">Welcome to DSC</string>
+    <string name="enter_your_email">Enter your email</string>
+    <string name="enter_your_username">Enter your username</string>
+    <string name="register">Register</string>
+    <string name="confirm_your_password">Confirm your password</string>
+    <string name="enter_your_password">Enter your password</string>
+    <string name="made_by_gdsc_upt_team">Made by GDSC-UPT Team</string>
 </resources>
