@@ -11,30 +11,25 @@ import androidx.appcompat.app.AppCompatDelegate
 import androidx.appcompat.widget.Toolbar
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
+import androidx.fragment.app.Fragment
 import com.google.android.material.navigation.NavigationView
 import com.squareup.picasso.Picasso
 import jp.wasabeef.picasso.transformations.CropCircleTransformation
 
-class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener{
-    lateinit var drawerLayout : DrawerLayout
+class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
+    private lateinit var drawerLayout: DrawerLayout
+    private lateinit var navigationView: NavigationView
+    private lateinit var toolbar: Toolbar
+    private lateinit var actionBarToggle: ActionBarDrawerToggle
 
-    lateinit var navigationView : NavigationView
-    lateinit var toolbar : Toolbar
-    lateinit var actionBarToggle : ActionBarDrawerToggle
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         //instantiate drawer components
         setupDrawer()
 
-        if(savedInstanceState == null) {
-            supportFragmentManager
-                .beginTransaction()
-                .replace(
-                    R.id.container_fragment,
-                    FragmentContact()
-                )
-                .commit()
+        if (savedInstanceState == null) {
+            addFragment(FragmentContact())
             navigationView.setCheckedItem(R.id.nav_contact)
         }
 
@@ -57,8 +52,10 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         // set toolbar
         toolbar = findViewById(R.id.nav_toolbar_toolbar)
         setSupportActionBar(toolbar)
+
         val title = findViewById<TextView>(R.id.toolbar_title)
         title.text = getString(R.string.app_name)
+
         // get layout
         drawerLayout = findViewById(R.id.drawer_layout)
 
@@ -76,87 +73,33 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         val navHeaderTitle = header.findViewById<TextView>(R.id.nav_header_title)
         navHeaderTitle.textSize = 20f
 
-
-        actionBarToggle = ActionBarDrawerToggle(this@MainActivity, drawerLayout, toolbar,
+        actionBarToggle = ActionBarDrawerToggle(
+            this@MainActivity, drawerLayout, toolbar,
             R.string.open,
             R.string.close
         )
 
         drawerLayout.addDrawerListener(actionBarToggle)
         actionBarToggle.syncState()
-
     }
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
-        when(item.itemId) {
-            R.id.nav_contact -> {
-                supportFragmentManager
-                    .beginTransaction()
-                    .replace(
-                        R.id.container_fragment,
-                        FragmentContact()
-                    )
-                    .commit()
-            }
-            R.id.nav_about_us -> {
-                supportFragmentManager
-                    .beginTransaction()
-                    .replace(
-                        R.id.container_fragment,
-                        AboutUsFragment()
-                    )
-                    .commit()
-            }
-            R.id.nav_articles -> {
-                supportFragmentManager
-                        .beginTransaction()
-                        .replace(
-                                R.id.container_fragment,
-                                FragmentArticles()
-                        )
-                        .commit()
-            }
-
-            R.id.nav_teams -> {
-                supportFragmentManager
-                        .beginTransaction()
-                        .replace(
-                                R.id.container_fragment,
-                                FragmentTeams()
-                        )
-                        .commit()
-            }
-            R.id.nav_faq -> {
-                    supportFragmentManager
-                            .beginTransaction()
-                            .replace(
-                                    R.id.container_fragment,
-                                    FragmentFaq()
-                            )
-                            .commit()
-                }
-
-            R.id.nav_suggestions -> {
-                supportFragmentManager
-                        .beginTransaction()
-                        .replace(
-                                R.id.container_fragment,
-                                FragmentSuggestions()
-                        )
-                        .commit()
-            }
-            R.id.nav_options -> {
-                supportFragmentManager
-                    .beginTransaction()
-                    .replace(
-                        R.id.container_fragment,
-                        FragmentOptions()
-                    )
-                    .commit()
-            }
+        when (item.itemId) {
+            R.id.nav_contact -> addFragment(FragmentContact())
+            R.id.nav_about_us -> addFragment(FragmentAboutUs())
+            R.id.nav_articles -> addFragment(FragmentArticles())
+            R.id.nav_teams -> addFragment(FragmentTeams())
+            R.id.nav_faq -> addFragment(FragmentFaq())
+            R.id.nav_suggestions -> addFragment(FragmentSuggestions())
+            R.id.nav_options -> addFragment(FragmentOptions())
         }
         drawerLayout.closeDrawer(GravityCompat.START)
         return true
     }
 
+    private fun addFragment(fragment: Fragment) {
+        supportFragmentManager.beginTransaction()
+            .replace(R.id.container_fragment, fragment)
+            .commit()
+    }
 }

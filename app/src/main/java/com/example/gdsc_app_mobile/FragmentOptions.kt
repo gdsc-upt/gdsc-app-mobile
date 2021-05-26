@@ -5,15 +5,12 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.CompoundButton
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.appcompat.widget.SwitchCompat
 import androidx.fragment.app.Fragment
 
-
 class FragmentOptions : Fragment() {
-
-    lateinit var switchDarkMode: SwitchCompat
+    private lateinit var switchDarkMode: SwitchCompat
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -29,14 +26,13 @@ class FragmentOptions : Fragment() {
     }
 
     private fun setupMode() {
-        val sharedPreferences: SharedPreferences = activity!!.getSharedPreferences("save", 0)
+        val sharedPreferences: SharedPreferences = requireActivity().getSharedPreferences("save", 0)
 
         switchDarkMode.isChecked = sharedPreferences.getBoolean("dark_mode", true)
 
         if (switchDarkMode.isChecked) {
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
-        }
-        else {
+        } else {
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
         }
 
@@ -44,13 +40,13 @@ class FragmentOptions : Fragment() {
             if (isChecked) {
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
                 val editor: SharedPreferences.Editor =
-                    activity!!.getSharedPreferences("save", 0).edit()
+                    requireActivity().getSharedPreferences("save", 0).edit()
                 editor.putBoolean("dark_mode", true)
                 editor.apply()
             } else {
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
                 val editor: SharedPreferences.Editor =
-                    activity!!.getSharedPreferences("save", 0).edit()
+                    requireActivity().getSharedPreferences("save", 0).edit()
                 editor.putBoolean("dark_mode", false)
                 editor.apply()
             }
