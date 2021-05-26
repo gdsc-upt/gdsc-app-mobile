@@ -8,9 +8,11 @@
         <entry key="..\:/Users/10PRO/Desktop/DSC/gdsc-app-mobile/app/src/main/res/drawable/ic_toolbar_user.xml" value="0.2203125" />
         <entry key="..\:/Users/10PRO/Desktop/DSC/gdsc-app-mobile/app/src/main/res/drawable/ic_user.xml" value="0.2203125" />
         <entry key="..\:/Users/10PRO/Desktop/DSC/gdsc-app-mobile/app/src/main/res/drawable/outline_suggestions_24.xml" value="0.2203125" />
-        <entry key="..\:/Users/10PRO/Desktop/DSC/gdsc-app-mobile/app/src/main/res/layout/activity_sign_up.xml" value="0.25" />
+        <entry key="..\:/Users/10PRO/Desktop/DSC/gdsc-app-mobile/app/src/main/res/layout/activity_register.xml" value="0.25" />
+        <entry key="..\:/Users/10PRO/Desktop/DSC/gdsc-app-mobile/app/src/main/res/layout/activity_sign_up.xml" value="0.33" />
+        <entry key="..\:/Users/10PRO/Desktop/DSC/gdsc-app-mobile/app/src/main/res/layout/fragment_about_us.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/10PRO/Desktop/DSC/gdsc-app-mobile/app/src/main/res/layout/fragment_faq.xml" value="0.1" />
-        <entry key="..\:/Users/10PRO/Desktop/DSC/gdsc-app-mobile/app/src/main/res/layout/fragment_options.xml" value="0.1" />
+        <entry key="..\:/Users/10PRO/Desktop/DSC/gdsc-app-mobile/app/src/main/res/layout/fragment_options.xml" value="0.25" />
         <entry key="..\:/Users/10PRO/Desktop/DSC/gdsc-app-mobile/app/src/main/res/layout/fragment_register.xml" value="0.25" />
         <entry key="..\:/Users/10PRO/Desktop/DSC/gdsc-app-mobile/app/src/main/res/layout/header_layout.xml" value="0.1" />
       </map>
@@ -21,5 +23,12 @@
   </component>
   <component name="ProjectType">
     <option name="id" value="Android" />
+  </component>
+  <component name="VisualizationToolProject">
+    <option name="state">
+      <ProjectState>
+        <option name="scale" value="0.20416666666666666" />
+      </ProjectState>
+    </option>
   </component>
 </project>

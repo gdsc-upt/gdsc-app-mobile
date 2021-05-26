@@ -33,13 +33,13 @@
             android:id="@+id/activity_sign_up_username"
             android:layout_width="250dp"
             android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
             android:layout_marginStart="5dp"
             android:layout_toEndOf="@+id/activity_sign_up_username_icon"
-            android:layout_centerVertical="true"
             android:backgroundTint="@color/primary_grey"
             android:ems="10"
             android:hint="Enter your username"
-            android:inputType="textPersonName"/>
+            android:inputType="textPersonName" />
 
     </RelativeLayout>
 
@@ -74,6 +74,7 @@
 
 
     <Button
+        android:id="@+id/log_in_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
@@ -96,16 +97,17 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Don't have an account?"
+            android:text="@string/don_t_have_an_account"
             android:layout_gravity="center" />
 
-        <Button
+        <TextView
+            android:id="@+id/activity_sign_up_register"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:backgroundTint="@color/white"
             android:layout_marginStart="15dp"
+            android:text="@string/register_here"
             android:textColor="@color/primary_grey"
-            android:text="Register" />
+            android:textStyle="bold"/>
     </LinearLayout>
 
     <RelativeLayout
