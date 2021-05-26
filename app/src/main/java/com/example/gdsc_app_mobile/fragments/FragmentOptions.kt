@@ -1,4 +1,4 @@
-package com.example.gdsc_app_mobile
+package com.example.gdsc_app_mobile.fragments
 
 import android.content.SharedPreferences
 import android.os.Bundle
@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.appcompat.widget.SwitchCompat
 import androidx.fragment.app.Fragment
+import com.example.gdsc_app_mobile.R
 
 class FragmentOptions : Fragment() {
     private lateinit var switchDarkMode: SwitchCompat

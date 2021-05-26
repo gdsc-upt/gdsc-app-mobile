@@ -1,4 +1,4 @@
-package com.example.gdsc_app_mobile
+package com.example.gdsc_app_mobile.activities
 
 import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
@@ -12,6 +12,8 @@ import androidx.appcompat.widget.Toolbar
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
+import com.example.gdsc_app_mobile.R
+import com.example.gdsc_app_mobile.fragments.*
 import com.google.android.material.navigation.NavigationView
 import com.squareup.picasso.Picasso
 import jp.wasabeef.picasso.transformations.CropCircleTransformation
@@ -75,8 +77,8 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
         actionBarToggle = ActionBarDrawerToggle(
             this@MainActivity, drawerLayout, toolbar,
-            R.string.open,
-            R.string.close
+                R.string.open,
+                R.string.close
         )
 
         drawerLayout.addDrawerListener(actionBarToggle)

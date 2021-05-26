@@ -1,4 +1,4 @@
-package com.example.gdsc_app_mobile
+package com.example.gdsc_app_mobile.activities
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
+import com.example.gdsc_app_mobile.R
 
 class ActivitySignUp : AppCompatActivity() {
 
@@ -25,6 +26,11 @@ class ActivitySignUp : AppCompatActivity() {
 
         registerButton.setOnClickListener{
             val intent = Intent(this@ActivitySignUp, ActivityRegister::class.java)
+            startActivity(intent)
+        }
+
+        logInButton.setOnClickListener {
+            val intent = Intent(this@ActivitySignUp, MainActivity::class.java)
             startActivity(intent)
         }
 

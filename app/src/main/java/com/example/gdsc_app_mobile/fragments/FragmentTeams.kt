@@ -1,12 +1,13 @@
-package com.example.gdsc_app_mobile
+package com.example.gdsc_app_mobile.fragments
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import com.example.gdsc_app_mobile.R
 
-class FragmentFaq : Fragment() {
+class FragmentTeams : Fragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -14,6 +15,6 @@ class FragmentFaq : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
 
-        return inflater.inflate(R.layout.fragment_faq, container, false)
+        return inflater.inflate(R.layout.fragment_teams, container, false)
     }
 }

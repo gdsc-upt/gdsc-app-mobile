@@ -19,4 +19,6 @@
     <string name="made_by_gdsc_upt_team">Made by GDSC-UPT Team</string>
     <string name="don_t_have_an_account">Don\'t have an account?</string>
     <string name="register_here">Register here!</string>
+    <string name="already_registered">Already registered?</string>
+    <string name="login_me">Login me</string>
 </resources>
