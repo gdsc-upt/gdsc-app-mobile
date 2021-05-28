@@ -40,6 +40,15 @@
             android:icon="@drawable/ic_nav_options"
             android:title="@string/nav_options"
             app:showAsAction="never"/>
-
     </group>
+
+    <item android:title="@string/nav_other">
+        <menu>
+            <item
+                android:id="@+id/nav_logout"
+                android:icon="@drawable/ic_logout"
+                android:title="@string/nav_logout"
+                app:showAsAction="never"/>
+        </menu>
+    </item>
 </menu>

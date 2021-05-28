@@ -1,11 +1,13 @@
 package com.example.gdsc_app_mobile.activities
 
 import android.content.Intent
+import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
+import androidx.appcompat.app.AppCompatDelegate
 import com.example.gdsc_app_mobile.R
 
 class ActivitySignUp : AppCompatActivity() {
@@ -34,6 +36,20 @@ class ActivitySignUp : AppCompatActivity() {
             startActivity(intent)
         }
 
+        setupMode()
+
+    }
+
+    private fun setupMode() {
+        val sharedPreferences: SharedPreferences = this.getSharedPreferences("save", 0)
+        val state: Boolean = sharedPreferences.getBoolean("dark_mode", true)
+
+        if (state) {
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+        }
+        else {
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+        }
     }
 
 }

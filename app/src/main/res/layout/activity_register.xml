@@ -3,17 +3,30 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_marginBottom="5dp"
     android:orientation="vertical"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".activities.ActivityRegister">
 
     <ImageView
         android:id="@+id/activity_sign_up_logo"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="90dp"
+        android:layout_gravity="center_horizontal"
+        android:src="@drawable/logo_dsc"/>
+    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="100dp"
-        android:src="@drawable/logo"
-        android:layout_gravity="center_horizontal"/>
+        android:textSize="22sp"
+        android:text="@string/developer_students_club"
+        android:layout_gravity="center"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="14sp"
+        android:text="@string/university"
+        android:layout_gravity="center"/>
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -27,7 +40,7 @@
             android:padding="5dp"
             android:layout_marginEnd="10dp"
             android:src="@drawable/ic_user"
-            app:tint="@color/primary_grey"
+            app:tint="@color/colorLogin"
             android:layout_toStartOf="@id/register_username_text"/>
 
         <EditText
@@ -52,7 +65,7 @@
             android:layout_toStartOf="@id/register_email_text"
             android:padding="5dp"
             android:src="@drawable/ic_baseline_email_24"
-            app:tint="@color/primary_grey" />
+            app:tint="@color/colorLogin" />
 
         <EditText
             android:id="@+id/register_email_text"
@@ -75,7 +88,7 @@
             android:padding="5dp"
             android:layout_marginEnd="10dp"
             android:src="@drawable/ic_padlock"
-            app:tint="@color/primary_grey"
+            app:tint="@color/colorLogin"
             android:layout_toStartOf="@id/register_password_text"/>
 
         <EditText
@@ -99,7 +112,7 @@
             android:padding="5dp"
             android:layout_marginEnd="10dp"
             android:src="@drawable/ic_padlock"
-            app:tint="@color/primary_grey"
+            app:tint="@color/colorLogin"
             android:layout_toStartOf="@id/register_confirm_password_text"/>
 
         <EditText
@@ -133,6 +146,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/already_registered"
+                android:textColor="@color/colorLogin"
                 android:layout_gravity="center" />
 
             <TextView
@@ -141,7 +155,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="15dp"
                 android:text="@string/login_me"
-                android:textColor="@color/primary_grey"
+                android:textColor="@color/colorLogin"
                 android:textStyle="bold"/>
         </LinearLayout>
 
@@ -152,23 +166,27 @@
             android:orientation="horizontal"
             android:layout_alignParentBottom="true">
 
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/made_with"
+                android:textStyle="bold"
+                android:layout_marginEnd="6dp"
+                android:textSize="20sp"
+                android:textColor="@color/colorLogin"/>
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:srcCompat="@drawable/ic_favorite_24" />
 
             <TextView
-                android:id="@+id/text_ending"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="6dp"
                 android:text="@string/made_by_gdsc_upt_team"
                 android:textStyle="bold"
+                android:textColor="@color/colorLogin"
                 android:textSize="20sp" />
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:srcCompat="@drawable/ic_favorite_24" />
         </LinearLayout>
 
     </RelativeLayout>

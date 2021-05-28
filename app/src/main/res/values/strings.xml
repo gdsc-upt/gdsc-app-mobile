@@ -16,9 +16,16 @@
     <string name="register">Register</string>
     <string name="confirm_your_password">Confirm your password</string>
     <string name="enter_your_password">Enter your password</string>
-    <string name="made_by_gdsc_upt_team">Made by GDSC-UPT Team</string>
+    <string name="made_by_gdsc_upt_team">by GDSC-UPT Team</string>
     <string name="don_t_have_an_account">Don\'t have an account?</string>
     <string name="register_here">Register here!</string>
     <string name="already_registered">Already registered?</string>
     <string name="login_me">Login me</string>
+    <string name="university">Politehnica University of Timisoara</string>
+    <string name="nav_other">Other</string>
+    <string name="nav_logout">Log out</string>
+    <string name="made_with">Made with</string>
+    <string name="developer_students_club">Developer Students Club</string>
+    <string name="log_in">Log in</string>
+    <string name="valid_credential">Please enter valid credential</string>
 </resources>

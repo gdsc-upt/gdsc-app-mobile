@@ -1,5 +1,6 @@
 package com.example.gdsc_app_mobile.activities
 
+import android.content.Intent
 import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -33,20 +34,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         if (savedInstanceState == null) {
             addFragment(FragmentContact())
             navigationView.setCheckedItem(R.id.nav_contact)
-        }
-
-        setupMode()
-    }
-
-    private fun setupMode() {
-        val sharedPreferences: SharedPreferences = this.getSharedPreferences("save", 0)
-        val state: Boolean = sharedPreferences.getBoolean("dark_mode", true)
-
-        if (state) {
-            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
-        }
-        else {
-            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
         }
     }
 
@@ -94,6 +81,10 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             R.id.nav_faq -> addFragment(FragmentFaq())
             R.id.nav_suggestions -> addFragment(FragmentSuggestions())
             R.id.nav_options -> addFragment(FragmentOptions())
+            R.id.nav_logout -> {
+                val intent = Intent(this@MainActivity, ActivitySignUp::class.java)
+                startActivity(intent)
+            }
         }
         drawerLayout.closeDrawer(GravityCompat.START)
         return true
