@@ -8,7 +8,6 @@
             android:icon="@drawable/ic_nav_contact2"
             android:title="@string/nav_contact"
             app:showAsAction="never" />
-
         <item
             android:id="@+id/nav_about_us"
             android:icon="@drawable/ic_nav_about_us"
@@ -30,7 +29,6 @@
             android:title="@string/teams"
             app:showAsAction="never"/>
         <item
-
             android:id="@+id/nav_suggestions"
             android:icon="@drawable/outline_suggestions_24"
             android:title="@string/suggestions"
@@ -40,15 +38,11 @@
             android:icon="@drawable/ic_nav_options"
             android:title="@string/nav_options"
             app:showAsAction="never"/>
+        <item
+            android:id="@+id/nav_logout"
+            android:icon="@drawable/ic_logout"
+            android:title="@string/nav_logout"
+            app:showAsAction="never"/>
     </group>
 
-    <item android:title="@string/nav_other">
-        <menu>
-            <item
-                android:id="@+id/nav_logout"
-                android:icon="@drawable/ic_logout"
-                android:title="@string/nav_logout"
-                app:showAsAction="never"/>
-        </menu>
-    </item>
 </menu>
