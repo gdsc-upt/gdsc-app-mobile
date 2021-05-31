@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">gdsc-app-mobile</string>
+    <string name="app_name">GDSC UPT</string>
     <string name="nav_contact">Contact</string>
     <string name="nav_about_us">About Us</string>
     <string name="nav_faq">FAQ</string>
@@ -28,4 +28,8 @@
     <string name="developer_students_club">Developer Students Club</string>
     <string name="log_in">Log in</string>
     <string name="valid_credential">Please enter valid credential</string>
+
+    <!--Languages-->
+    <string name="romanianLanguage">Romanian</string>
+    <string name="englishLanguage">English</string>
 </resources>

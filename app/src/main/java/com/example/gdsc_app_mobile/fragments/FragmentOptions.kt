@@ -29,13 +29,7 @@ class FragmentOptions : Fragment() {
     private fun setupMode() {
         val sharedPreferences: SharedPreferences = requireActivity().getSharedPreferences("save", 0)
 
-        switchDarkMode.isChecked = sharedPreferences.getBoolean("dark_mode", true)
-
-        if (switchDarkMode.isChecked) {
-            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
-        } else {
-            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
-        }
+        switchDarkMode.isChecked = sharedPreferences.getBoolean("dark_mode", false)
 
         switchDarkMode.setOnCheckedChangeListener { _, isChecked ->
             if (isChecked) {

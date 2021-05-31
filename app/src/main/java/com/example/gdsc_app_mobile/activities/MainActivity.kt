@@ -84,6 +84,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             R.id.nav_logout -> {
                 val intent = Intent(this@MainActivity, ActivitySignUp::class.java)
                 startActivity(intent)
+                finish()
             }
         }
         drawerLayout.closeDrawer(GravityCompat.START)

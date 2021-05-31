@@ -14,10 +14,10 @@ class ApiClient {
             return retrofit
         }
 
-        fun getUserService() : UserService {
-            val userService : UserService = getRetrofit().create(UserService::class.java)
+        fun getService() : ApiService {
+            val service : ApiService = getRetrofit().create(ApiService::class.java)
 
-            return userService
+            return service
         }
     }
 }

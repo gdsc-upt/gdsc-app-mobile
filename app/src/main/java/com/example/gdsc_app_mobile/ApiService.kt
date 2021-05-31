@@ -4,11 +4,8 @@ import com.example.gdsc_app_mobile.models.ContactModel
 import retrofit2.Call
 import retrofit2.http.GET
 
-interface UserService {
+interface ApiService {
 
-    @GET("users")
-    fun getAllUsers() : Call<List<UserResponse>>
-
-    @GET("api/v1/contact")
+    @GET("v1/contact")
     fun getContacts() : Call<List<ContactModel>>
 }

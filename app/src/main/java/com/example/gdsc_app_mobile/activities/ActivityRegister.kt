@@ -8,7 +8,6 @@ import android.widget.TextView
 import android.widget.Toast
 import com.example.gdsc_app_mobile.ApiClient
 import com.example.gdsc_app_mobile.R
-import com.example.gdsc_app_mobile.UserResponse
 import com.example.gdsc_app_mobile.models.ContactModel
 import retrofit2.Call
 import retrofit2.Callback
@@ -37,6 +36,7 @@ class ActivityRegister : AppCompatActivity() {
         loginMe.setOnClickListener {
             val intent = Intent(this@ActivityRegister, ActivitySignUp::class.java)
             startActivity(intent)
+            finish()
         }
 
         register.setOnClickListener{
@@ -49,11 +49,16 @@ class ActivityRegister : AppCompatActivity() {
                     response: Response<List<ContactModel>>
                 ) {
                     if(response.isSuccessful) {
-                        //Toast.makeText(this@ActivityRegister, "Successful response", Toast.LENGTH_SHORT).show()
                         val contacts: List<ContactModel>? = response.body()
 
                         if(contacts != null)
-                            Toast.makeText(this@ActivityRegister, "Date: ${contacts[0].created}", Toast.LENGTH_SHORT).show()
+                            if(contacts.isEmpty())
+                                Toast.makeText(this@ActivityRegister, "Empty list", Toast.LENGTH_SHORT).show()
+                            else
+                                Toast.makeText(this@ActivityRegister, "Date: ${contacts[0].created}", Toast.LENGTH_SHORT).show()
+                        //else
+                        //    Toast.makeText(this@ActivityRegister, "Empty list", Toast.LENGTH_SHORT).show()
+
                     }
                     else
                         Toast.makeText(this@ActivityRegister, "Unsuccessful response", Toast.LENGTH_SHORT).show()
@@ -66,38 +71,7 @@ class ActivityRegister : AppCompatActivity() {
                 }
 
             })
-            /*val userCall: Call<List<UserResponse>> = ApiClient.getUserService().getAllUsers()
 
-            userCall.enqueue(object : Callback<List<UserResponse>> {
-                override fun onResponse(
-                    call: Call<List<UserResponse>>,
-                    response: Response<List<UserResponse>>
-                ) {
-                    if (response.isSuccessful) {
-
-                        val users : List<UserResponse>? = response.body()
-                        if(users == null)
-                            Toast.makeText(
-                                this@ActivityRegister,
-                                "There are no users",
-                                Toast.LENGTH_SHORT
-                            ).show()
-                        else
-                            Toast.makeText(
-                                this@ActivityRegister,
-                                "There are ${users.size} users",
-                                Toast.LENGTH_SHORT
-                            ).show()
-                    }
-                    else
-                        Toast.makeText(this@ActivityRegister, "Unsuccessful response", Toast.LENGTH_SHORT).show()
-                }
-
-                override fun onFailure(call: Call<List<UserResponse>>, t: Throwable) {
-                    Toast.makeText(this@ActivityRegister, "Failure", Toast.LENGTH_SHORT).show()
-                }
-
-            })*/
         }
     }
 

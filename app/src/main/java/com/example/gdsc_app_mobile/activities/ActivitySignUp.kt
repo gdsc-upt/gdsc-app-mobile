@@ -29,11 +29,13 @@ class ActivitySignUp : AppCompatActivity() {
         registerButton.setOnClickListener{
             val intent = Intent(this@ActivitySignUp, ActivityRegister::class.java)
             startActivity(intent)
+            finish()
         }
 
         logInButton.setOnClickListener {
             val intent = Intent(this@ActivitySignUp, MainActivity::class.java)
             startActivity(intent)
+            finish()
         }
 
         setupMode()
@@ -42,12 +44,10 @@ class ActivitySignUp : AppCompatActivity() {
 
     private fun setupMode() {
         val sharedPreferences: SharedPreferences = this.getSharedPreferences("save", 0)
-        val state: Boolean = sharedPreferences.getBoolean("dark_mode", true)
-
+        val state: Boolean = sharedPreferences.getBoolean("dark_mode", false)
         if (state) {
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
-        }
-        else {
+        } else {
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
         }
     }
