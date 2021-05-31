@@ -41,37 +41,6 @@ class ActivityRegister : AppCompatActivity() {
 
         register.setOnClickListener{
 
-            val contactCall : Call<List<ContactModel>> = ApiClient.getUserService().getContacts()
-
-            contactCall.enqueue(object : Callback<List<ContactModel>> {
-                override fun onResponse(
-                    call: Call<List<ContactModel>>,
-                    response: Response<List<ContactModel>>
-                ) {
-                    if(response.isSuccessful) {
-                        val contacts: List<ContactModel>? = response.body()
-
-                        if(contacts != null)
-                            if(contacts.isEmpty())
-                                Toast.makeText(this@ActivityRegister, "Empty list", Toast.LENGTH_SHORT).show()
-                            else
-                                Toast.makeText(this@ActivityRegister, "Date: ${contacts[0].created}", Toast.LENGTH_SHORT).show()
-                        //else
-                        //    Toast.makeText(this@ActivityRegister, "Empty list", Toast.LENGTH_SHORT).show()
-
-                    }
-                    else
-                        Toast.makeText(this@ActivityRegister, "Unsuccessful response", Toast.LENGTH_SHORT).show()
-
-                }
-
-                override fun onFailure(call: Call<List<ContactModel>>, t: Throwable) {
-                    Toast.makeText(this@ActivityRegister, "Failed", Toast.LENGTH_SHORT).show()
-
-                }
-
-            })
-
         }
     }
 

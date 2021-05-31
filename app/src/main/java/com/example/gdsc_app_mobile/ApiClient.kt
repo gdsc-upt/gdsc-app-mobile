@@ -6,7 +6,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 class ApiClient {
 
     companion object {
-        fun getRetrofit() : Retrofit {
+        private fun getRetrofit() : Retrofit {
             val retrofit : Retrofit = Retrofit.Builder()
                 .baseUrl("http://dev.api.gdscupt.tech/")
                 .addConverterFactory(GsonConverterFactory.create())
