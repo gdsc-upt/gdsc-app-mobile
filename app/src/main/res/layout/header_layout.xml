@@ -17,23 +17,21 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp">
+            android:layout_marginBottom="10dp"
+            android:gravity="center">
 
             <ImageView
                 android:id="@+id/nav_header_img_view"
                 android:layout_width="45dp"
                 android:layout_height="45dp"
-                android:layout_marginStart="25dp"
+                android:layout_marginEnd="15dp"
                 android:layout_gravity="center_vertical"
                 android:src="@drawable/img_dsc" />
 
             <TextView
                 android:id="@+id/nav_header_title"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:gravity="center_horizontal"
-
-                android:layout_gravity="center_vertical"
                 android:text="@string/welcome_to_dsc"
                 android:textSize="25sp" />
         </LinearLayout>

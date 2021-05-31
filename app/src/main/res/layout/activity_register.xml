@@ -12,7 +12,7 @@
         android:id="@+id/activity_sign_up_logo"
         android:layout_width="100dp"
         android:layout_height="100dp"
-        android:layout_marginTop="90dp"
+        android:layout_marginTop="60dp"
         android:layout_gravity="center_horizontal"
         android:src="@drawable/logo_dsc"/>
     <TextView
@@ -136,44 +136,24 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
 
+
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
+            android:layout_alignParentBottom="true"
             android:gravity="center_horizontal"
             android:orientation="horizontal">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/already_registered"
-                android:textColor="@color/colorLogin"
-                android:layout_gravity="center" />
-
-            <TextView
-                android:id="@+id/back_to_login"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="15dp"
-                android:text="@string/login_me"
-                android:textColor="@color/colorLogin"
-                android:textStyle="bold"/>
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center_horizontal"
-            android:orientation="horizontal"
-            android:layout_alignParentBottom="true">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/made_with"
-                android:textStyle="bold"
                 android:layout_marginEnd="6dp"
+                android:text="@string/made_with"
+                android:textColor="@color/colorLogin"
                 android:textSize="20sp"
-                android:textColor="@color/colorLogin"/>
+                android:textStyle="bold" />
+
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -184,9 +164,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="6dp"
                 android:text="@string/made_by_gdsc_upt_team"
-                android:textStyle="bold"
                 android:textColor="@color/colorLogin"
-                android:textSize="20sp" />
+                android:textSize="20sp"
+                android:textStyle="bold" />
         </LinearLayout>
 
     </RelativeLayout>

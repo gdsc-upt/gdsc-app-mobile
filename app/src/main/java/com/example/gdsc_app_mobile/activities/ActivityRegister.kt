@@ -5,13 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.TextView
-import android.widget.Toast
-import com.example.gdsc_app_mobile.ApiClient
 import com.example.gdsc_app_mobile.R
-import com.example.gdsc_app_mobile.models.ContactModel
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 
 class ActivityRegister : AppCompatActivity() {
 
@@ -20,7 +14,6 @@ class ActivityRegister : AppCompatActivity() {
     private lateinit var password : EditText
     private lateinit var confirmPassword : EditText*/
     private lateinit var register : Button
-    private lateinit var loginMe : TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,13 +24,7 @@ class ActivityRegister : AppCompatActivity() {
         password = findViewById(R.id.register_password_text)
         confirmPassword = findViewById(R.id.register_confirm_password_text)*/
         register = findViewById(R.id.register_button)
-        loginMe = findViewById(R.id.back_to_login)
 
-        loginMe.setOnClickListener {
-            val intent = Intent(this@ActivityRegister, ActivitySignUp::class.java)
-            startActivity(intent)
-            finish()
-        }
 
         register.setOnClickListener{
 
