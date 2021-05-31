@@ -5,13 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.TextView
-import android.widget.Toast
-import com.example.gdsc_app_mobile.ApiClient
 import com.example.gdsc_app_mobile.R
-import com.example.gdsc_app_mobile.models.ContactModel
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 
 class ActivityRegister : AppCompatActivity() {
 

@@ -1,4 +1,4 @@
-package com.example.gdsc_app_mobile
+package com.example.gdsc_app_mobile.services
 
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
