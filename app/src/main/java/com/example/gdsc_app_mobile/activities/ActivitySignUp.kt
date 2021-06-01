@@ -10,6 +10,7 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatDelegate
 import com.example.gdsc_app_mobile.services.ApiClient
 import com.example.gdsc_app_mobile.R
+import com.example.gdsc_app_mobile.Singleton
 import com.example.gdsc_app_mobile.models.LoginModel
 import com.example.gdsc_app_mobile.models.TokenModel
 import retrofit2.Call
@@ -49,6 +50,11 @@ class ActivitySignUp : AppCompatActivity() {
 
                     if(response.isSuccessful){
                         val token = response.body()?.token
+                        Singleton.setToken(token)
+
+                        val intent = Intent(this@ActivitySignUp, MainActivity::class.java)
+                        startActivity(intent)
+                        finish()
 
                         /*
                         val contactCall : Call<List<ContactModel>> = ApiClient.getService().
@@ -93,9 +99,7 @@ class ActivitySignUp : AppCompatActivity() {
             })
 
 
-            val intent = Intent(this@ActivitySignUp, MainActivity::class.java)
-            startActivity(intent)
-            finish()
+
         }
 
         setupMode()

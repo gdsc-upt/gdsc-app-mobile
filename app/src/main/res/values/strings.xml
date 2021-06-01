@@ -32,4 +32,16 @@
     <!--Languages-->
     <string name="romanianLanguage">Romanian</string>
     <string name="englishLanguage">English</string>
+
+    <!--faq-->
+    <string name="yes">Yes</string>
+    <string name="sure_want_delete">Are you sure you want to delete this item?</string>
+    <string name="something_wrong">Something went wrong</string>
+    <string name="faq_successfully_posted">Faq successfully posted</string>
+    <string name="no_question">No written question</string>
+    <string name="no_answer">No written answer</string>
+    <string name="faq_delete">Delete</string>
+    <string name="question">Question</string>
+    <string name="answer">Answer</string>
+    <string name="faq_add">Add faq</string>
 </resources>

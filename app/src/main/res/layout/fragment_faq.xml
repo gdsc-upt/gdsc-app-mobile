@@ -22,7 +22,7 @@
             android:layout_marginEnd="15dp"
             android:text="+"
             android:textSize="20sp"
-            android:textColor="@color/white"
+            android:textColor="@color/white_dark"
             android:background="@drawable/rounded_button"
             android:layout_marginBottom="15dp"/>
     </RelativeLayout>
