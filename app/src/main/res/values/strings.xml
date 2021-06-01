@@ -32,4 +32,5 @@
     <!--Languages-->
     <string name="romanianLanguage">Romanian</string>
     <string name="englishLanguage">English</string>
+    <string name="home">Home</string>
 </resources>

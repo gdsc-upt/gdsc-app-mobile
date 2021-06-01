@@ -24,6 +24,7 @@ android {
         }
     }
     compileOptions {
+        coreLibraryDesugaringEnabled true
         sourceCompatibility "1.8"
         targetCompatibility "1.8"
     }
@@ -57,5 +58,9 @@ dependencies {
 
     //CardView + RecycleView
     implementation 'androidx.cardview:cardview:1.0.0'
+
+    //Calendar
+    coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs:1.1.5'
+    implementation 'com.github.kizitonwose:CalendarView:1.0.4'
 
 }

@@ -32,8 +32,8 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         setupDrawer()
 
         if (savedInstanceState == null) {
-            addFragment(FragmentContact())
-            navigationView.setCheckedItem(R.id.nav_contact)
+            addFragment(FragmentHomePage())
+            navigationView.setCheckedItem(R.id.nav_home)
         }
     }
 
@@ -74,6 +74,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
+            R.id.nav_home -> addFragment(FragmentHomePage())
             R.id.nav_contact -> addFragment(FragmentContact())
             R.id.nav_about_us -> addFragment(FragmentAboutUs())
             R.id.nav_articles -> addFragment(FragmentArticles())
