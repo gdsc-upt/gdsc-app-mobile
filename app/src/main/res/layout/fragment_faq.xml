@@ -15,13 +15,13 @@
             android:layout_width="match_parent"/>
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/add_faq_button"
-            android:layout_width="80dp"
-            android:height="80dp"
-            android:layout_height="wrap_content"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
             android:layout_alignParentBottom="true"
             android:layout_alignParentEnd="true"
             android:layout_marginEnd="15dp"
-            android:text="Add"
+            android:text="+"
+            android:textSize="20sp"
             android:textColor="@color/white"
             android:background="@drawable/rounded_button"
             android:layout_marginBottom="15dp"/>
