@@ -8,7 +8,7 @@ import android.widget.ArrayAdapter
 import android.widget.TextView
 import com.example.gdsc_app_mobile.R
 import com.example.gdsc_app_mobile.models.FaqModel
-import java.util.ArrayList
+import kotlin.collections.ArrayList
 
 class FaqAdapter(private val context: Activity, private val arrayList: ArrayList<FaqModel>): ArrayAdapter<FaqModel>(context,
     R.layout.card_faq, arrayList) {
