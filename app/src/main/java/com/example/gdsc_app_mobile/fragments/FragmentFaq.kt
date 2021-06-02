@@ -33,11 +33,12 @@ class FragmentFaq : Fragment() {
     private lateinit var faqAddError: TextView
 
     private lateinit var faqDeleteButton: Button
+    private lateinit var faqDeleteNo: Button
+    private lateinit var faqDeleteYes: Button
     private lateinit var faqViewQuestion: TextView
     private lateinit var faqViewDate: TextView
     private lateinit var faqViewAnswer: TextView
     private lateinit var faqDeleteMessage: TextView
-
 
     private lateinit var addFaqButton: Button
     private var faqs = ArrayList<FaqModel>()
@@ -158,6 +159,8 @@ class FragmentFaq : Fragment() {
         faqViewAnswer = faqDetailsView.findViewById(R.id.faq_view_answer)
         faqViewDate = faqDetailsView.findViewById(R.id.faq_view_date)
         faqDeleteButton = faqDetailsView.findViewById(R.id.faq_delete_button)
+        faqDeleteNo = faqDetailsView.findViewById(R.id.faq_delete_no)
+        faqDeleteYes = faqDetailsView.findViewById(R.id.faq_delete_yes)
         faqDeleteMessage = faqDetailsView.findViewById(R.id.faq_delete_message)
 
         faqViewQuestion.text = faqs[position].question
@@ -172,9 +175,18 @@ class FragmentFaq : Fragment() {
 
         faqDeleteButton.setOnClickListener {
             faqDeleteMessage.text = resources.getString(R.string.sure_want_delete)
-            faqDeleteButton.text = resources.getString(R.string.yes)
-            faqDeleteButton.setOnClickListener {
+            faqDeleteButton.visibility = View.GONE
+            faqDeleteNo.visibility = View.VISIBLE
+            faqDeleteYes.visibility = View.VISIBLE
+
+            faqDeleteYes.setOnClickListener {
                 deleteFaq(position)
+            }
+            faqDeleteNo.setOnClickListener {
+                faqDeleteMessage.text = ""
+                faqDeleteButton.visibility = View.VISIBLE
+                faqDeleteNo.visibility = View.GONE
+                faqDeleteYes.visibility = View.GONE
             }
         }
     }

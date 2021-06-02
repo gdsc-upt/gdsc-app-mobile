@@ -25,6 +25,7 @@
                     <EditText
                         android:id="@+id/faq_add_question"
                         android:layout_width="300dp"
+                        android:backgroundTint="@color/grey"
                         android:layout_height="wrap_content"
                         android:layout_centerHorizontal="true"
                         android:hint="@string/question"
@@ -40,6 +41,7 @@
                     <EditText
                         android:id="@+id/faq_add_answer"
                         android:layout_width="300dp"
+                        android:backgroundTint="@color/grey"
                         android:textColorHint="@color/grey"
                         android:layout_height="wrap_content"
                         android:layout_centerHorizontal="true"
