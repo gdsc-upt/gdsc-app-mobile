@@ -15,6 +15,7 @@ import com.example.gdsc_app_mobile.services.ApiClient
 import com.example.gdsc_app_mobile.adapters.FaqAdapter
 import com.example.gdsc_app_mobile.R
 import com.example.gdsc_app_mobile.Singleton
+import com.example.gdsc_app_mobile.interfaces.ISelectedData
 import com.example.gdsc_app_mobile.models.FaqModel
 import com.example.gdsc_app_mobile.models.FaqPostModel
 import org.w3c.dom.Text
@@ -23,7 +24,7 @@ import retrofit2.Callback
 import retrofit2.Response
 import kotlin.collections.ArrayList
 
-class FragmentFaq : Fragment() {
+class FragmentFaq : Fragment(), ISelectedData {
 
     private lateinit var dialogBuilder: AlertDialog.Builder
     private lateinit var dialog: AlertDialog
@@ -222,5 +223,9 @@ class FragmentFaq : Fragment() {
             }
 
         })
+    }
+
+    override fun onSelectedData() {
+        TODO("Not yet implemented")
     }
 }
