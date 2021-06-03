@@ -133,30 +133,35 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_horizontal"
-            android:orientation="horizontal"
+            android:orientation="vertical"
             android:layout_alignParentBottom="true">
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:gravity="center"
+                android:layout_height="match_parent">
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/made_with"
                 android:textStyle="bold"
                 android:layout_marginEnd="6dp"
-                android:textSize="20sp"
+                android:textSize="18sp"
                 android:textColor="@color/colorLogin"/>
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:srcCompat="@drawable/ic_favorite_24" />
+            </LinearLayout>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="6dp"
                 android:text="@string/made_by_gdsc_upt_team"
                 android:textStyle="bold"
                 android:textColor="@color/colorLogin"
-                android:textSize="20sp" />
+                android:layout_marginBottom="5dp"
+                android:textSize="18sp" />
         </LinearLayout>
 
     </RelativeLayout>
