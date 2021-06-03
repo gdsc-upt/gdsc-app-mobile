@@ -52,10 +52,6 @@ class ActivitySignUp : AppCompatActivity() {
                         val token = response.body()?.token
                         Singleton.setToken(token)
 
-                        val intent = Intent(this@ActivitySignUp, MainActivity::class.java)
-                        startActivity(intent)
-                        finish()
-
                         /*
                         val contactCall : Call<List<ContactModel>> = ApiClient.getService().
                         getContacts("Bearer $token")
@@ -90,6 +86,9 @@ class ActivitySignUp : AppCompatActivity() {
                         })
                         */
                     }
+                    val intent = Intent(this@ActivitySignUp, MainActivity::class.java)
+                    startActivity(intent)
+                    finish()
                 }
 
                 override fun onFailure(call: Call<TokenModel>, t: Throwable) {
