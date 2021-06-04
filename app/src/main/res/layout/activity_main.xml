@@ -24,7 +24,10 @@
         android:layout_width="300dp"
         android:layout_height="match_parent"
         app:headerLayout="@layout/header_layout"
+        app:itemIconTint="@drawable/navigation_menu_text"
+        app:itemTextColor="@drawable/navigation_menu_text"
         app:itemTextAppearance="@style/JetbrainsMonoStyle"
+        app:itemBackground="@drawable/navigation_menu_item_selected"
         app:menu="@menu/drawer_menu"
         android:layout_gravity="start"
         android:fitsSystemWindows="true"/>

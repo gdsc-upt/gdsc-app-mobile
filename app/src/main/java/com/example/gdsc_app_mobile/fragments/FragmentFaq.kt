@@ -199,6 +199,6 @@ class FragmentFaq : Fragment(), ISelectedData {
     override fun onSelectedData(question: String, answer: String) {
         Toast.makeText(context, "Question: $question Answer: $answer",Toast.LENGTH_LONG).show()
         //HERE YOU SHOULD CALL CREATE POST method
-        //createPost(question, answer)
+        createPost(question, answer)
     }
 }
