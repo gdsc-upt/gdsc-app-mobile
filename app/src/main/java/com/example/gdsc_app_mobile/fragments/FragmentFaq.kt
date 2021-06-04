@@ -11,6 +11,7 @@ import com.example.gdsc_app_mobile.adapters.FaqAdapter
 import com.example.gdsc_app_mobile.R
 import com.example.gdsc_app_mobile.Singleton
 import com.example.gdsc_app_mobile.activities.MainActivity
+import com.example.gdsc_app_mobile.dialogs.DialogFaqFragmentDeleteQuestion
 import com.example.gdsc_app_mobile.dialogs.DialogFragmentFaqAddQuestion
 import com.example.gdsc_app_mobile.interfaces.ISelectedData
 import com.example.gdsc_app_mobile.models.FaqModel
@@ -21,14 +22,6 @@ import retrofit2.Response
 import kotlin.collections.ArrayList
 
 class FragmentFaq : Fragment(), ISelectedData {
-
-    private lateinit var faqDeleteButton: Button
-    private lateinit var faqDeleteNo: Button
-    private lateinit var faqDeleteYes: Button
-    private lateinit var faqViewQuestion: TextView
-    private lateinit var faqViewDate: TextView
-    private lateinit var faqViewAnswer: TextView
-    private lateinit var faqDeleteMessage: TextView
 
     private lateinit var addFaqButton: Button
     private var faqs = ArrayList<FaqModel>()
@@ -124,52 +117,12 @@ class FragmentFaq : Fragment(), ISelectedData {
         })
     }
 
-    fun detailedFaq(position: Int) {
-//        dialogBuilder = AlertDialog.Builder(context)
-        val faqDetailsView = layoutInflater.inflate(R.layout.detailed_faq, null)
-
-        faqViewQuestion = faqDetailsView.findViewById(R.id.faq_view_question)
-        faqViewAnswer = faqDetailsView.findViewById(R.id.faq_view_answer)
-        faqViewDate = faqDetailsView.findViewById(R.id.faq_view_date)
-        faqDeleteButton = faqDetailsView.findViewById(R.id.faq_delete_button)
-        faqDeleteNo = faqDetailsView.findViewById(R.id.faq_delete_no)
-        faqDeleteYes = faqDetailsView.findViewById(R.id.faq_delete_yes)
-        faqDeleteMessage = faqDetailsView.findViewById(R.id.faq_delete_message)
-
-        faqViewQuestion.text = faqs[position].question
-        faqViewAnswer.text = faqs[position].answer
-        faqViewDate.text = getDate(faqs[position].created)
-
-//        dialogBuilder.setView(faqDetailsView)
-//        dialog = dialogBuilder.create()
-//        dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-//        dialog.window?.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE)
-//        dialog.show()
-
-        faqDeleteButton.setOnClickListener {
-            faqDeleteMessage.text = resources.getString(R.string.sure_want_delete)
-            faqDeleteButton.visibility = View.GONE
-            faqDeleteNo.visibility = View.VISIBLE
-            faqDeleteYes.visibility = View.VISIBLE
-
-            faqDeleteYes.setOnClickListener {
-                deleteFaq(position)
-            }
-            faqDeleteNo.setOnClickListener {
-                faqDeleteMessage.text = ""
-                faqDeleteButton.visibility = View.VISIBLE
-                faqDeleteNo.visibility = View.GONE
-                faqDeleteYes.visibility = View.GONE
-            }
-        }
-    }
-
-    private fun getDate(date: String?): String {
-        val year = date?.substring(0, 4)
-        val month = date?.substring(5, 7)
-        val day = date?.substring(8, 10)
-
-        return "$day/$month/$year"
+    fun detailedFaq(_position: Int) {
+        val dialog = DialogFaqFragmentDeleteQuestion()
+        dialog.addListener(this)
+        dialog.setFaq(faqs[_position])
+        dialog.setPosition(_position)
+        dialog.show(requireActivity().supportFragmentManager, "DeleteQuestionDialog")
     }
 
     private fun deleteFaq(position: Int) {
@@ -199,6 +152,10 @@ class FragmentFaq : Fragment(), ISelectedData {
     override fun onSelectedData(question: String, answer: String) {
         Toast.makeText(context, "Question: $question Answer: $answer",Toast.LENGTH_LONG).show()
         //HERE YOU SHOULD CALL CREATE POST method
-        //createPost(question, answer)
+        createPost(question, answer)
+    }
+
+    override fun deletePosition(position: Int) {
+        deleteFaq(position)
     }
 }
