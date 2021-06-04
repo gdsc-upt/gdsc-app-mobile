@@ -25,7 +25,7 @@ import java.time.LocalDateTime
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
     private lateinit var drawerLayout: DrawerLayout
     private lateinit var navigationView: NavigationView
-    private lateinit var toolbar: Toolbar
+    internal lateinit var toolbar: Toolbar
     private lateinit var actionBarToggle: ActionBarDrawerToggle
 
     override fun onCreate(savedInstanceState: Bundle?) {

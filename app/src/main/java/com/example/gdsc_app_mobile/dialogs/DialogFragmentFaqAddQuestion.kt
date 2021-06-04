@@ -36,7 +36,7 @@ class DialogFragmentFaqAddQuestion: DialogFragment() {
         faqAddButton = view.findViewById(R.id.faq_add_button)
         faqAddError = view.findViewById(R.id.faq_add_error)
 
-        // check if the edit texts are blank, else pass the date to the fragment through onSelectedData interface
+        // check if the edit texts are blank, else pass the data to the fragment through onSelectedData interface
         faqAddButton.setOnClickListener {
             when {
                 faqAddQuestion.text.toString() == "" -> faqAddError.text = resources.getString(R.string.no_question)
@@ -50,7 +50,7 @@ class DialogFragmentFaqAddQuestion: DialogFragment() {
         return view
     }
 
-    //method to add the listener from the fragment where the dialog is called
+    //method to add the listener from the fragment in which the dialog is called
     fun addListener(listener: ISelectedData){
         this.listener = listener
     }

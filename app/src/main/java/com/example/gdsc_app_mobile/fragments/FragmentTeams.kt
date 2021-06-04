@@ -4,8 +4,10 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.fragment.app.Fragment
 import com.example.gdsc_app_mobile.R
+import com.example.gdsc_app_mobile.activities.MainActivity
 
 class FragmentTeams : Fragment() {
 
@@ -15,6 +17,9 @@ class FragmentTeams : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
 
-        return inflater.inflate(R.layout.fragment_teams, container, false)
+        val view = inflater.inflate(R.layout.fragment_teams, container, false)
+        (activity as MainActivity).toolbar.findViewById<TextView>(R.id.toolbar_title).text = getString(
+                    R.string.FragmentTeamsTitle)
+        return view
     }
 }

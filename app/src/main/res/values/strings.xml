@@ -45,4 +45,11 @@
     <string name="question">Question</string>
     <string name="answer">Answer</string>
     <string name="faq_add">Add faq</string>
+    <string name="FragmentTeamsTitle">TEAMS</string>
+    <string name="FragmentSuggestionsTitle">SUGGESTIONS</string>
+    <string name="FragmentOptionsTitle">OPTIONS</string>
+    <string name="FragmentFaqTitle">FAQ</string>
+    <string name="FragmentContactTitle">CONTACT</string>
+    <string name="FragmentArticlesTitle">ARTICLES</string>
+    <string name="FragmentAboutUsTitle">ABOUT US</string>
 </resources>
