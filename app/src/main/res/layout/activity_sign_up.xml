@@ -11,37 +11,37 @@
         android:id="@+id/activity_sign_up_logo"
         android:layout_width="100dp"
         android:layout_height="100dp"
-        android:layout_marginTop="90dp"
+        android:layout_marginTop="80dp"
         android:layout_gravity="center_horizontal"
         android:src="@drawable/logo_dsc"/>
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="22sp"
+        android:textSize="20sp"
+        android:layout_marginBottom="5dp"
         android:text="@string/developer_students_club"
         android:layout_gravity="center"/>
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="14sp"
+        android:textSize="12sp"
         android:text="@string/university"
         android:layout_gravity="center"/>
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="50sp"
         android:gravity="center_horizontal">
 
         <ImageView
             android:id="@+id/activity_sign_up_username_icon"
-            android:layout_width="50dp"
+            android:layout_width="45dp"
             android:layout_height="50dp"
-            android:padding="5dp"
             android:layout_marginEnd="10dp"
+            android:padding="5dp"
             app:srcCompat="@drawable/ic_user"
-            app:tint="@color/colorLogin"
-            />
+            app:tint="@color/colorLogin" />
 
         <EditText
             android:id="@+id/activity_sign_up_username"
@@ -53,22 +53,23 @@
             android:backgroundTint="@color/primary_grey"
             android:ems="10"
             android:hint="@string/enter_your_username"
-            android:inputType="textPersonName" />
+            android:inputType="textPersonName"
+            android:textSize="15sp" />
 
     </RelativeLayout>
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="25dp"
         android:layout_height="wrap_content"
         android:gravity="center_horizontal">
 
         <ImageView
             android:id="@+id/activity_sign_up_password_icon"
-            android:layout_width="50dp"
+            android:layout_width="45dp"
             android:layout_height="50dp"
-            android:padding="5dp"
             android:layout_marginEnd="10dp"
+            android:padding="5dp"
             app:srcCompat="@drawable/ic_padlock"
             app:tint="@color/colorLogin" />
 
@@ -82,7 +83,8 @@
             android:backgroundTint="@color/primary_grey"
             android:ems="10"
             android:hint="@string/enter_your_password"
-            android:inputType="textPassword" />
+            android:inputType="textPassword"
+            android:textSize="15sp" />
 
     </RelativeLayout>
 
@@ -92,6 +94,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
+        android:textSize="15sp"
         android:text="@string/log_in"
         android:layout_gravity="center" />
 
@@ -112,6 +115,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/colorLogin"
+            android:textSize="13sp"
             android:text="@string/don_t_have_an_account"
             android:layout_gravity="center" />
 
@@ -121,6 +125,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="15dp"
             android:text="@string/register_here"
+            android:textSize="13sp"
             android:textColor="@color/colorLogin"
             android:textStyle="bold"/>
     </LinearLayout>
@@ -133,30 +138,35 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_horizontal"
-            android:orientation="horizontal"
+            android:orientation="vertical"
             android:layout_alignParentBottom="true">
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:gravity="center"
+                android:layout_height="match_parent">
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/made_with"
                 android:textStyle="bold"
                 android:layout_marginEnd="6dp"
-                android:textSize="20sp"
+                android:textSize="15sp"
                 android:textColor="@color/colorLogin"/>
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:srcCompat="@drawable/ic_favorite_24" />
+            </LinearLayout>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="6dp"
                 android:text="@string/made_by_gdsc_upt_team"
                 android:textStyle="bold"
                 android:textColor="@color/colorLogin"
-                android:textSize="20sp" />
+                android:layout_marginBottom="5dp"
+                android:textSize="15sp" />
         </LinearLayout>
 
     </RelativeLayout>

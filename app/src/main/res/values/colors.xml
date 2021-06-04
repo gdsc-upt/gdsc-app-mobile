@@ -18,4 +18,11 @@
     <color name="gray">#CED1D4</color>
     <color name="colorLogin">@color/primary_grey</color>
     <color name="colorHeart">#E91E63</color>
+    <color name="blue_light">#29B6F6</color>
+
+    <color name="grey">#8198A6</color>
+    <color name="card_color">#FFEE58</color>
+    <color name="white_dark">#FFFFFF</color>
+    <color name="dark_white">#000000</color>
+
 </resources>

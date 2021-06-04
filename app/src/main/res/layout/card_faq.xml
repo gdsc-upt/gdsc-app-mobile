@@ -11,7 +11,7 @@
         android:layout_margin="4dp"
         card_view:cardCornerRadius="10dp"
         card_view:contentPadding="10dp"
-        android:backgroundTint="@color/teal_200">
+        android:backgroundTint="@color/card_color">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -23,16 +23,16 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="20sp"
-            android:textStyle="bold"
-            android:text="mama?"/>
+            android:textColor="@color/black"
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/faq_answer"
             android:layout_marginStart="8dp"
             android:layout_width="match_parent"
+            android:textColor="@color/black"
             android:layout_height="wrap_content"
-            android:textSize="16sp"
-            android:text="haha"/>
+            android:textSize="16sp" />
 
     </LinearLayout>
 

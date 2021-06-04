@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:scrollbars="none"
+    android:orientation="vertical">
+    <LinearLayout
+        android:layout_width="350dp"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_gravity="center"
+        android:background="@drawable/curve_shape">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="20dp"
+            android:src="@drawable/contact_img" />
+
+        <EditText
+            android:id="@+id/nameEditText"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:paddingTop="25dp"
+            android:textSize="16sp"
+            android:ems="10"
+            android:hint="Name"
+            android:inputType="textPersonName" />
+
+        <EditText
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:paddingTop="25dp"
+            android:textSize="16sp"
+            android:hint="Email"
+            android:inputType="textEmailAddress" />
+
+        <EditText
+            android:id="@+id/subjectEditText"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:paddingTop="25dp"
+            android:textSize="16sp"
+            android:ems="10"
+            android:hint="Subject"
+            android:inputType="text" />
+
+        <EditText
+            android:id="@+id/messageEditText"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:paddingTop="25dp"
+            android:textSize="16sp"
+            android:ems="10"
+            android:hint="Your message"
+            android:keyboardNavigationCluster="true"
+            android:inputType="textMultiLine" />
+
+        <Button
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/submitMessageButton"
+            android:text="SUBMIT MESSAGE"
+            android:layout_gravity="center"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="20dp"
+            />
+    </LinearLayout>
+
+
+</ScrollView>
