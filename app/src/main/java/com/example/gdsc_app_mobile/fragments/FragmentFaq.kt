@@ -24,7 +24,7 @@ import kotlin.collections.ArrayList
 class FragmentFaq : Fragment(), ISelectedData {
 
     private lateinit var addFaqButton: Button
-    private var faqs = ArrayList<FaqModel>()
+    private lateinit var faqs: ArrayList<FaqModel>
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -49,6 +49,7 @@ class FragmentFaq : Fragment(), ISelectedData {
 
     fun getFaqs() {
         val faqCall: Call<List<FaqModel>> = ApiClient.getService().getAllFaqs()
+        faqs = ArrayList()
 
         faqCall.enqueue(object :Callback<List<FaqModel>>{
 
@@ -101,7 +102,6 @@ class FragmentFaq : Fragment(), ISelectedData {
 
             override fun onResponse(call: Call<FaqModel>, response: Response<FaqModel>) {
                 if(response.isSuccessful){
-                    faqs = ArrayList()
                     getFaqs()
                     Toast.makeText(requireContext(), resources.getString(R.string.faq_successfully_posted), Toast.LENGTH_SHORT).show()
                 }
