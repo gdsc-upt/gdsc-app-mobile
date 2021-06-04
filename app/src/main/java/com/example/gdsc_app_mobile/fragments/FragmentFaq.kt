@@ -96,7 +96,7 @@ class FragmentFaq : Fragment(), ISelectedData {
             answer = _answer
         )
 
-        val faqCall : Call<FaqModel> = ApiClient.getService().postFaq("Bearer ${Singleton.getToken()}" ,faq)
+        val faqCall : Call<FaqModel> = ApiClient.getService().postFaq(Singleton.getToken().toString() ,faq)
 
         faqCall.enqueue(object : Callback<FaqModel>{
 
@@ -129,7 +129,7 @@ class FragmentFaq : Fragment(), ISelectedData {
 
         val id = faqs[position].id
 
-        val deleteFaqCall = ApiClient.getService().deleteFaq("Bearer ${Singleton.getToken()}", id)
+        val deleteFaqCall = ApiClient.getService().deleteFaq(Singleton.getToken().toString(), id)
 
         deleteFaqCall.enqueue(object : Callback<FaqModel>{
             override fun onResponse(call: Call<FaqModel>, response: Response<FaqModel>) {

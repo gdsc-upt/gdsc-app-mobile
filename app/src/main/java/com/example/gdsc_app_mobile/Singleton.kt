@@ -5,7 +5,7 @@ object Singleton {
     private var token: String? = null
 
     fun getToken(): String? {
-        return token
+        return "Bearer $token"
     }
 
     fun setToken(tok: String?) {
