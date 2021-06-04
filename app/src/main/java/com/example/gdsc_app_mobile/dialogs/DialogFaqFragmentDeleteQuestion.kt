@@ -36,7 +36,6 @@ class DialogFaqFragmentDeleteQuestion : DialogFragment() {
         val view = layoutInflater.inflate(R.layout.detailed_faq, container, false)
 
         dialog?.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-        dialog?.window?.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE)
 
         faqViewQuestion = view.findViewById(R.id.faq_view_question)
         faqViewAnswer = view.findViewById(R.id.faq_view_answer)
