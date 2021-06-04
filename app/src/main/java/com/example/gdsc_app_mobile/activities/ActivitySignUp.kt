@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatDelegate
 import com.example.gdsc_app_mobile.services.ApiClient
 import com.example.gdsc_app_mobile.R
@@ -86,18 +87,18 @@ class ActivitySignUp : AppCompatActivity() {
                         })
                         */
                     }
-                    val intent = Intent(this@ActivitySignUp, MainActivity::class.java)
-                    startActivity(intent)
-                    finish()
+
                 }
 
                 override fun onFailure(call: Call<TokenModel>, t: Throwable) {
-                    TODO("Not yet implemented")
+                    Toast.makeText(applicationContext, "Failure", Toast.LENGTH_LONG).show()
                 }
 
             })
 
-
+            val intent = Intent(this@ActivitySignUp, MainActivity::class.java)
+            startActivity(intent)
+            finish()
 
         }
 
