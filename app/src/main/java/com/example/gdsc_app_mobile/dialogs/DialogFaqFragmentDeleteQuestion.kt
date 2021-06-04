@@ -1,9 +1,12 @@
 package com.example.gdsc_app_mobile.dialogs
 
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.WindowManager
 import android.widget.Button
 import android.widget.TextView
 import androidx.fragment.app.DialogFragment
@@ -32,6 +35,9 @@ class DialogFaqFragmentDeleteQuestion : DialogFragment() {
     ): View? {
         val view = layoutInflater.inflate(R.layout.detailed_faq, container, false)
 
+        dialog?.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        dialog?.window?.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE)
+
         faqViewQuestion = view.findViewById(R.id.faq_view_question)
         faqViewAnswer = view.findViewById(R.id.faq_view_answer)
         faqViewDate = view.findViewById(R.id.faq_view_date)
@@ -52,6 +58,7 @@ class DialogFaqFragmentDeleteQuestion : DialogFragment() {
 
             faqDeleteYes.setOnClickListener {
                 listener.deletePosition(position)
+                dialog?.dismiss()
             }
             faqDeleteNo.setOnClickListener {
                 faqDeleteMessage.text = ""
