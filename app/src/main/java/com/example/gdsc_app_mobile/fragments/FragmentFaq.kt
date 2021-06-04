@@ -192,7 +192,7 @@ class FragmentFaq : Fragment(), ISelectedData {
         })
     }
 
-    // This method is called from the AddQuestion Dialog
+    // This method is called in AddQuestion Dialog
     override fun onSelectedData(question: String, answer: String) {
         Toast.makeText(context, "Question: $question Answer: $answer",Toast.LENGTH_LONG).show()
         //HERE YOU SHOULD CALL CREATE POST method
