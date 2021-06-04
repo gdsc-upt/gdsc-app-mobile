@@ -10,6 +10,7 @@ import com.example.gdsc_app_mobile.services.ApiClient
 import com.example.gdsc_app_mobile.adapters.FaqAdapter
 import com.example.gdsc_app_mobile.R
 import com.example.gdsc_app_mobile.Singleton
+import com.example.gdsc_app_mobile.activities.MainActivity
 import com.example.gdsc_app_mobile.dialogs.DialogFragmentFaqAddQuestion
 import com.example.gdsc_app_mobile.interfaces.ISelectedData
 import com.example.gdsc_app_mobile.models.FaqModel
@@ -39,6 +40,8 @@ class FragmentFaq : Fragment(), ISelectedData {
     ): View? {
 
         val view = inflater.inflate(R.layout.fragment_faq, container, false)
+        (activity as MainActivity).toolbar.findViewById<TextView>(R.id.toolbar_title).text = getString(
+                    R.string.FragmentFaqTitle)
 
         addFaqButton = view.findViewById(R.id.add_faq_button)
 

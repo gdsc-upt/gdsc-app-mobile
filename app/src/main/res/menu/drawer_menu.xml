@@ -4,24 +4,9 @@
 
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/nav_contact"
-            android:icon="@drawable/ic_nav_contact2"
-            android:title="@string/nav_contact"
-            app:showAsAction="never" />
-        <item
-            android:id="@+id/nav_about_us"
-            android:icon="@drawable/ic_nav_about_us"
-            android:title="@string/nav_about_us"
-            app:showAsAction="never"/>
-        <item
             android:id="@+id/nav_articles"
             android:icon="@drawable/outline_article_24"
             android:title="@string/articles"
-            app:showAsAction="never" />
-        <item
-            android:id="@+id/nav_faq"
-            android:icon="@drawable/ic_nav_faq"
-            android:title="@string/nav_faq"
             app:showAsAction="never" />
         <item
             android:id="@+id/nav_teams"
@@ -29,10 +14,26 @@
             android:title="@string/teams"
             app:showAsAction="never"/>
         <item
+            android:id="@+id/nav_contact"
+            android:icon="@drawable/ic_nav_contact2"
+            android:title="@string/nav_contact"
+            app:showAsAction="never" />
+
+        <item
             android:id="@+id/nav_suggestions"
             android:icon="@drawable/outline_suggestions_24"
             android:title="@string/suggestions"
             app:showAsAction="never"/>
+        <item
+            android:id="@+id/nav_about_us"
+            android:icon="@drawable/ic_nav_about_us"
+            android:title="@string/nav_about_us"
+            app:showAsAction="never"/>
+        <item
+            android:id="@+id/nav_faq"
+            android:icon="@drawable/ic_nav_faq"
+            android:title="@string/nav_faq"
+            app:showAsAction="never" />
         <item
             android:id="@+id/nav_options"
             android:icon="@drawable/ic_nav_options"

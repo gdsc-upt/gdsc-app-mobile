@@ -24,6 +24,7 @@
         android:layout_width="300dp"
         android:layout_height="match_parent"
         app:headerLayout="@layout/header_layout"
+        app:itemTextAppearance="@style/JetbrainsMonoStyle"
         app:menu="@menu/drawer_menu"
         android:layout_gravity="start"
         android:fitsSystemWindows="true"/>
