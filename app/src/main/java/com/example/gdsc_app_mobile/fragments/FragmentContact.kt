@@ -14,7 +14,6 @@ import com.example.gdsc_app_mobile.dialogs.DialogFragmentContactMessage
 import com.example.gdsc_app_mobile.interfaces.ISelectedDataContact
 import com.example.gdsc_app_mobile.models.ContactModel
 import com.example.gdsc_app_mobile.models.ContactPostModel
-import com.example.gdsc_app_mobile.models.FaqModel
 import com.example.gdsc_app_mobile.services.ApiClient
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import retrofit2.Call
@@ -56,7 +55,7 @@ class FragmentContact : Fragment(), ISelectedDataContact {
             subject = _subject,
             text = _message
         )
-        val contactCall : Call<ContactModel> = ApiClient.getService().postContact(Singleton.getToken().toString() , model)
+        val contactCall : Call<ContactModel> = ApiClient.getService().postContact(Singleton.getTokenForAuthentication().toString() , model)
 
         contactCall.enqueue(object : Callback<ContactModel> {
             override fun onResponse(call: Call<ContactModel>, response: Response<ContactModel>) {

@@ -4,7 +4,11 @@ object Singleton {
 
     private var token: String? = null
 
-    fun getToken(): String? {
+    fun getToken(): String {
+        return token.toString()
+    }
+
+    fun getTokenForAuthentication(): String? {
         return "Bearer $token"
     }
 
