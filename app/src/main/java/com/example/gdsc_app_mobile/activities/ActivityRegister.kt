@@ -2,15 +2,12 @@ package com.example.gdsc_app_mobile.activities
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Base64
 import android.widget.Button
 import android.widget.Toast
 import com.example.gdsc_app_mobile.HelperClass.Companion.decodeBase64
 import com.example.gdsc_app_mobile.HelperClass.Companion.deserializeTokenInfo
 import com.example.gdsc_app_mobile.R
 import com.example.gdsc_app_mobile.Singleton
-import com.example.gdsc_app_mobile.models.TokenInfoModel
-import com.google.gson.Gson
 
 class ActivityRegister : AppCompatActivity() {
 

@@ -42,6 +42,10 @@
     <color name="floating_icon_color">@color/black</color>
     <color name="floating_bg_color">@color/white</color>
     <color name="svg_color">#6C63FF</color>
+    <color name="linkedin_color">@color/black</color>
+    <color name="web_search_icon">@color/black</color>
+    <color name="web_search_magnifying">@color/black</color>
+
 
 
 </resources>

@@ -4,11 +4,8 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.example.gdsc_app_mobile.R
-import com.example.gdsc_app_mobile.Singleton
 import com.example.gdsc_app_mobile.activities.MainActivity
 import com.example.gdsc_app_mobile.dialogs.DialogFragmentContactMessage
 import com.example.gdsc_app_mobile.interfaces.ISelectedDataContact
@@ -19,10 +16,14 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import android.content.Intent
+import android.net.Uri
+import android.widget.*
 
 class FragmentContact : Fragment(), ISelectedDataContact {
 
     private lateinit var openDialog: FloatingActionButton
+    private lateinit var linkedinButton: ImageView
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -31,14 +32,25 @@ class FragmentContact : Fragment(), ISelectedDataContact {
     ): View? {
 
         val view = inflater.inflate(R.layout.fragment_contact, container, false)
-        (activity as MainActivity).toolbar.findViewById<TextView>(R.id.toolbar_title).text = getString(
-                    R.string.FragmentContactTitle)
+        var toolbar = (activity as MainActivity).toolbar.findViewById<TextView>(R.id.toolbar_title)
+        toolbar.text = getString(
+            R.string.FragmentContactTitle)
 
-        openDialog = view.findViewById(R.id.home_floating_button)
+        linkedinButton = view.findViewById(R.id.contact_linkedin_button)
+
+        openDialog = view.findViewById(R.id.contact_floating_button)
         openDialog.setOnClickListener {
             openMessageDialog()
         }
 
+        linkedinButton.setOnClickListener {
+            startActivity(
+                Intent(
+                    Intent.ACTION_VIEW,
+                    Uri.parse("https://www.linkedin.com/company/gdsc-upt/")
+                )
+            )
+        }
         return view
     }
 
