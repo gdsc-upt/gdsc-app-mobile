@@ -1,11 +1,16 @@
 package com.example.gdsc_app_mobile.activities
 
-import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Base64
 import android.widget.Button
-import android.widget.TextView
+import android.widget.Toast
+import com.example.gdsc_app_mobile.HelperClass.Companion.decodeBase64
+import com.example.gdsc_app_mobile.HelperClass.Companion.deserializeTokenInfo
 import com.example.gdsc_app_mobile.R
+import com.example.gdsc_app_mobile.Singleton
+import com.example.gdsc_app_mobile.models.TokenInfoModel
+import com.google.gson.Gson
 
 class ActivityRegister : AppCompatActivity() {
 
@@ -14,6 +19,7 @@ class ActivityRegister : AppCompatActivity() {
     private lateinit var password : EditText
     private lateinit var confirmPassword : EditText*/
     private lateinit var register : Button
+    private val TAG = "MyActivity"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,9 +33,15 @@ class ActivityRegister : AppCompatActivity() {
 
 
         register.setOnClickListener{
+            val data = Singleton.getToken()?.split(".")?.get(1)
+            //Toast.makeText(applicationContext, data.toString(), Toast.LENGTH_LONG).show()
+            if (data != null) {
+                val decodeValue = data.decodeBase64()
+                val tokenInfo = decodeValue.deserializeTokenInfo()
+                Toast.makeText(applicationContext, tokenInfo.roles, Toast.LENGTH_LONG).show()
+            }
 
         }
     }
-
-
 }
+

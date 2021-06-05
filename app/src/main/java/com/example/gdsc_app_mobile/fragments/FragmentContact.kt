@@ -34,7 +34,7 @@ class FragmentContact : Fragment(), ISelectedDataContact {
         (activity as MainActivity).toolbar.findViewById<TextView>(R.id.toolbar_title).text = getString(
                     R.string.FragmentContactTitle)
 
-        openDialog = view.findViewById<FloatingActionButton>(R.id.home_floating_button)
+        openDialog = view.findViewById(R.id.home_floating_button)
         openDialog.setOnClickListener {
             openMessageDialog()
         }
@@ -55,7 +55,7 @@ class FragmentContact : Fragment(), ISelectedDataContact {
             subject = _subject,
             text = _message
         )
-        val contactCall : Call<ContactModel> = ApiClient.getService().postContact(Singleton.getTokenForAuthentication().toString() , model)
+        val contactCall : Call<ContactModel> = ApiClient.getService().postContact(model)
 
         contactCall.enqueue(object : Callback<ContactModel> {
             override fun onResponse(call: Call<ContactModel>, response: Response<ContactModel>) {
