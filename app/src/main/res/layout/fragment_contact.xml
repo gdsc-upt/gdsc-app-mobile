@@ -9,36 +9,62 @@
         android:layout_width="match_parent"
         android:orientation="vertical">
 
-        <ImageView
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_gravity="center"
-            android:layout_marginTop="40dp"
-            android:src="@drawable/ic_alternate_email" />
-
         <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center"
-            android:text="dsc.upt@gmail.com"
-            android:textSize="20dp"
-            />
-
-        <ImageView
-            android:layout_width="40dp"
-            android:layout_height="40dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Let's Talk"
             android:layout_gravity="center"
-            android:layout_marginTop="40dp"
-            android:src="@drawable/ic_location"/>
+            android:textStyle="bold"
+            android:layout_marginBottom="5dp"
+            android:textSize="23sp"/>
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="200dp"
+            android:src="@drawable/contact_us_svg"/>
 
-        <TextView
-            android:layout_width="match_parent"
+        <LinearLayout
+            android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:gravity="center"
-            android:layout_marginBottom="30dp"
-            android:text="Timisoara, Romania"
-            android:textSize="20dp"/>
+            android:layout_marginTop="20dp"
+            android:layout_gravity="center"
+            android:orientation="vertical">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginBottom="20dp">
+                <ImageView
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_marginEnd="20dp"
+                    android:src="@drawable/ic_alternate_email" />
 
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="@string/dsc_mail"
+                    android:textSize="20sp"
+                    />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <ImageView
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_marginEnd="20dp"
+                    android:src="@drawable/ic_location"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/dsc_address"
+                    android:layout_gravity="center"
+                    android:textSize="20sp"/>
+            </LinearLayout>
+        </LinearLayout>
 
     </LinearLayout>
 
@@ -48,11 +74,13 @@
         android:layout_height="wrap_content"
         android:layout_gravity="end|bottom"
         android:layout_margin="25dp"
-        android:backgroundTint="#FFF"
+        android:background="@color/floating_bg_color"
+        android:backgroundTint="@color/floating_bg_color"
+        app:tint="@color/floating_icon_color"
         android:clickable="true"
         android:focusable="true"
         android:src="@drawable/ic_message"
-        app:backgroundTint="#FFF"
+        app:backgroundTint="@color/floating_bg_color"
         app:elevation="10dp" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

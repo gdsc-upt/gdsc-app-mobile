@@ -21,4 +21,7 @@ interface ApiService {
     @POST("v1/auth/login")
     fun postLoginEntry(@Body model: LoginModel) : Call<TokenModel>
 
+    @POST("v1/contact")
+    fun postContact(@Header("Authorization") authHeader: String, @Body model: ContactPostModel): Call<ContactModel>
+
 }

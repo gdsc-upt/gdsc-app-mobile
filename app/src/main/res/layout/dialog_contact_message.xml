@@ -20,7 +20,7 @@
             android:src="@drawable/contact_img" />
 
         <EditText
-            android:id="@+id/nameEditText"
+            android:id="@+id/contactNameEditText"
             android:layout_width="250dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -31,6 +31,7 @@
             android:inputType="textPersonName" />
 
         <EditText
+            android:id="@+id/contactEmailEditText"
             android:layout_width="250dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -40,7 +41,7 @@
             android:inputType="textEmailAddress" />
 
         <EditText
-            android:id="@+id/subjectEditText"
+            android:id="@+id/contactSubjectEditText"
             android:layout_width="250dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -51,7 +52,7 @@
             android:inputType="text" />
 
         <EditText
-            android:id="@+id/messageEditText"
+            android:id="@+id/contactMessageEditText"
             android:layout_width="250dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -65,7 +66,7 @@
         <Button
             android:layout_width="200dp"
             android:layout_height="wrap_content"
-            android:id="@+id/submitMessageButton"
+            android:id="@+id/contactSubmitMessageButton"
             android:text="SUBMIT MESSAGE"
             android:layout_gravity="center"
             android:layout_marginTop="20dp"
