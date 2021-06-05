@@ -38,7 +38,7 @@
     <color name="drawer_header_bg_color">@color/white</color>
     <color name="header_welcome_message">@color/grey_1</color>
 
-    !--  Contact Fragment  -->
+    <!--  Contact Fragment  -->
     <color name="floating_icon_color">@color/black</color>
     <color name="floating_bg_color">@color/white</color>
     <color name="svg_color">#6C63FF</color>
