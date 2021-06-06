@@ -3,31 +3,47 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto">
-    
+
+
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/nav_toolbar_toolbar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize">
 
-        <TextView
-            android:id="@+id/toolbar_title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="15sp"
-            android:textStyle="bold" />
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginEnd="10dp"
-            android:gravity="end|center">
-            <ImageView
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:layout_gravity="end"
-                android:src="@drawable/ic_toolbar_user"/>
-        </LinearLayout>
+            android:layout_height="match_parent"
+            android:weightSum="6">
+            <RelativeLayout
+                android:id="@+id/toolbar_title_layout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="5">
 
+                <TextView
+                    android:id="@+id/toolbar_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="something"
+                    android:textSize="18sp" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:layout_weight="1">
+
+                <ImageView
+                    android:id="@+id/drawer_toolbar_user"
+                    android:layout_width="wrap_content"
+                    android:layout_height="20dp"
+                    android:src="@drawable/ic_toolbar_user" />
+            </RelativeLayout>
+
+        </LinearLayout>
     </androidx.appcompat.widget.Toolbar>
     
 </LinearLayout>

@@ -19,6 +19,7 @@ import retrofit2.Response
 import android.content.Intent
 import android.net.Uri
 import android.widget.*
+import com.example.gdsc_app_mobile.HelperClass
 
 class FragmentContact : Fragment(), ISelectedDataContact {
 
@@ -32,9 +33,8 @@ class FragmentContact : Fragment(), ISelectedDataContact {
     ): View? {
 
         val view = inflater.inflate(R.layout.fragment_contact, container, false)
-        var toolbar = (activity as MainActivity).toolbar.findViewById<TextView>(R.id.toolbar_title)
-        toolbar.text = getString(
-            R.string.FragmentContactTitle)
+        val toolbar = (activity as MainActivity).toolbar
+        HelperClass.setToolbarStyle(context, toolbar, "contact")
 
         linkedinButton = view.findViewById(R.id.contact_linkedin_button)
 
@@ -88,5 +88,6 @@ class FragmentContact : Fragment(), ISelectedDataContact {
     override fun onSelectedData(name: String, email: String, subject: String, message: String) {
         createPost(name, email, subject, message)
     }
+
 
 }

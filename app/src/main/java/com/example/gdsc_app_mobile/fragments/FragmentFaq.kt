@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.*
 import androidx.fragment.app.Fragment
+import com.example.gdsc_app_mobile.HelperClass
 import com.example.gdsc_app_mobile.services.ApiClient
 import com.example.gdsc_app_mobile.adapters.FaqAdapter
 import com.example.gdsc_app_mobile.R
@@ -33,8 +34,8 @@ class FragmentFaq : Fragment(), ISelectedData {
     ): View? {
 
         val view = inflater.inflate(R.layout.fragment_faq, container, false)
-        (activity as MainActivity).toolbar.findViewById<TextView>(R.id.toolbar_title).text = getString(
-                    R.string.FragmentFaqTitle)
+        val toolbar = (activity as MainActivity).toolbar
+        HelperClass.setToolbarStyle(context, toolbar, "faq")
 
         addFaqButton = view.findViewById(R.id.add_faq_button)
 
