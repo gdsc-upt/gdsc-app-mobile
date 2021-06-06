@@ -5,6 +5,7 @@ import android.graphics.Typeface
 import android.provider.Settings.Global.getString
 import android.util.Base64
 import android.view.Gravity
+import android.widget.LinearLayout
 import android.widget.RelativeLayout
 import android.widget.TextView
 import androidx.appcompat.widget.Toolbar
@@ -25,22 +26,21 @@ class HelperClass {
         }
         fun setToolbarStyle(context: Context?, toolbar: Toolbar, fragment: String){
             val textView = toolbar.findViewById<TextView>(R.id.toolbar_title)
-            val layout = toolbar.findViewById<RelativeLayout>(R.id.toolbar_title_layout)
+            val layout = toolbar.findViewById<LinearLayout>(R.id.toolbar_title_layout)
             when (fragment) {
                 "about_us" -> {
                     textView.text = context?.getString(
                         R.string.FragmentAboutUsTitle)
                     textView.typeface = Typeface.DEFAULT
                     textView.textSize = 15f
-                    layout.gravity = Gravity.NO_GRAVITY
-
+                    layout.gravity = Gravity.CENTER_VERTICAL
                 }
                 "articles" -> {
                     textView.text = context?.getString(
                         R.string.FragmentArticlesTitle)
                     textView.typeface = Typeface.DEFAULT
                     textView.textSize = 15f
-                    layout.gravity = Gravity.NO_GRAVITY
+                    layout.gravity = Gravity.CENTER_VERTICAL
                 }
                 "contact" -> {
                     textView.text = context?.getString(
@@ -51,35 +51,33 @@ class HelperClass {
                 }
                 "faq" -> {
                     textView.text = context?.getString(
-                        R.string.FragmentArticlesTitle)
+                        R.string.FragmentFaqTitle)
                     textView.typeface = Typeface.DEFAULT
                     textView.textSize = 15f
-                    layout.gravity = Gravity.NO_GRAVITY
+                    layout.gravity = Gravity.CENTER_VERTICAL
                 }
                 "options" -> {
                     textView.text = context?.getString(
                         R.string.FragmentOptionsTitle)
                     textView.typeface = Typeface.DEFAULT
                     textView.textSize = 15f
-                    layout.gravity = Gravity.NO_GRAVITY
+                    layout.gravity = Gravity.CENTER_VERTICAL
                 }
                 "suggestions" -> {
                     textView.text = context?.getString(
                         R.string.FragmentSuggestionsTitle)
                     textView.typeface = Typeface.DEFAULT
                     textView.textSize = 15f
-                    layout.gravity = Gravity.NO_GRAVITY
+                    layout.gravity = Gravity.CENTER_VERTICAL
                 }
                 "teams" -> {
                     textView.text = context?.getString(
                         R.string.FragmentTeamsTitle)
                     textView.typeface = Typeface.DEFAULT
                     textView.textSize = 15f
-                    layout.gravity = Gravity.NO_GRAVITY
+                    layout.gravity = Gravity.CENTER_VERTICAL
                 }
             }
-
         }
     }
-
 }

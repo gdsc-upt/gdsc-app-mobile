@@ -14,20 +14,18 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:weightSum="6">
-            <RelativeLayout
+            <LinearLayout
                 android:id="@+id/toolbar_title_layout"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
+                android:layout_height="match_parent"
                 android:layout_weight="5">
 
                 <TextView
                     android:id="@+id/toolbar_title"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="something"
                     android:textSize="18sp" />
-            </RelativeLayout>
+            </LinearLayout>
 
             <RelativeLayout
                 android:layout_width="wrap_content"

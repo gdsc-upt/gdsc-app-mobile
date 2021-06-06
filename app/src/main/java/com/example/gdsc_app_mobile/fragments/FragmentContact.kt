@@ -18,6 +18,7 @@ import retrofit2.Callback
 import retrofit2.Response
 import android.content.Intent
 import android.net.Uri
+import android.view.animation.AnimationUtils
 import android.widget.*
 import com.example.gdsc_app_mobile.HelperClass
 
@@ -25,6 +26,7 @@ class FragmentContact : Fragment(), ISelectedDataContact {
 
     private lateinit var openDialog: FloatingActionButton
     private lateinit var linkedinButton: ImageView
+    private lateinit var webPageButton: ImageView
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -37,13 +39,16 @@ class FragmentContact : Fragment(), ISelectedDataContact {
         HelperClass.setToolbarStyle(context, toolbar, "contact")
 
         linkedinButton = view.findViewById(R.id.contact_linkedin_button)
-
+        webPageButton = view.findViewById(R.id.contact_web_search)
         openDialog = view.findViewById(R.id.contact_floating_button)
+
         openDialog.setOnClickListener {
+            it.startAnimation(AnimationUtils.loadAnimation(context, R.anim.on_click_animation))
             openMessageDialog()
         }
 
         linkedinButton.setOnClickListener {
+            it.startAnimation(AnimationUtils.loadAnimation(context, R.anim.on_click_animation))
             startActivity(
                 Intent(
                     Intent.ACTION_VIEW,
@@ -51,6 +56,17 @@ class FragmentContact : Fragment(), ISelectedDataContact {
                 )
             )
         }
+
+        webPageButton.setOnClickListener {
+            it.startAnimation(AnimationUtils.loadAnimation(context, R.anim.on_click_animation))
+//            startActivity(
+//                Intent(
+//                    Intent.ACTION_VIEW,
+//                    Uri.parse("web page")
+//                )
+//            )
+        }
+
         return view
     }
 
