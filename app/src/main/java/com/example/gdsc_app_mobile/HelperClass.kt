@@ -27,20 +27,15 @@ class HelperClass {
         fun setToolbarStyle(context: Context?, toolbar: Toolbar, fragment: String){
             val textView = toolbar.findViewById<TextView>(R.id.toolbar_title)
             val layout = toolbar.findViewById<LinearLayout>(R.id.toolbar_title_layout)
+            resetToolbarInitial(textView, layout)
             when (fragment) {
                 "about_us" -> {
                     textView.text = context?.getString(
                         R.string.FragmentAboutUsTitle)
-                    textView.typeface = Typeface.DEFAULT
-                    textView.textSize = 15f
-                    layout.gravity = Gravity.CENTER_VERTICAL
                 }
                 "articles" -> {
                     textView.text = context?.getString(
                         R.string.FragmentArticlesTitle)
-                    textView.typeface = Typeface.DEFAULT
-                    textView.textSize = 15f
-                    layout.gravity = Gravity.CENTER_VERTICAL
                 }
                 "contact" -> {
                     textView.text = context?.getString(
@@ -52,32 +47,26 @@ class HelperClass {
                 "faq" -> {
                     textView.text = context?.getString(
                         R.string.FragmentFaqTitle)
-                    textView.typeface = Typeface.DEFAULT
-                    textView.textSize = 15f
-                    layout.gravity = Gravity.CENTER_VERTICAL
                 }
                 "options" -> {
                     textView.text = context?.getString(
                         R.string.FragmentOptionsTitle)
-                    textView.typeface = Typeface.DEFAULT
-                    textView.textSize = 15f
-                    layout.gravity = Gravity.CENTER_VERTICAL
                 }
                 "suggestions" -> {
                     textView.text = context?.getString(
                         R.string.FragmentSuggestionsTitle)
-                    textView.typeface = Typeface.DEFAULT
-                    textView.textSize = 15f
-                    layout.gravity = Gravity.CENTER_VERTICAL
+
                 }
                 "teams" -> {
                     textView.text = context?.getString(
                         R.string.FragmentTeamsTitle)
-                    textView.typeface = Typeface.DEFAULT
-                    textView.textSize = 15f
-                    layout.gravity = Gravity.CENTER_VERTICAL
                 }
             }
+        }
+        private fun resetToolbarInitial(textView: TextView, layout: LinearLayout){
+            textView.typeface = Typeface.DEFAULT
+            textView.textSize = 15f
+            layout.gravity = Gravity.CENTER_VERTICAL
         }
     }
 }

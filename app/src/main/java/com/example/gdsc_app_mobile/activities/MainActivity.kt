@@ -34,8 +34,8 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             addFragment(FragmentContact())
             navigationView.setCheckedItem(R.id.nav_contact)
         }
-        val user_dialog = toolbar.findViewById<ImageView>(R.id.drawer_toolbar_user)
-        user_dialog.setOnClickListener {
+        val userDialog = toolbar.findViewById<ImageView>(R.id.drawer_toolbar_user)
+        userDialog.setOnClickListener {
             it.startAnimation(AnimationUtils.loadAnimation(applicationContext, R.anim.on_click_animation))
             val dialog = DialogFragmentUserInfo()
             dialog.show(this.supportFragmentManager, "UserDialog")
