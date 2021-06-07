@@ -24,6 +24,7 @@ android {
         }
     }
     compileOptions {
+        coreLibraryDesugaringEnabled true
         sourceCompatibility "1.8"
         targetCompatibility "1.8"
     }
@@ -60,5 +61,9 @@ dependencies {
 
     // Gson
     implementation 'com.google.code.gson:gson:2.8.7'
+
+    //Calendar
+    coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs:1.1.5'
+    implementation 'com.github.kizitonwose:CalendarView:1.0.4'
 
 }
