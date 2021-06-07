@@ -1,26 +1,23 @@
 package com.example.gdsc_app_mobile.activities
 
 import android.content.Intent
-import android.content.SharedPreferences
-import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
+import android.view.animation.AnimationUtils
 import android.widget.ImageView
 import android.widget.TextView
-import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
-import androidx.appcompat.app.AppCompatDelegate
 import androidx.appcompat.widget.Toolbar
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
 import com.example.gdsc_app_mobile.R
+import com.example.gdsc_app_mobile.dialogs.DialogFragmentUserInfo
 import com.example.gdsc_app_mobile.fragments.*
 import com.google.android.material.navigation.NavigationView
 import com.squareup.picasso.Picasso
 import jp.wasabeef.picasso.transformations.CropCircleTransformation
-import java.time.LocalDateTime
 
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
     private lateinit var drawerLayout: DrawerLayout
@@ -36,6 +33,12 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         if (savedInstanceState == null) {
             addFragment(FragmentContact())
             navigationView.setCheckedItem(R.id.nav_contact)
+        }
+        val user_dialog = toolbar.findViewById<ImageView>(R.id.drawer_toolbar_user)
+        user_dialog.setOnClickListener {
+            it.startAnimation(AnimationUtils.loadAnimation(applicationContext, R.anim.on_click_animation))
+            val dialog = DialogFragmentUserInfo()
+            dialog.show(this.supportFragmentManager, "UserDialog")
         }
     }
 
