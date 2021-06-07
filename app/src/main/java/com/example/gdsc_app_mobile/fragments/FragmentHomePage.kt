@@ -5,20 +5,15 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ListView
-import android.widget.Toast
+import android.widget.Button
 import com.example.gdsc_app_mobile.R
-import com.example.gdsc_app_mobile.adapters.EventAdapter
-import com.example.gdsc_app_mobile.adapters.FaqAdapter
+import com.example.gdsc_app_mobile.dialogs.DialogFragmentAddEvent
+import com.example.gdsc_app_mobile.interfaces.ISelectedEvent
 import com.example.gdsc_app_mobile.models.EventModel
-import com.example.gdsc_app_mobile.services.ApiClient
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 
-class FragmentHomePage: Fragment(){
+class FragmentHomePage: Fragment(), ISelectedEvent{
 
-    private var events = ArrayList<EventModel>()
+    lateinit var add: Button
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -26,42 +21,27 @@ class FragmentHomePage: Fragment(){
     ): View? {
         val view = inflater.inflate(R.layout.fragment_home_page, container, false)
 
-        getEvents()
+        add = view.findViewById(R.id.add_event_button)
+
+        add.setOnClickListener{
+            openMessageDialog()
+        }
 
         return view
     }
 
-    private fun getEvents(){
-        val eventCall: Call<List<EventModel>> = ApiClient.getService().getAllEvents()
+    private fun openMessageDialog(){
+        val dialog = DialogFragmentAddEvent()
+        dialog.addListener(this)
+        dialog.show(requireActivity().supportFragmentManager, "MessageDialog")
+    }
 
-        eventCall.enqueue(object : Callback<List<EventModel>> {
-            override fun onResponse(call: Call<List<EventModel>>,
-                response: Response<List<EventModel>>
-            ) {
-                if(response.isSuccessful){
-                    val eventList: List<EventModel>? = response.body()
-                    if(eventList != null)
-                        for(event in eventList)
-                            events.add(event)
+    override fun onSelectedEvent(title: String, description: String, imageUri: String) {
+        createPost(title, description, imageUri)
+    }
 
-//                    val adapter = EventAdapter(requireActivity(), events)
-//                    val listView: ListView = view!!.findViewById(R.id.faq_list_view)
-//                    listView.adapter = adapter
-//                    listView.isClickable = true
-//
-//                    listView.setOnItemClickListener { parent, view, position, id ->
-//                        Toast.makeText(requireContext(), "Position $position", Toast.LENGTH_SHORT).show()
-//                    }
-                }
-                else
-                    Toast.makeText(requireContext(), "Unsuccessful response", Toast.LENGTH_SHORT).show()
-            }
-
-            override fun onFailure(call: Call<List<EventModel>>, t: Throwable) {
-                Toast.makeText(requireContext(), "Failed", Toast.LENGTH_SHORT).show()
-            }
-
-        })
+    override fun createPost(title: String, description: String, imageUri: String) {
+        TODO("Not yet implemented")
     }
 
 }

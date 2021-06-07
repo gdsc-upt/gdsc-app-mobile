@@ -1,22 +1,47 @@
 package com.example.gdsc_app_mobile.dialogs
 
+import android.app.Activity
+
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
+import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.WindowManager
+import androidx.fragment.app.DialogFragment
 import com.example.gdsc_app_mobile.R
+import android.widget.*
+import androidx.activity.result.ActivityResult
+import androidx.activity.result.contract.ActivityResultContracts
+import com.example.gdsc_app_mobile.fragments.FragmentHomePage
+import com.example.gdsc_app_mobile.interfaces.ISelectedEvent
+import com.github.dhaval2404.imagepicker.ImagePicker
 
-class DialogFragmentAddEvent {
 
-    lateinit var listener: ISelectedDataContact
-    lateinit var submit: Button
-    lateinit var name: EditText
-    lateinit var email: EditText
-    lateinit var subject: EditText
-    lateinit var message: EditText
+class DialogFragmentAddEvent: DialogFragment() {
+
+    lateinit var listener: ISelectedEvent
+    lateinit var image: ImageView
+    lateinit var addEvent: Button
+    lateinit var title: EditText
+    lateinit var description: EditText
+    lateinit var imageUri : Uri
+
+    private val startForEventImageResult =
+        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result: ActivityResult ->
+            val resultCode = result.resultCode
+            val data = result.data
+
+            if (resultCode == Activity.RESULT_OK) {
+                //Image Uri will not be null for RESULT_OK
+                val fileUri = data?.data!!
+
+                imageUri = fileUri
+                image.setImageURI(fileUri)
+            }
+        }
 
     override fun onCreateView(inflater: LayoutInflater,
                               container: ViewGroup?,
@@ -26,14 +51,18 @@ class DialogFragmentAddEvent {
         dialog?.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
         dialog?.window?.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE)
 
-        name = view.findViewById(R.id.contactNameEditText)
-        email = view.findViewById(R.id.contactEmailEditText)
-        subject = view.findViewById(R.id.contactSubjectEditText)
-        message = view.findViewById(R.id.contactMessageEditText)
+        image = view.findViewById(R.id.event_image)
+        title = view.findViewById(R.id.event_title_text)
+        description = view.findViewById(R.id.event_description_text)
+        addEvent = view.findViewById(R.id.event_add_button)
 
-        submit = view.findViewById(R.id.contactSubmitMessageButton)
-        submit.setOnClickListener {
-            listener.onSelectedData(name.text.toString(), email.text.toString(), subject.text.toString(), message.text.toString())
+        image.setOnClickListener{
+            ImagePicker.with(this).compress(1024).maxResultSize(1080, 1080).
+                createIntent { intent -> startForEventImageResult.launch(intent) }
+        }
+
+        addEvent.setOnClickListener {
+            listener.onSelectedEvent(title.text.toString(), description.text.toString(), imageUri.toString())
             dialog?.dismiss()
         }
 
@@ -41,7 +70,7 @@ class DialogFragmentAddEvent {
     }
 
     //method to add the listener from the fragment in which the dialog is called
-    fun addListener(listener: ISelectedDataContact){
+    fun addListener(listener: ISelectedEvent){
         this.listener = listener
     }
 

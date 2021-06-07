@@ -1,17 +1,67 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:scrollbars="none"
+    android:orientation="vertical">
 
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="254dp"
-        android:layout_gravity="center_horizontal"
-        android:scaleType="fitStart"
-        android:src="@drawable/events" />
-    
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height=""
+    <LinearLayout
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_gravity="center"
+        android:background="@drawable/curve_shape">
 
-</LinearLayout>
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="20dp"
+            android:src="@drawable/events_img" />
+
+        <ImageView
+            android:id="@+id/event_image"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_gravity="center"
+            android:layout_marginBottom="40dp"
+            android:background="@color/primary_light_blue" />
+
+        <EditText
+            android:id="@+id/event_title_text"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:paddingTop="25dp"
+            android:textSize="16sp"
+            android:ems="10"
+            android:hint="Title"
+            android:inputType="textPersonName" />
+
+
+        <EditText
+            android:id="@+id/event_description_text"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:paddingTop="25dp"
+            android:textSize="16sp"
+            android:ems="10"
+            android:hint="Description"
+            android:keyboardNavigationCluster="true"
+            android:inputType="textMultiLine" />
+
+        <Button
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/event_add_button"
+            android:text="Add event"
+            android:layout_gravity="center"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="20dp"
+            />
+    </LinearLayout>
+
+
+</ScrollView>

@@ -47,9 +47,15 @@ dependencies {
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
+    implementation "androidx.activity:activity-ktx:1.2.3"
+    implementation "androidx.fragment:fragment-ktx:1.3.4"
+
     // Picasso Library
     implementation 'com.squareup.picasso:picasso:2.71828'
     implementation 'jp.wasabeef:picasso-transformations:2.4.0'
+
+    // Image Picker
+    implementation 'com.github.dhaval2404:imagepicker:2.1'
 
     // Retrofit
     implementation 'com.squareup.retrofit2:retrofit:2.9.0'
