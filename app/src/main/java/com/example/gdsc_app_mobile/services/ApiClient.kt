@@ -8,7 +8,7 @@ class ApiClient {
     companion object {
         private fun getRetrofit() : Retrofit {
             val retrofit : Retrofit = Retrofit.Builder()
-                .baseUrl("http://dev.api.gdscupt.tech/")
+                .baseUrl("http://dev.api.dscupt.tech/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build()
             return retrofit
