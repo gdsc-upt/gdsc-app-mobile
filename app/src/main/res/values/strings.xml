@@ -59,4 +59,9 @@
     <string name="contact_successfully_posted">Message sent</string>
     <string name="dsc_mail">dsc.upt@gmail.com</string>
     <string name="dsc_address">Timisoara, Romania</string>
+    <string name="description">Description</string>
+    <string name="title">Title</string>
+    <string name="add_event">Add event</string>
+    <string name="question_to_delete">Delete this event?</string>
+    <string name="delete">Delete</string>
 </resources>

@@ -1,7 +1,6 @@
 package com.example.gdsc_app_mobile.dialogs
 
 import android.app.Activity
-
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.net.Uri
@@ -10,14 +9,15 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.WindowManager
-import androidx.fragment.app.DialogFragment
-import com.example.gdsc_app_mobile.R
 import android.widget.*
 import androidx.activity.result.ActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
-import com.example.gdsc_app_mobile.fragments.FragmentHomePage
+import androidx.fragment.app.DialogFragment
+import com.example.gdsc_app_mobile.R
 import com.example.gdsc_app_mobile.interfaces.ISelectedEvent
 import com.github.dhaval2404.imagepicker.ImagePicker
+import com.squareup.picasso.Picasso
+import jp.wasabeef.picasso.transformations.CropCircleTransformation
 
 
 class DialogFragmentAddEvent: DialogFragment() {
@@ -37,16 +37,17 @@ class DialogFragmentAddEvent: DialogFragment() {
             if (resultCode == Activity.RESULT_OK) {
                 //Image Uri will not be null for RESULT_OK
                 val fileUri = data?.data!!
-
                 imageUri = fileUri
-                image.setImageURI(fileUri)
+
+                Picasso.get().load(imageUri).transform(CropCircleTransformation())
+                    .into(image)
             }
         }
 
     override fun onCreateView(inflater: LayoutInflater,
                               container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
-        val view: View = inflater.inflate(R.layout.dialog_add_event, container,false)
+        val view: View = inflater.inflate(R.layout.calendar_dialog_add_event, container,false)
         //set background transparent
         dialog?.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
         dialog?.window?.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE)
@@ -61,8 +62,8 @@ class DialogFragmentAddEvent: DialogFragment() {
                 createIntent { intent -> startForEventImageResult.launch(intent) }
         }
 
-        addEvent.setOnClickListener {
-            listener.onSelectedEvent(title.text.toString(), description.text.toString(), imageUri.toString())
+        addEvent.setOnClickListener {//to be worked on
+            listener.onSelectedEvent(title.text.toString(), description.text.toString())
             dialog?.dismiss()
         }
 

@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/white"
     android:clickable="true"
-    android:focusable="true">
+    android:focusable="true"
+    tools:context=".fragments.FragmentHomePage">
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
@@ -18,20 +19,19 @@
             android:orientation="vertical">
 
             <com.kizitonwose.calendarview.CalendarView
-                android:id="@+id/exThreeCalendar"
+                android:id="@+id/home_page_calendar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:cv_dayViewResource="@layout/example_3_calendar_day"
-                app:cv_monthHeaderResource="@layout/example_3_calendar_header"
+                app:cv_dayViewResource="@layout/calendar_day"
+                app:cv_monthHeaderResource="@layout/calendar_header"
                 app:cv_orientation="horizontal"
-                app:cv_scrollMode="paged"
-                />
+                app:cv_scrollMode="paged" />
 
             <TextView
-                android:id="@+id/exThreeSelectedDateText"
+                android:id="@+id/calendar_day_frame"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="10dp"
                 android:background="#EEEEEE"
                 android:fontFamily="sans-serif-medium"
                 android:paddingStart="20dp"
@@ -44,7 +44,7 @@
                 tools:text="7 Jan, 2019" />
 
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/exThreeRv"
+                android:id="@+id/calendar_rv"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:nestedScrollingEnabled="false" />
@@ -53,17 +53,14 @@
 
     </androidx.core.widget.NestedScrollView>
 
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/add_event_button"
-        android:layout_width="80dp"
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/event_add_event_button"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginEnd="15dp"
-        android:layout_marginBottom="15dp"
-        android:height="80dp"
-        android:background="@drawable/rounded_button"
-        android:text="Add"
-        android:textColor="@color/white" />
+        android:layout_gravity="end|bottom"
+        android:layout_margin="20dp"
+        app:tint="@color/white"
+        app:backgroundTint="@color/black"
+        app:srcCompat="@drawable/ic_baseline_add_24" />
 
-</RelativeLayout>
+</FrameLayout>

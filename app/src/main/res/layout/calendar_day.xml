@@ -17,7 +17,7 @@
         tools:text="22" />
 
     <View
-        android:id="@+id/exThreeDotView"
+        android:id="@+id/dotView"
         android:layout_width="4.5dp"
         android:layout_height="4.5dp"
         android:layout_marginBottom="10dp"
