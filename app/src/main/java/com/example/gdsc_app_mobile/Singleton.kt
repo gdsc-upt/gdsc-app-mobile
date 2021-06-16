@@ -27,7 +27,8 @@ object Singleton {
 
     fun setToken(tok: String?) {
         token = tok
-        addTokenInfo(tok)
+        if(token != null)
+            addTokenInfo(tok)
 
     }
     private fun addTokenInfo(tok: String?) {

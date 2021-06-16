@@ -16,6 +16,7 @@ import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
 import com.example.gdsc_app_mobile.R
+import com.example.gdsc_app_mobile.Singleton
 import com.example.gdsc_app_mobile.fragments.*
 import com.google.android.material.navigation.NavigationView
 import com.squareup.picasso.Picasso
@@ -84,6 +85,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             R.id.nav_suggestions -> addFragment(FragmentSuggestions())
             R.id.nav_options -> addFragment(FragmentOptions())
             R.id.nav_logout -> {
+                Singleton.setToken(null)
                 val intent = Intent(this@MainActivity, ActivitySignUp::class.java)
                 startActivity(intent)
                 finish()
