@@ -11,6 +11,7 @@ import android.widget.Button
 import android.widget.TextView
 import androidx.fragment.app.DialogFragment
 import com.example.gdsc_app_mobile.R
+import com.example.gdsc_app_mobile.Singleton
 import com.example.gdsc_app_mobile.interfaces.ISelectedData
 import com.example.gdsc_app_mobile.models.FaqModel
 
@@ -49,23 +50,9 @@ class DialogFaqFragmentDeleteQuestion : DialogFragment() {
         faqViewAnswer.text = faq.answer
         faqViewDate.text = getDate(faq.created)
 
-        faqDeleteButton.setOnClickListener {
-            faqDeleteMessage.text = resources.getString(R.string.sure_want_delete)
-            faqDeleteButton.visibility = View.GONE
-            faqDeleteNo.visibility = View.VISIBLE
-            faqDeleteYes.visibility = View.VISIBLE
+        adminRole()
 
-            faqDeleteYes.setOnClickListener {
-                listener.deletePosition(position)
-                dialog?.dismiss()
-            }
-            faqDeleteNo.setOnClickListener {
-                faqDeleteMessage.text = ""
-                faqDeleteButton.visibility = View.VISIBLE
-                faqDeleteNo.visibility = View.GONE
-                faqDeleteYes.visibility = View.GONE
-            }
-        }
+        faqDeleteButtonClicked()
 
         return view
     }
@@ -88,5 +75,36 @@ class DialogFaqFragmentDeleteQuestion : DialogFragment() {
 
     fun setPosition(_position: Int){
         this.position = _position
+    }
+
+    private fun adminRole() {
+        if(Singleton.getTokenInfo() != null) {
+            if (Singleton.getTokenInfo()?.roles.equals("admin"))
+                faqDeleteButton.visibility = View.VISIBLE
+            else
+                faqDeleteButton.visibility = View.GONE
+        }
+        else
+            faqDeleteButton.visibility = View.GONE
+    }
+
+    private fun faqDeleteButtonClicked() {
+        faqDeleteButton.setOnClickListener {
+            faqDeleteMessage.text = resources.getString(R.string.sure_want_delete)
+            faqDeleteButton.visibility = View.GONE
+            faqDeleteNo.visibility = View.VISIBLE
+            faqDeleteYes.visibility = View.VISIBLE
+
+            faqDeleteYes.setOnClickListener {
+                listener.deletePosition(position)
+                dialog?.dismiss()
+            }
+            faqDeleteNo.setOnClickListener {
+                faqDeleteMessage.text = ""
+                faqDeleteButton.visibility = View.VISIBLE
+                faqDeleteNo.visibility = View.GONE
+                faqDeleteYes.visibility = View.GONE
+            }
+        }
     }
 }

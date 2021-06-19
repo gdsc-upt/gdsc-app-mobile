@@ -46,6 +46,9 @@
     <string name="answer">Answer</string>
     <string name="faq_add">Add faq</string>
 
+    <!--teams-->
+    <string name="teams_see_members">See members</string>
+
     <!--  Drawer items  -->
     <string name="FragmentTeamsTitle">TEAMS</string>
     <string name="FragmentSuggestionsTitle">SUGGESTIONS</string>

@@ -6,11 +6,11 @@ import retrofit2.http.*
 
 interface ApiService {
 
-    @GET("v1/contact")
-    fun getAllContacts(@Header("Authorization") authHeader : String) : Call<List<ContactModel>>
-
     @GET("v1/faqs")
     fun getAllFaqs(): Call<List<FaqModel>>
+
+    @GET("v1/teams")
+    fun getTeams(): Call<List<TeamsModel>>
 
     @POST("v1/faqs")
     fun postFaq(@Header("Authorization") authHeader : String, @Body model: FaqPostModel) : Call<FaqModel>

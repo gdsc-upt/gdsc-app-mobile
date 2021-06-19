@@ -14,7 +14,7 @@
             android:id="@+id/faq_view_date"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@color/black"
+            android:textColor="@color/dark_white"
             android:layout_alignParentEnd="true"
             android:layout_marginEnd="30dp"
             />
@@ -27,7 +27,7 @@
         android:layout_marginEnd="30dp"
         android:textSize="24sp"
         android:textStyle="bold"
-        android:textColor="@color/black"
+        android:textColor="@color/dark_white"
         android:layout_height="wrap_content"
         android:gravity="center"/>
 
@@ -38,7 +38,7 @@
         android:layout_marginEnd="30dp"
         android:layout_marginTop="20dp"
         android:layout_marginBottom="20dp"
-        android:textColor="@color/black"
+        android:textColor="@color/dark_white"
         android:textSize="20sp"
         android:layout_height="wrap_content"
         android:gravity="center"/>
@@ -65,6 +65,7 @@
             android:background="@drawable/curve_shape"
             android:backgroundTint="@color/colorHeart"
             android:padding="15dp"
+            android:visibility="visible"
             android:textColor="@color/black"
             android:text="@string/faq_delete"
             android:textSize="20sp" />

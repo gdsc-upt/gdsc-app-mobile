@@ -38,6 +38,8 @@ class FragmentFaq : Fragment(), ISelectedData {
 
         addFaqButton = view.findViewById(R.id.add_faq_button)
 
+        adminRole()
+
         getFaqs()
 
         addFaqButton.setOnClickListener {
@@ -65,6 +67,7 @@ class FragmentFaq : Fragment(), ISelectedData {
                     val adapter = FaqAdapter(requireActivity(), faqs)
                     val listView: ListView = view!!.findViewById(R.id.faq_list_view)
                     listView.adapter = adapter
+                    listView.divider = null
                     listView.isClickable = true
 
                     listView.setOnItemClickListener { parent, view, position, id ->
@@ -157,5 +160,17 @@ class FragmentFaq : Fragment(), ISelectedData {
 
     override fun deletePosition(position: Int) {
         deleteFaq(position)
+    }
+
+    private fun adminRole() {
+        if(Singleton.getTokenInfo() != null) {
+            /*if (Singleton.getTokenInfo()?.roles.equals("admin"))
+                addFaqButton.visibility = View.VISIBLE
+            else
+                addFaqButton.visibility = View.GONE*/
+        }
+        else
+            //Toast.makeText(requireContext(), "ok", Toast.LENGTH_SHORT).show()
+            addFaqButton.visibility = View.GONE
     }
 }

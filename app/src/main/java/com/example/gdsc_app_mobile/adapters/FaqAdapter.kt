@@ -26,14 +26,4 @@ class FaqAdapter(private val context: Activity, private val arrayList: ArrayList
 
         return view
     }
-
-    /*private fun getCurrentDate(dateString: String): String {
-
-        val year = dateString.substring(0, 4)
-        val month = dateString.substring(5, 7)
-        val day = dateString.substring(8,10)
-
-        return "$day/$month/$year"
-
-    }*/
 }

@@ -1,6 +1,5 @@
 package com.example.gdsc_app_mobile
 
-import android.widget.Toast
 import com.example.gdsc_app_mobile.HelperClass.Companion.decodeBase64
 import com.example.gdsc_app_mobile.HelperClass.Companion.deserializeTokenInfo
 import com.example.gdsc_app_mobile.models.TokenInfoModel
@@ -10,7 +9,7 @@ object Singleton {
     private var token: String? = null
     private var tokenInfo: TokenInfoModel? = null
 
-    fun setTokenInfo(tok: TokenInfoModel) {
+    fun setTokenInfo(tok: TokenInfoModel?) {
         tokenInfo = tok
     }
     fun getTokenInfo(): TokenInfoModel? {
@@ -22,6 +21,8 @@ object Singleton {
     }
 
     fun getTokenForAuthentication(): String? {
+        if(token == null)
+            return null
         return "Bearer $token"
     }
 

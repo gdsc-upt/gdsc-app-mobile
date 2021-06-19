@@ -86,6 +86,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             R.id.nav_options -> addFragment(FragmentOptions())
             R.id.nav_logout -> {
                 Singleton.setToken(null)
+                Singleton.setTokenInfo(null)
                 val intent = Intent(this@MainActivity, ActivitySignUp::class.java)
                 startActivity(intent)
                 finish()

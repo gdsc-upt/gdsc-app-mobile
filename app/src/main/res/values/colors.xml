@@ -30,6 +30,7 @@
     <color name="card_color">#FFEE58</color>
     <color name="white_dark">#FFFFFF</color>
     <color name="dark_white">#000000</color>
+    <color name="dirty_dark">#313331</color>
 
     <!--  Navigation Drawer colors  -->
     <color name="drawer_text_color_checked">@color/white</color>
@@ -43,5 +44,9 @@
     <color name="floating_bg_color">@color/white</color>
     <color name="svg_color">#6C63FF</color>
 
-
+    <!--  GDSC Color-->
+    <color name="gdsc_green">#34A755</color>
+    <color name="gdsc_blue">#4385F5</color>
+    <color name="gdsc_yellow">#FCBC07</color>
+    <color name="gdsc_red">#E94237</color>
 </resources>
