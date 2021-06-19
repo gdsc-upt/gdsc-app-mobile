@@ -1,5 +1,6 @@
 package com.example.gdsc_app_mobile.fragments
 
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.LayoutInflater
 import androidx.fragment.app.Fragment
@@ -7,6 +8,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
+import androidx.appcompat.app.AppCompatDelegate
+import androidx.appcompat.widget.SwitchCompat
 import androidx.core.content.ContextCompat
 import androidx.core.view.children
 import androidx.core.view.isVisible
@@ -14,6 +17,7 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.gdsc_app_mobile.R
+import com.example.gdsc_app_mobile.activities.MainActivity
 import com.example.gdsc_app_mobile.adapters.EventsAdapter
 import com.example.gdsc_app_mobile.databinding.CalendarDayBinding
 import com.example.gdsc_app_mobile.databinding.CalendarHeaderBinding
@@ -47,8 +51,6 @@ class FragmentHomePage: Fragment(), ISelectedEvent{
     private var selectedDate: LocalDate? = null
     private val today = LocalDate.now()
 
-    private val titleSameYearFormatter = DateTimeFormatter.ofPattern("MMMM")
-    private val titleFormatter = DateTimeFormatter.ofPattern("MMM yyyy")
     private val selectionFormatter = DateTimeFormatter.ofPattern("d MMM yyyy")
     private val events = mutableMapOf<LocalDate, List<EventModel>>()
 
@@ -61,6 +63,8 @@ class FragmentHomePage: Fragment(), ISelectedEvent{
         savedInstanceState: Bundle?
     ): View? {
         _homePageBinding = FragmentHomePageBinding.inflate(inflater, container, false)
+        (activity as MainActivity).toolbar.findViewById<TextView>(R.id.toolbar_title).text = getString(
+                    R.string.HOME)
         val view = homePageBinding.root
 
         homePageBinding.calendarRv.apply {
@@ -113,17 +117,17 @@ class FragmentHomePage: Fragment(), ISelectedEvent{
                     textView.visibility = View.VISIBLE
                     when (day.date) {
                         today -> {
-                            textView.setTextColor(ContextCompat.getColor(requireContext(), R.color.white))
+                            textView.setTextColor(ContextCompat.getColor(requireContext(), R.color.dark_turqoise))
                             textView.setBackgroundResource(R.drawable.today_background)
                             dotView.visibility = View.INVISIBLE
                         }
                         selectedDate -> {
-                            textView.setTextColor(ContextCompat.getColor(requireContext(), R.color.light_blue))
+                            textView.setTextColor(ContextCompat.getColor(requireContext(), R.color.dark_green))
                             textView.setBackgroundResource(R.drawable.today_background)
                             dotView.visibility = View.INVISIBLE
                         }
                         else -> {
-                            textView.setTextColor(ContextCompat.getColor(requireContext(), R.color.black))
+                            textView.setTextColor(ContextCompat.getColor(requireContext(), R.color.grey_2))
                             textView.background = null
                             dotView.isVisible = events[day.date].orEmpty().isNotEmpty()
                         }
@@ -155,16 +159,16 @@ class FragmentHomePage: Fragment(), ISelectedEvent{
                     container.legendLayout.tag = month.yearMonth
                     container.legendLayout.children.map { it as TextView }.forEachIndexed { index, tv ->
                         tv.text = daysOfWeek[index].name.first().toString()
-                        tv.setTextColor(ContextCompat.getColor(requireContext(), R.color.black))
+//                        tv.setTextColor(ContextCompat.getColor(requireContext(), R.color.black))
                     }
                 }
             }
         }
 
-
         homePageBinding.eventAddEventButton.setOnClickListener{
             addEvent()
         }
+
 
         return view
     }

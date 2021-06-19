@@ -23,6 +23,8 @@
     <color name="colorLogin">@color/primary_grey</color>
     <color name="colorHeart">#E91E63</color>
     <color name="blue_light">#29B6F6</color>
+    <color name="dark_turqoise">#393266</color>
+    <color name="dark_green">#225227</color>
 
     <color name="grey">#8198A6</color>
 
