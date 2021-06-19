@@ -122,7 +122,11 @@ class FragmentHomePage: Fragment(), ISelectedEvent{
                             dotView.visibility = View.INVISIBLE
                         }
                         selectedDate -> {
+<<<<<<< HEAD
                             textView.setTextColor(ContextCompat.getColor(requireContext(), R.color.dark_green))
+=======
+                            textView.setTextColor(ContextCompat.getColor(requireContext(), R.color.purple_500))
+>>>>>>> home_page
                             textView.setBackgroundResource(R.drawable.today_background)
                             dotView.visibility = View.INVISIBLE
                         }
