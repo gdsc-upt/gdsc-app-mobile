@@ -19,12 +19,16 @@ class TeamsAdapter(private val context: Activity, private val arrayList: ArrayLi
         val view: View = inflater.inflate(R.layout.card_teams, null)
 
         val title: TextView = view.findViewById(R.id.teams_title)
+        val seeMembersButton: TextView = view.findViewById(R.id.see_members_button)
 
         //Set color for specific item from listview
         colorElement(view.findViewById(R.id.teams_card), title, position)
 
         //Set the title for the list item
         title.text = arrayList[position].name
+
+        //See members button clicked
+        seeMembers(seeMembersButton)
 
         return view
     }
@@ -46,5 +50,12 @@ class TeamsAdapter(private val context: Activity, private val arrayList: ArrayLi
         gradient.color = context.getColorStateList(cardColor)
         gradient.cornerRadius = radius
         card.background = gradient
+    }
+
+    fun seeMembers(button: TextView) {
+
+        button.setOnClickListener {
+
+        }
     }
 }
