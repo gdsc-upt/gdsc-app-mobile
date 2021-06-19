@@ -20,6 +20,7 @@
             android:layout_alignParentBottom="true"
             android:layout_alignParentEnd="true"
             android:layout_marginEnd="15dp"
+            android:visibility="visible"
             android:text="+"
             android:textSize="20sp"
             android:textColor="@color/white_dark"

@@ -10,7 +10,7 @@ object Singleton {
     private var token: String? = null
     private var tokenInfo: TokenInfoModel? = null
 
-    fun setTokenInfo(tok: TokenInfoModel) {
+    fun setTokenInfo(tok: TokenInfoModel?) {
         tokenInfo = tok
     }
     fun getTokenInfo(): TokenInfoModel? {

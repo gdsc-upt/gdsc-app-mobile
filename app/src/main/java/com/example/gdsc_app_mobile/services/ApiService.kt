@@ -6,9 +6,6 @@ import retrofit2.http.*
 
 interface ApiService {
 
-    @GET("v1/contact")
-    fun getAllContacts(@Header("Authorization") authHeader : String) : Call<List<ContactModel>>
-
     @GET("v1/faqs")
     fun getAllFaqs(): Call<List<FaqModel>>
 

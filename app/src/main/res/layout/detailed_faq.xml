@@ -65,6 +65,7 @@
             android:background="@drawable/curve_shape"
             android:backgroundTint="@color/colorHeart"
             android:padding="15dp"
+            android:visibility="visible"
             android:textColor="@color/black"
             android:text="@string/faq_delete"
             android:textSize="20sp" />

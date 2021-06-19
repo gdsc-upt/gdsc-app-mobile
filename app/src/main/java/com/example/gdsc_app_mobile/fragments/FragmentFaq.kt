@@ -1,5 +1,6 @@
 package com.example.gdsc_app_mobile.fragments
 
+import android.opengl.Visibility
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -37,6 +38,8 @@ class FragmentFaq : Fragment(), ISelectedData {
                     R.string.FragmentFaqTitle)
 
         addFaqButton = view.findViewById(R.id.add_faq_button)
+
+        adminRole()
 
         getFaqs()
 
@@ -157,5 +160,17 @@ class FragmentFaq : Fragment(), ISelectedData {
 
     override fun deletePosition(position: Int) {
         deleteFaq(position)
+    }
+
+    private fun adminRole() {
+        if(Singleton.getTokenInfo() != null) {
+            /*if (Singleton.getTokenInfo()?.roles.equals("admin"))
+                addFaqButton.visibility = View.VISIBLE
+            else
+                addFaqButton.visibility = View.GONE*/
+        }
+        else
+            //Toast.makeText(requireContext(), "ok", Toast.LENGTH_SHORT).show()
+            addFaqButton.visibility = View.GONE
     }
 }
