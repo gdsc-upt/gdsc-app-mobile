@@ -11,9 +11,9 @@
         android:orientation="vertical">
 
         <TextView
+            android:id="@+id/members_team_title"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Members works!"/>
+            android:layout_height="wrap_content" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/button_members_back_to_teams"

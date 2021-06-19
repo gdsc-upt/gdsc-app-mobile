@@ -11,6 +11,7 @@ import androidx.fragment.app.Fragment
 import com.example.gdsc_app_mobile.R
 import com.example.gdsc_app_mobile.activities.MainActivity
 import com.example.gdsc_app_mobile.adapters.TeamsAdapter
+import com.example.gdsc_app_mobile.interfaces.ISelectedDataTeams
 import com.example.gdsc_app_mobile.models.TeamsModel
 import com.example.gdsc_app_mobile.services.ApiClient
 
@@ -18,7 +19,7 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class FragmentTeams : Fragment() {
+class FragmentTeams : Fragment(), ISelectedDataTeams {
 
     private lateinit var teams: ArrayList<TeamsModel>
 
@@ -52,11 +53,12 @@ class FragmentTeams : Fragment() {
                     val teamsList: List<TeamsModel>? = response.body()
                     if(teamsList != null)
                         for(team in teamsList)
-                            teams.add(team)         //Adding to the list all the teams read from backend
+                            teams.add(team)                                                 //Adding to the list all the teams read from backend
                     val adapter = TeamsAdapter(requireActivity(), teams)
+                    adapter.addListener(this@FragmentTeams)                          //This is used to tell the adapter who is the listener
                     val listView: ListView = view!!.findViewById(R.id.teams_list_view)
-                    listView.divider = null         //No horizontal line between items
-                    listView.adapter = adapter      //Set the adapter for the listview
+                    listView.divider = null                                                 //No horizontal line between items
+                    listView.adapter = adapter                                              //Set the adapter for the listview
                 }
                 else
                     Toast.makeText(requireContext(), resources.getString(R.string.something_wrong), Toast.LENGTH_SHORT).show()
@@ -68,5 +70,14 @@ class FragmentTeams : Fragment() {
 
         })
 
+    }
+
+    //This method is used from TeamsAdapter to start the Members fragment for another team
+    //This will replace the container from the MainActivity with the new Fragment
+    override fun seeMembers(team: TeamsModel) {
+        requireActivity().supportFragmentManager.beginTransaction()
+            .replace(R.id.container_fragment, FragmentMembers(team))        //The new Fragment
+            .addToBackStack(null)                                     //Adding the fragment to the stack (after the fragment starts, if we press back, we'll be redirected to the previous fragment)
+            .commit()
     }
 }
