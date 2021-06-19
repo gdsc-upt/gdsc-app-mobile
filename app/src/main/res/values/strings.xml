@@ -64,4 +64,5 @@
     <string name="add_event">Add event</string>
     <string name="question_to_delete">Delete this event?</string>
     <string name="delete">Delete</string>
+    <string name="HOME">HOME</string>
 </resources>

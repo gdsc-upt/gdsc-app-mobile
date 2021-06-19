@@ -13,12 +13,11 @@
         android:background="@drawable/curve_shape">
 
         <ImageView
+            android:id="@+id/img_add_event"
             android:layout_width="match_parent"
             android:layout_height="200dp"
-            android:layout_gravity="center"
-            android:layout_marginTop="20dp"
-            android:layout_marginBottom="20dp"
-            android:src="@drawable/events_img" />
+            android:layout_margin="20dp"
+            android:src="@drawable/add_event_img" />
 
         <ImageView
             android:id="@+id/event_image"

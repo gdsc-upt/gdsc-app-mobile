@@ -4,5 +4,5 @@
     tools:ignore="ExtraText">
     android:shape="oval">
 
-    <solid android:color="@color/primary_blue" />
+    <solid android:color="@color/grey" />
 </shape>
