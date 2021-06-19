@@ -9,6 +9,9 @@ interface ApiService {
     @GET("v1/faqs")
     fun getAllFaqs(): Call<List<FaqModel>>
 
+    @GET("v1/teams")
+    fun getTeams(): Call<List<TeamsModel>>
+
     @POST("v1/faqs")
     fun postFaq(@Header("Authorization") authHeader : String, @Body model: FaqPostModel) : Call<FaqModel>
 

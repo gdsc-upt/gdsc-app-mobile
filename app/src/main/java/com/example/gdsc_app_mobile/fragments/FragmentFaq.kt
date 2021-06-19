@@ -68,6 +68,7 @@ class FragmentFaq : Fragment(), ISelectedData {
                     val adapter = FaqAdapter(requireActivity(), faqs)
                     val listView: ListView = view!!.findViewById(R.id.faq_list_view)
                     listView.adapter = adapter
+                    listView.divider = null
                     listView.isClickable = true
 
                     listView.setOnItemClickListener { parent, view, position, id ->
