@@ -9,6 +9,7 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.appcompat.widget.SwitchCompat
 import androidx.fragment.app.Fragment
+import com.example.gdsc_app_mobile.HelperClass
 import com.example.gdsc_app_mobile.R
 import com.example.gdsc_app_mobile.activities.MainActivity
 
@@ -20,8 +21,8 @@ class FragmentOptions : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.fragment_options, container, false)
-        (activity as MainActivity).toolbar.findViewById<TextView>(R.id.toolbar_title).text = getString(
-                    R.string.FragmentOptionsTitle)
+        val toolbar = (activity as MainActivity).toolbar
+        HelperClass.setToolbarStyle(context, toolbar, "options")
 
         switchDarkMode = view.findViewById(R.id.switch_dark_mode)
 

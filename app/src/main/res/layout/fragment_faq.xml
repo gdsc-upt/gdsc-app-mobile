@@ -13,6 +13,7 @@
             android:id="@+id/faq_list_view"
             android:layout_height="wrap_content"
             android:layout_width="match_parent"/>
+
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/add_faq_button"
             android:layout_width="60dp"

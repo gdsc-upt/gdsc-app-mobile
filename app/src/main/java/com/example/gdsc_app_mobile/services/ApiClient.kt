@@ -11,13 +11,10 @@ class ApiClient {
                 .baseUrl("https://dev.api.dscupt.tech/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build()
-            return retrofit
         }
 
-        fun getService() : ApiService {
-            val service : ApiService = getRetrofit().create(ApiService::class.java)
-
-            return service
+        fun getService(): ApiService {
+            return getRetrofit().create(ApiService::class.java)
         }
     }
 }
