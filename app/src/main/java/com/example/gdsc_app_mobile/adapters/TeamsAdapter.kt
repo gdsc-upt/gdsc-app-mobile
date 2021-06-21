@@ -60,7 +60,7 @@ class TeamsAdapter(private val context: Activity, private val arrayList: ArrayLi
     //Method used for "See members" functionality
     private fun seeMembers(button: TextView, position: Int) {
         button.setOnClickListener {
-            listener.seeMembers(arrayList[position])
+            listener.seeMembers(arrayList[position], position)
         }
     }
 

@@ -5,23 +5,28 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.TextView
-import android.widget.Toast
+import android.widget.*
+import androidx.appcompat.widget.Toolbar
 import com.example.gdsc_app_mobile.R
+import com.example.gdsc_app_mobile.adapters.MembersAdapter
 import com.example.gdsc_app_mobile.models.MemberModel
 import com.example.gdsc_app_mobile.models.TeamsModel
-import com.example.gdsc_app_mobile.services.ApiClient
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 
 //This fragment is used to show the list of members for each team(when a fragment like this starts, a team is required)
-class FragmentMembers(var team: TeamsModel) : Fragment() {
+class FragmentMembers() : Fragment() {
 
-    lateinit var tvTeamTitle: TextView
-    lateinit var backButton: Button
+    lateinit var team: TeamsModel
     lateinit var allMembers: ArrayList<MemberModel>
+    lateinit var tvTeamTitle: TextView
+    var position: Int = 0
+    lateinit var backButton: Button
+    lateinit var teamMembers: ArrayList<MemberModel>
+
+    constructor(team: TeamsModel, allMembers: ArrayList<MemberModel>, position: Int) : this() {
+        this.team = team
+        this.allMembers = allMembers
+        this.position = position
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -33,47 +38,47 @@ class FragmentMembers(var team: TeamsModel) : Fragment() {
         tvTeamTitle = view.findViewById(R.id.members_team_title)
         backButton = view.findViewById(R.id.button_members_back_to_teams)
 
-        tvTeamTitle.text = team.name
+        tvTeamTitle.text = team.name    //Setting the name of the team
 
+        colorPage(tvTeamTitle)  //Coloring the header of the page
+
+        backButtonCLicked()     //Back button click listener
+
+        setListView(view)       //Displaying only the members of this team
+
+        return view
+    }
+
+    private fun setListView(view: View) {
+
+        teamMembers = ArrayList()
+        for(member in allMembers)
+            if(team.id == member.teamId)
+                teamMembers.add(member)     //Adding only the members with the same teamId as the ID of the team
+
+        val adapter = MembersAdapter(requireActivity(), teamMembers)
+        adapter.position = position     //We set the position of the team in the list (for coloring)
+        val listView : ListView = view.findViewById(R.id.members_list_view)
+        listView.adapter = adapter
+
+        listView.divider = null     //No horizontal line between items
+    }
+
+    private fun colorPage(card: View) {
+        when(position % 4) {
+            0 -> card.setBackgroundColor(requireActivity().getColor(R.color.gdsc_yellow))
+            1 -> card.setBackgroundColor(requireActivity().getColor(R.color.gdsc_red))
+            2 -> card.setBackgroundColor(requireActivity().getColor(R.color.gdsc_green))
+            3 -> card.setBackgroundColor(requireActivity().getColor(R.color.gdsc_blue))
+        }
+    }
+
+    private fun backButtonCLicked() {
         backButton.setOnClickListener {
             requireActivity().supportFragmentManager.beginTransaction()
                 .replace(R.id.container_fragment, FragmentTeams())      //New fragment
                 .commit()
             requireActivity().supportFragmentManager.popBackStack()     //Because there was not used back button, this fragment will remain in the stack, so we need to remove it programmatically
         }
-
-        getAllMembers()
-
-        return view
-    }
-
-    private fun getAllMembers() {
-
-        allMembers = ArrayList()
-
-        val memberCall: Call<List<MemberModel>> = ApiClient.getService().getMembers()
-
-        memberCall.enqueue(object : Callback<List<MemberModel>> {
-            override fun onResponse(
-                call: Call<List<MemberModel>>,
-                response: Response<List<MemberModel>>
-            ) {
-                if(response.isSuccessful) {
-                    val members : List<MemberModel>? = response.body()
-                    if(members != null)
-                        for(member in members)
-                            allMembers.add(member)
-                    for(member in allMembers)
-                        println(member.name)
-                }
-                else
-                    Toast.makeText(requireContext(), resources.getString(R.string.something_wrong), Toast.LENGTH_SHORT).show()
-            }
-
-            override fun onFailure(call: Call<List<MemberModel>>, t: Throwable) {
-                Toast.makeText(requireContext(), resources.getString(R.string.something_wrong), Toast.LENGTH_SHORT).show()
-            }
-
-        })
     }
 }
