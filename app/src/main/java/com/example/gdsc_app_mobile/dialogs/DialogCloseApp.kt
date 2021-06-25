@@ -9,14 +9,11 @@ import android.view.ViewGroup
 import android.widget.Button
 import androidx.fragment.app.DialogFragment
 import com.example.gdsc_app_mobile.R
-import com.example.gdsc_app_mobile.interfaces.ICloseApp
 
 class DialogCloseApp: DialogFragment() {
 
     private lateinit var answerNo: Button
     private lateinit var answerYes: Button
-
-    lateinit var listener: ICloseApp
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -25,22 +22,21 @@ class DialogCloseApp: DialogFragment() {
     ): View? {
         val view = inflater.inflate(R.layout.dialog_close_app, container, false)
 
-        dialog?.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        dialog?.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))     //Transparent background
+        dialog?.setCancelable(false)                                                //Dialog not dismissed on back pressed
+        dialog?.setCanceledOnTouchOutside(false)                                    //Dialog not dismissed on outside touch
+
         answerNo = view.findViewById(R.id.close_delete_no)
         answerYes = view.findViewById(R.id.close_delete_yes)
 
         answerNo.setOnClickListener {
-            dialog!!.dismiss()
+            dialog!!.dismiss()                                    //If the answer is NO, the dialog box must be closed
         }
 
         answerYes.setOnClickListener {
-            listener.closeApp()
+            requireActivity().finishAndRemoveTask()               //If the answer is YES, the app will close completely
         }
 
         return view
-    }
-
-    fun addListener(_listener: ICloseApp){
-        this.listener = _listener
     }
 }

@@ -17,12 +17,11 @@ import com.example.gdsc_app_mobile.dialogs.DialogFragmentUserInfo
 import com.example.gdsc_app_mobile.Singleton
 import com.example.gdsc_app_mobile.dialogs.DialogCloseApp
 import com.example.gdsc_app_mobile.fragments.*
-import com.example.gdsc_app_mobile.interfaces.ICloseApp
 import com.google.android.material.navigation.NavigationView
 import com.squareup.picasso.Picasso
 import jp.wasabeef.picasso.transformations.CropCircleTransformation
 
-class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener, ICloseApp {
+class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
     private lateinit var drawerLayout: DrawerLayout
     private lateinit var navigationView: NavigationView
     internal lateinit var toolbar: Toolbar
@@ -107,13 +106,8 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             .commit()
     }
 
-    override fun onBackPressed() {
+    override fun onBackPressed() {              //When back pressed, a dialog box will appear with a specific message
         val dialog = DialogCloseApp()
-        dialog.addListener(this)
         dialog.show(this.supportFragmentManager, "CloseAppDialog")
-    }
-
-    override fun closeApp() {
-        finish()
     }
 }
