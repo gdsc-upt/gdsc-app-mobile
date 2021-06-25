@@ -10,6 +10,7 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
+import com.example.gdsc_app_mobile.HelperClass
 import com.example.gdsc_app_mobile.R
 import com.example.gdsc_app_mobile.activities.MainActivity
 import com.example.gdsc_app_mobile.adapters.TeamsAdapter
@@ -34,11 +35,9 @@ class FragmentTeams : Fragment(), ISelectedDataTeams {
     ): View? {
 
         val view = inflater.inflate(R.layout.fragment_teams, container, false)
-        (activity as MainActivity).toolbar.findViewById<TextView>(R.id.toolbar_title).text = getString(
-                    R.string.FragmentTeamsTitle)
-
+        val toolbar = (activity as MainActivity).toolbar
+        HelperClass.setToolbarStyle(context, toolbar, "teams")
         getTeams()      //Getting the teams from backend
-
         return view
     }
 

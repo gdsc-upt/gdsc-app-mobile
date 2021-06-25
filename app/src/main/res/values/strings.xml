@@ -1,40 +1,46 @@
 <resources>
     <string name="app_name">GDSC UPT</string>
-    <string name="nav_contact">Contact</string>
-    <string name="nav_about_us">About Us</string>
-    <string name="nav_faq">FAQ</string>
-    <string name="nav_options">Options</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="open">open</string>
-    <string name="close">close</string>
-    <string name="articles">Articles</string>
-    <string name="teams">Teams</string>
-    <string name="suggestions">Suggestions</string>
-    <string name="welcome_to_dsc">Welcome to DSC</string>
+
+    <!--  LogIn/Register Message  -->
+    <string name="developer_students_club">Developer Students Club</string>
+    <string name="university">Politehnica University of Timisoara</string>
+    <string name="made_with">Made with</string>
+    <string name="made_by_gdsc_upt_team">by GDSC-UPT Team</string>
+
+    <!--  LogIn/Register Form  -->
     <string name="enter_your_email">Enter your email</string>
     <string name="enter_your_username">Enter your username</string>
+    <string name="login_me">Login me</string>
+    <string name="log_in">Log in</string>
+    <string name="already_registered">Already registered?</string>
+    <string name="don_t_have_an_account">Don\'t have an account?</string>
+    <string name="register_here">Register here!</string>
+    <string name="valid_credential">Please enter valid credential</string>
     <string name="register">Register</string>
     <string name="confirm_your_password">Confirm your password</string>
     <string name="enter_your_password">Enter your password</string>
-    <string name="made_by_gdsc_upt_team">by GDSC-UPT Team</string>
-    <string name="don_t_have_an_account">Don\'t have an account?</string>
-    <string name="register_here">Register here!</string>
-    <string name="already_registered">Already registered?</string>
-    <string name="login_me">Login me</string>
-    <string name="university">Politehnica University of Timisoara</string>
-    <string name="nav_other">Other</string>
-    <string name="nav_logout">Log out</string>
-    <string name="made_with">Made with</string>
-    <string name="developer_students_club">Developer Students Club</string>
-    <string name="log_in">Log in</string>
-    <string name="valid_credential">Please enter valid credential</string>
     <string name="close_app_question">Are you sure you want to close this app?</string>
 
-    <!--Languages-->
+    <!-- Languages -->
     <string name="romanianLanguage">Romanian</string>
     <string name="englishLanguage">English</string>
 
-    <!--faq-->
+    <!--  Navigation Drawer  -->
+    <string name="open">open</string>
+    <string name="close">close</string>
+    <string name="welcome_to_dsc">Welcome to DSC</string>
+    <string name="articles">Articles</string>
+    <string name="teams">Teams</string>
+    <string name="nav_contact">Contact</string>
+    <string name="suggestions">Suggestions</string>
+    <string name="nav_about_us">About Us</string>
+    <string name="nav_faq">FAQ</string>
+    <string name="nav_options">Options</string>
+    <string name="nav_logout">Log out</string>
+    <string name="nav_other">Other</string>
+
+    <!-- FAQ Fragment-->
     <string name="yes">Yes</string>
     <string name="no">No</string>
     <string name="sure_want_delete">Are you sure\nyou want to delete this item?</string>
@@ -55,12 +61,19 @@
     <string name="FragmentSuggestionsTitle">SUGGESTIONS</string>
     <string name="FragmentOptionsTitle">OPTIONS</string>
     <string name="FragmentFaqTitle">FAQ</string>
-    <string name="FragmentContactTitle"> </string>
+    <string name="FragmentContactTitle">Let\'s Talk</string>
     <string name="FragmentArticlesTitle">ARTICLES</string>
     <string name="FragmentAboutUsTitle">ABOUT US</string>
 
-    <!-- Contact   -->
+    <!-- Contact Fragment  -->
     <string name="contact_successfully_posted">Message sent</string>
     <string name="dsc_mail">dsc.upt@gmail.com</string>
     <string name="dsc_address">Timisoara, Romania</string>
+
+    <!--  Contact Fragment Dialog  -->
+    <string name="contact_dialog_name">Name</string>
+    <string name="contact_dialog_email">Email</string>
+    <string name="contact_dialog_subject">Subject</string>
+    <string name="contact_dialog_message">Your message</string>
+    <string name="contact_submit_message">SUBMIT MESSAGE</string>
 </resources>

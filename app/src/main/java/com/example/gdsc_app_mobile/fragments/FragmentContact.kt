@@ -4,11 +4,8 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.example.gdsc_app_mobile.R
-import com.example.gdsc_app_mobile.Singleton
 import com.example.gdsc_app_mobile.activities.MainActivity
 import com.example.gdsc_app_mobile.dialogs.DialogFragmentContactMessage
 import com.example.gdsc_app_mobile.interfaces.ISelectedDataContact
@@ -19,10 +16,17 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import android.content.Intent
+import android.net.Uri
+import android.view.animation.AnimationUtils
+import android.widget.*
+import com.example.gdsc_app_mobile.HelperClass
 
 class FragmentContact : Fragment(), ISelectedDataContact {
 
     private lateinit var openDialog: FloatingActionButton
+    private lateinit var linkedinButton: ImageView
+    private lateinit var webPageButton: ImageView
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -31,12 +35,36 @@ class FragmentContact : Fragment(), ISelectedDataContact {
     ): View? {
 
         val view = inflater.inflate(R.layout.fragment_contact, container, false)
-        (activity as MainActivity).toolbar.findViewById<TextView>(R.id.toolbar_title).text = getString(
-                    R.string.FragmentContactTitle)
+        val toolbar = (activity as MainActivity).toolbar
+        HelperClass.setToolbarStyle(context, toolbar, "contact")
 
-        openDialog = view.findViewById(R.id.home_floating_button)
+        linkedinButton = view.findViewById(R.id.contact_linkedin_button)
+        webPageButton = view.findViewById(R.id.contact_web_search)
+        openDialog = view.findViewById(R.id.contact_floating_button)
+
         openDialog.setOnClickListener {
+            it.startAnimation(AnimationUtils.loadAnimation(context, R.anim.on_click_animation))
             openMessageDialog()
+        }
+
+        linkedinButton.setOnClickListener {
+            it.startAnimation(AnimationUtils.loadAnimation(context, R.anim.on_click_animation))
+            startActivity(
+                Intent(
+                    Intent.ACTION_VIEW,
+                    Uri.parse("https://www.linkedin.com/company/gdsc-upt/")
+                )
+            )
+        }
+
+        webPageButton.setOnClickListener {
+            it.startAnimation(AnimationUtils.loadAnimation(context, R.anim.on_click_animation))
+//            startActivity(
+//                Intent(
+//                    Intent.ACTION_VIEW,
+//                    Uri.parse("web page")
+//                )
+//            )
         }
 
         return view
@@ -76,5 +104,6 @@ class FragmentContact : Fragment(), ISelectedDataContact {
     override fun onSelectedData(name: String, email: String, subject: String, message: String) {
         createPost(name, email, subject, message)
     }
+
 
 }

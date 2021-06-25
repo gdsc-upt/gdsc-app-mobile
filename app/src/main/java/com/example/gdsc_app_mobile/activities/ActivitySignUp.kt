@@ -97,7 +97,7 @@ class ActivitySignUp : AppCompatActivity(), ICloseApp {
 
             })
 
-            val intent = Intent(this@ActivitySignUp, MainActivity::class.java)
+            val intent = Intent(applicationContext, MainActivity::class.java)
             startActivity(intent)
             finish()
 

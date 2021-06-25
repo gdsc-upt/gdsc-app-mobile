@@ -18,5 +18,8 @@
     <color name="floating_icon_color">@color/white</color>
     <color name="floating_bg_color">@color/grey_1</color>
     <color name="svg_color">@color/white</color>
+    <color name="linkedin_color">@color/white</color>
+    <color name="web_search_icon">@color/white</color>
+    <color name="web_search_magnifying">@color/white</color>
 
 </resources>

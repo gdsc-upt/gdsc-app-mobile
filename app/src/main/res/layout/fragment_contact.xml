@@ -5,34 +5,31 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
-    <LinearLayout android:layout_height="match_parent"
+
+    <LinearLayout
         android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Let's Talk"
-            android:layout_gravity="center"
-            android:textStyle="bold"
-            android:layout_marginBottom="5dp"
-            android:textSize="23sp"/>
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="200dp"
-            android:src="@drawable/contact_us_svg"/>
+            android:layout_marginTop="40dp"
+            android:src="@drawable/contact_us_svg" />
 
         <LinearLayout
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_marginTop="20dp"
+            android:layout_height="wrap_content"
             android:layout_gravity="center"
+            android:layout_marginTop="50dp"
             android:orientation="vertical">
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginBottom="20dp">
+                android:layout_marginBottom="20dp"
+                android:orientation="horizontal">
+
                 <ImageView
                     android:layout_width="40dp"
                     android:layout_height="40dp"
@@ -44,38 +41,77 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:text="@string/dsc_mail"
-                    android:textSize="20sp"
-                    />
+                    android:textSize="20sp" />
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
+
                 <ImageView
                     android:layout_width="40dp"
                     android:layout_height="40dp"
                     android:layout_marginEnd="20dp"
-                    android:src="@drawable/ic_location"/>
+                    android:src="@drawable/ic_location" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/dsc_address"
                     android:layout_gravity="center"
-                    android:textSize="20sp"/>
+                    android:text="@string/dsc_address"
+                    android:textSize="20sp" />
             </LinearLayout>
+
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Search Us:"
+            android:layout_gravity="center"
+            android:layout_marginTop="50dp"
+            android:textSize="23sp"
+            android:textStyle="bold" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="50dp">
+
+            <ImageView
+                android:id="@+id/contact_linkedin_button"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center"
+                android:backgroundTint="@color/white"
+                android:clickable="true"
+                android:focusable="true"
+                android:src="@drawable/ic_linkedin" />
+
+            <ImageView
+                android:id="@+id/contact_web_search"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_gravity="center"
+                android:layout_marginStart="90dp"
+                android:backgroundTint="@color/white"
+                android:clickable="true"
+                android:focusable="true"
+                android:src="@drawable/ic_web_search_engine" />
         </LinearLayout>
 
     </LinearLayout>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/home_floating_button"
+        android:id="@+id/contact_floating_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="end|bottom"
         android:layout_margin="25dp"
         android:background="@color/floating_bg_color"
         android:backgroundTint="@color/floating_bg_color"
+        app:fabSize="mini"
         app:tint="@color/floating_icon_color"
         android:clickable="true"
         android:focusable="true"

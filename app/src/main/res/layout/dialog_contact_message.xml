@@ -6,7 +6,7 @@
     android:orientation="vertical">
     <LinearLayout
         android:layout_width="350dp"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="vertical"
         android:layout_gravity="center"
         android:background="@drawable/curve_shape">
@@ -27,7 +27,7 @@
             android:paddingTop="25dp"
             android:textSize="16sp"
             android:ems="10"
-            android:hint="Name"
+            android:hint="@string/contact_dialog_name"
             android:inputType="textPersonName" />
 
         <EditText
@@ -37,7 +37,7 @@
             android:layout_gravity="center"
             android:paddingTop="25dp"
             android:textSize="16sp"
-            android:hint="Email"
+            android:hint="@string/contact_dialog_email"
             android:inputType="textEmailAddress" />
 
         <EditText
@@ -48,7 +48,7 @@
             android:paddingTop="25dp"
             android:textSize="16sp"
             android:ems="10"
-            android:hint="Subject"
+            android:hint="@string/contact_dialog_subject"
             android:inputType="text" />
 
         <EditText
@@ -59,15 +59,14 @@
             android:paddingTop="25dp"
             android:textSize="16sp"
             android:ems="10"
-            android:hint="Your message"
-            android:keyboardNavigationCluster="true"
+            android:hint="@string/contact_dialog_message"
             android:inputType="textMultiLine" />
 
         <Button
             android:layout_width="200dp"
             android:layout_height="wrap_content"
             android:id="@+id/contactSubmitMessageButton"
-            android:text="SUBMIT MESSAGE"
+            android:text="@string/contact_submit_message"
             android:layout_gravity="center"
             android:layout_marginTop="20dp"
             android:layout_marginBottom="20dp"
