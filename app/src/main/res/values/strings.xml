@@ -28,6 +28,7 @@
     <string name="developer_students_club">Developer Students Club</string>
     <string name="log_in">Log in</string>
     <string name="valid_credential">Please enter valid credential</string>
+    <string name="close_app_question">Are you sure you want to close this app?</string>
 
     <!--Languages-->
     <string name="romanianLanguage">Romanian</string>

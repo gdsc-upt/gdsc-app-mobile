@@ -1,29 +1,27 @@
 package com.example.gdsc_app_mobile.activities
 
 import android.content.Intent
-import android.content.SharedPreferences
-import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
 import android.widget.ImageView
 import android.widget.TextView
-import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
-import androidx.appcompat.app.AppCompatDelegate
 import androidx.appcompat.widget.Toolbar
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
 import com.example.gdsc_app_mobile.R
 import com.example.gdsc_app_mobile.Singleton
+import com.example.gdsc_app_mobile.dialogs.DialogCloseApp
 import com.example.gdsc_app_mobile.fragments.*
+import com.example.gdsc_app_mobile.interfaces.ICloseApp
 import com.google.android.material.navigation.NavigationView
 import com.squareup.picasso.Picasso
 import jp.wasabeef.picasso.transformations.CropCircleTransformation
 import java.time.LocalDateTime
 
-class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
+class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener, ICloseApp {
     private lateinit var drawerLayout: DrawerLayout
     private lateinit var navigationView: NavigationView
     internal lateinit var toolbar: Toolbar
@@ -100,5 +98,15 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         supportFragmentManager.beginTransaction()
             .replace(R.id.container_fragment, fragment)
             .commit()
+    }
+
+    override fun onBackPressed() {
+        val dialog = DialogCloseApp()
+        dialog.addListener(this)
+        dialog.show(this.supportFragmentManager, "CloseAppDialog")
+    }
+
+    override fun closeApp() {
+        finish()
     }
 }

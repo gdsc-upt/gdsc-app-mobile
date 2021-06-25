@@ -12,13 +12,15 @@ import androidx.appcompat.app.AppCompatDelegate
 import com.example.gdsc_app_mobile.services.ApiClient
 import com.example.gdsc_app_mobile.R
 import com.example.gdsc_app_mobile.Singleton
+import com.example.gdsc_app_mobile.dialogs.DialogCloseApp
+import com.example.gdsc_app_mobile.interfaces.ICloseApp
 import com.example.gdsc_app_mobile.models.LoginModel
 import com.example.gdsc_app_mobile.models.TokenModel
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class ActivitySignUp : AppCompatActivity() {
+class ActivitySignUp : AppCompatActivity(), ICloseApp {
 
     private lateinit var logInButton : Button
     private lateinit var registerButton : TextView
@@ -38,7 +40,6 @@ class ActivitySignUp : AppCompatActivity() {
         registerButton.setOnClickListener{
             val intent = Intent(this@ActivitySignUp, ActivityRegister::class.java)
             startActivity(intent)
-            finish()
         }
 
         logInButton.setOnClickListener {
@@ -114,6 +115,16 @@ class ActivitySignUp : AppCompatActivity() {
         } else {
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
         }
+    }
+
+    override fun onBackPressed() {
+        val dialog = DialogCloseApp()
+        dialog.addListener(this)
+        dialog.show(this.supportFragmentManager, "CloseAppDialog")
+    }
+
+    override fun closeApp() {
+        finish()
     }
 
 }
