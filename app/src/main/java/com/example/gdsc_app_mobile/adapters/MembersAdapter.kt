@@ -26,7 +26,7 @@ class MembersAdapter(private val context: Activity, private val arrayList: Array
 
         colorElement(view.findViewById(R.id.member_card))   //Coloring the current item depending on position
 
-        name.text = "$position. ${arrayList[position].name}" //Setting the number and the name of the member
+        name.text = "${position + 1}. ${arrayList[position].name}" //Setting the number and the name of the member
 
         return view
     }
