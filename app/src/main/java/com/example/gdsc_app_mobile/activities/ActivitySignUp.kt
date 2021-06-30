@@ -12,7 +12,6 @@ import androidx.appcompat.app.AppCompatDelegate
 import com.example.gdsc_app_mobile.services.ApiClient
 import com.example.gdsc_app_mobile.R
 import com.example.gdsc_app_mobile.Singleton
-import com.example.gdsc_app_mobile.dialogs.DialogCloseApp
 import com.example.gdsc_app_mobile.models.LoginModel
 import com.example.gdsc_app_mobile.models.TokenModel
 import retrofit2.Call
@@ -114,11 +113,6 @@ class ActivitySignUp : AppCompatActivity() {
         } else {
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
         }
-    }
-
-    override fun onBackPressed() {              //When back pressed, a dialog box will appear with a specific message
-        val dialog = DialogCloseApp()
-        dialog.show(this.supportFragmentManager, "CloseAppDialog")
     }
 
 }

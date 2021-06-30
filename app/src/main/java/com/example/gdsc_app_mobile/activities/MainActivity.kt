@@ -15,7 +15,6 @@ import androidx.fragment.app.Fragment
 import com.example.gdsc_app_mobile.R
 import com.example.gdsc_app_mobile.dialogs.DialogFragmentUserInfo
 import com.example.gdsc_app_mobile.Singleton
-import com.example.gdsc_app_mobile.dialogs.DialogCloseApp
 import com.example.gdsc_app_mobile.fragments.*
 import com.google.android.material.navigation.NavigationView
 import com.squareup.picasso.Picasso
@@ -104,10 +103,5 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         supportFragmentManager.beginTransaction()
             .replace(R.id.container_fragment, fragment)
             .commit()
-    }
-
-    override fun onBackPressed() {              //When back pressed, a dialog box will appear with a specific message
-        val dialog = DialogCloseApp()
-        dialog.show(this.supportFragmentManager, "CloseAppDialog")
     }
 }

@@ -7,7 +7,9 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.*
 import androidx.appcompat.widget.Toolbar
+import com.example.gdsc_app_mobile.HelperClass
 import com.example.gdsc_app_mobile.R
+import com.example.gdsc_app_mobile.activities.MainActivity
 import com.example.gdsc_app_mobile.adapters.MembersAdapter
 import com.example.gdsc_app_mobile.models.MemberModel
 import com.example.gdsc_app_mobile.models.TeamsModel
@@ -32,6 +34,9 @@ class FragmentMembers() : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+
+        val toolbar = (activity as MainActivity).toolbar
+        HelperClass.setToolbarStyle(context, toolbar, "teams")
 
         val view = inflater.inflate(R.layout.fragment_members, container, false)
 
@@ -81,4 +86,5 @@ class FragmentMembers() : Fragment() {
             requireActivity().supportFragmentManager.popBackStack()     //Because there was not used back button, this fragment will remain in the stack, so we need to remove it programmatically
         }
     }
+
 }

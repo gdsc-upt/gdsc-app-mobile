@@ -20,7 +20,6 @@
     <string name="register">Register</string>
     <string name="confirm_your_password">Confirm your password</string>
     <string name="enter_your_password">Enter your password</string>
-    <string name="close_app_question">Are you sure you want to close this app?</string>
 
     <!-- Languages -->
     <string name="romanianLanguage">Romanian</string>
