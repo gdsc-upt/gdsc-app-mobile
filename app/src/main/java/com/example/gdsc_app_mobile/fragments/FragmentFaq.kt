@@ -164,14 +164,7 @@ class FragmentFaq : Fragment(), ISelectedData {
     }
 
     private fun adminRole() {
-        if(Singleton.getTokenInfo() != null) {
-            /*if (Singleton.getTokenInfo()?.roles.equals("admin"))
-                addFaqButton.visibility = View.VISIBLE
-            else
-                addFaqButton.visibility = View.GONE*/
-        }
-        else
-            //Toast.makeText(requireContext(), "ok", Toast.LENGTH_SHORT).show()
+        if(Singleton.getTokenInfo() == null)
             addFaqButton.visibility = View.GONE
     }
 }
