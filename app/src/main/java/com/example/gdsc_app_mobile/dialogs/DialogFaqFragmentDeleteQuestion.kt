@@ -27,7 +27,6 @@ class DialogFaqFragmentDeleteQuestion : DialogFragment() {
 
     private lateinit var listener : ISelectedData
     private lateinit var faq: FaqModel
-    private var position: Int = 0
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -73,10 +72,6 @@ class DialogFaqFragmentDeleteQuestion : DialogFragment() {
         this.faq = _faq
     }
 
-    fun setPosition(_position: Int){
-        this.position = _position
-    }
-
     private fun adminRole() {
         if(Singleton.getTokenInfo() != null) {
             if (Singleton.getTokenInfo()?.roles.equals("admin"))
@@ -96,7 +91,7 @@ class DialogFaqFragmentDeleteQuestion : DialogFragment() {
             faqDeleteYes.visibility = View.VISIBLE
 
             faqDeleteYes.setOnClickListener {
-                listener.deletePosition(position)
+                listener.deleteFaq(faq)
                 dialog?.dismiss()
             }
             faqDeleteNo.setOnClickListener {
