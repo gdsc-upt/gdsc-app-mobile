@@ -46,6 +46,8 @@ class FragmentTeams : Fragment(), ISelectedDataTeams, ISelectedAccept {
 
         addTeam()       //This will show a dialog to add a new team
 
+        HelperClass.adminRole(addTeamButton)     //This will display the ADD new team button only if the user is admin
+
         return view
     }
 

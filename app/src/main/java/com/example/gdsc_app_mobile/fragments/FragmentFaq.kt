@@ -39,7 +39,7 @@ class FragmentFaq : Fragment(), ISelectedData {
 
         addFaqButton = view.findViewById(R.id.add_faq_button)
 
-        adminRole()
+        HelperClass.adminRole(addFaqButton)
 
         getFaqs()
 
@@ -161,10 +161,5 @@ class FragmentFaq : Fragment(), ISelectedData {
 
     override fun deletePosition(position: Int) {
         deleteFaq(position)
-    }
-
-    private fun adminRole() {
-        if(Singleton.getTokenInfo() == null)
-            addFaqButton.visibility = View.GONE
     }
 }

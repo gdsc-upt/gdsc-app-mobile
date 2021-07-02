@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.TextView
+import com.example.gdsc_app_mobile.HelperClass
 import com.example.gdsc_app_mobile.R
 import com.example.gdsc_app_mobile.interfaces.ISelectedDataTeams
 import com.example.gdsc_app_mobile.models.TeamsModel
@@ -29,6 +30,8 @@ class TeamsAdapter(private val context: Activity, private val arrayList: ArrayLi
         //Set color for specific item from listview
         colorElement(view.findViewById(R.id.teams_card), title, position)
 
+        HelperClass.adminRole(deleteTeamButton)
+
         //Set the title for the list item
         title.text = arrayList[position].name
 
@@ -50,7 +53,6 @@ class TeamsAdapter(private val context: Activity, private val arrayList: ArrayLi
             3 -> setColor(card, R.color.gdsc_blue, 20f)
         }
     }
-
 
     //Method used to set the color and corner radius at the same time
     private fun setColor(card: View, cardColor: Int, radius: Float) {

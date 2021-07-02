@@ -6,12 +6,11 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.WindowManager
 import android.widget.Button
 import android.widget.TextView
 import androidx.fragment.app.DialogFragment
+import com.example.gdsc_app_mobile.HelperClass
 import com.example.gdsc_app_mobile.R
-import com.example.gdsc_app_mobile.Singleton
 import com.example.gdsc_app_mobile.interfaces.ISelectedData
 import com.example.gdsc_app_mobile.models.FaqModel
 
@@ -50,7 +49,7 @@ class DialogFaqFragmentDeleteQuestion : DialogFragment() {
         faqViewAnswer.text = faq.answer
         faqViewDate.text = getDate(faq.created)
 
-        adminRole()
+        HelperClass.adminRole(faqDeleteButton)
 
         faqDeleteButtonClicked()
 
@@ -75,17 +74,6 @@ class DialogFaqFragmentDeleteQuestion : DialogFragment() {
 
     fun setPosition(_position: Int){
         this.position = _position
-    }
-
-    private fun adminRole() {
-        if(Singleton.getTokenInfo() != null) {
-            if (Singleton.getTokenInfo()?.roles.equals("admin"))
-                faqDeleteButton.visibility = View.VISIBLE
-            else
-                faqDeleteButton.visibility = View.GONE
-        }
-        else
-            faqDeleteButton.visibility = View.GONE
     }
 
     private fun faqDeleteButtonClicked() {
