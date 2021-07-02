@@ -80,10 +80,7 @@ class FragmentMembers() : Fragment() {
 
     private fun backButtonCLicked() {
         backButton.setOnClickListener {
-            requireActivity().supportFragmentManager.beginTransaction()
-                .replace(R.id.container_fragment, FragmentTeams())      //New fragment
-                .commit()
-            requireActivity().supportFragmentManager.popBackStack()     //Because there was not used back button, this fragment will remain in the stack, so we need to remove it programmatically
+            requireActivity().supportFragmentManager.popBackStack()     //Get back to teams fragment
         }
     }
 

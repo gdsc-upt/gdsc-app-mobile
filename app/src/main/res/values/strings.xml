@@ -75,4 +75,10 @@
     <string name="contact_dialog_subject">Subject</string>
     <string name="contact_dialog_message">Your message</string>
     <string name="contact_submit_message">SUBMIT MESSAGE</string>
+
+    <!-- Teams Fragment -->
+    <string name="team_name">Team name</string>
+    <string name="add_team">Add team</string>
+    <string name="no_team">No written team</string>
+    <string name="delete_team">Delete team</string>
 </resources>

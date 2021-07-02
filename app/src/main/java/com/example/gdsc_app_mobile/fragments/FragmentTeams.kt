@@ -4,10 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.LinearLayout
-import android.widget.ListView
-import android.widget.TextView
-import android.widget.Toast
+import android.widget.*
 import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
 import com.example.gdsc_app_mobile.HelperClass
@@ -18,6 +15,11 @@ import com.example.gdsc_app_mobile.interfaces.ISelectedDataTeams
 import com.example.gdsc_app_mobile.models.MemberModel
 import com.example.gdsc_app_mobile.models.TeamsModel
 import com.example.gdsc_app_mobile.services.ApiClient
+import com.example.gdsc_app_mobile.Singleton
+import com.example.gdsc_app_mobile.dialogs.DialogAddTeam
+import com.example.gdsc_app_mobile.dialogs.DialogFaqFragmentDeleteQuestion
+import com.example.gdsc_app_mobile.dialogs.DialogFragmentFaqAddQuestion
+import com.example.gdsc_app_mobile.models.TeamsPostModel
 
 import retrofit2.Call
 import retrofit2.Callback
@@ -27,6 +29,7 @@ class FragmentTeams : Fragment(), ISelectedDataTeams {
 
     private lateinit var teams: ArrayList<TeamsModel>
     private lateinit var allMembers: ArrayList<MemberModel>
+    private lateinit var addTeamButton: Button
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -37,7 +40,13 @@ class FragmentTeams : Fragment(), ISelectedDataTeams {
         val view = inflater.inflate(R.layout.fragment_teams, container, false)
         val toolbar = (activity as MainActivity).toolbar
         HelperClass.setToolbarStyle(context, toolbar, "teams")
+
         getTeams()      //Getting the teams from backend
+
+        addTeamButton = view.findViewById(R.id.add_team_button)
+
+        addTeam()
+
         return view
     }
 
@@ -113,5 +122,39 @@ class FragmentTeams : Fragment(), ISelectedDataTeams {
             }
 
         })
+    }
+
+    private fun postTeam(name: String) {
+        val team = TeamsPostModel(name)
+        val teamCall: Call<TeamsModel> = ApiClient.getService().postTeam(Singleton.getTokenForAuthentication().toString(), team)
+
+        teamCall.enqueue(object : Callback<TeamsModel> {
+            override fun onResponse(call: Call<TeamsModel>, response: Response<TeamsModel>) {
+                if(response.isSuccessful){
+                    teams = ArrayList()
+                    getTeams()
+                }
+                else
+                    Toast.makeText(requireContext(), resources.getString(R.string.something_wrong), Toast.LENGTH_SHORT).show()
+
+            }
+
+            override fun onFailure(call: Call<TeamsModel>, t: Throwable) {
+                Toast.makeText(requireContext(), resources.getString(R.string.something_wrong), Toast.LENGTH_SHORT).show()
+            }
+        })
+    }
+
+    override fun postTeamFromDialog(name: String) {
+        postTeam(name)
+    }
+
+    private fun addTeam() {
+        addTeamButton.setOnClickListener {
+            val dialog = DialogAddTeam()
+            // Add a listener to listen to the data from the dialog
+            dialog.listener = this
+            dialog.show(requireActivity().supportFragmentManager, "AddTeamDialog")
+        }
     }
 }

@@ -27,4 +27,7 @@ interface ApiService {
     @POST("v1/contact")
     fun postContact(@Body model: ContactPostModel): Call<ContactModel>
 
+    @POST("v1/teams")
+    fun postTeam(@Header("Authorization") authHeader : String, @Body model: TeamsPostModel): Call<TeamsModel>
+
 }
