@@ -1,7 +1,6 @@
 package com.example.gdsc_app_mobile.adapters
 
 import android.app.Activity
-import android.graphics.Color
 import android.graphics.drawable.GradientDrawable
 import android.view.LayoutInflater
 import android.view.View
@@ -25,6 +24,7 @@ class TeamsAdapter(private val context: Activity, private val arrayList: ArrayLi
         //Here specific fields are took from xml file using their IDs
         val title: TextView = view.findViewById(R.id.teams_title)
         val seeMembersButton: TextView = view.findViewById(R.id.see_members_button)
+        val deleteTeamButton: TextView = view.findViewById(R.id.delete_team_button)
 
         //Set color for specific item from listview
         colorElement(view.findViewById(R.id.teams_card), title, position)
@@ -34,6 +34,9 @@ class TeamsAdapter(private val context: Activity, private val arrayList: ArrayLi
 
         //See members button clicked
         seeMembers(seeMembersButton, position)
+
+        //Delete the specific team based on its position
+        deleteTeam(deleteTeamButton, position)
 
         return view
     }
@@ -61,6 +64,13 @@ class TeamsAdapter(private val context: Activity, private val arrayList: ArrayLi
     private fun seeMembers(button: TextView, position: Int) {
         button.setOnClickListener {
             listener.seeMembers(arrayList[position], position)
+        }
+    }
+
+    //Method used to delete a team
+    private fun deleteTeam(button: TextView, position: Int) {
+        button.setOnClickListener {
+            listener.deleteTeamFromAdapter(position)
         }
     }
 

@@ -29,17 +29,41 @@
                  android:gravity="center"
                  android:textSize="20sp"/>
 
-            <TextView
-                android:id="@+id/see_members_button"
+            <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/teams_see_members"
-                android:clickable="true"
-                android:focusable="true"
-                android:textColor="@color/dirty_dark"
-                android:gravity="end"
-                android:paddingStart="20dp"
-                android:paddingEnd="20dp"/>
+                android:orientation="horizontal">
+
+
+                <TextView
+                    android:id="@+id/delete_team_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/delete_team"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:textStyle="bold"
+                    android:textColor="@color/black"
+                    android:gravity="center"
+                    android:layout_alignParentStart="true"
+                    android:paddingStart="20dp"
+                    android:paddingEnd="20dp"
+                    card_view:drawableStartCompat="@drawable/ic_delete"
+                    card_view:drawableTint="@color/black" />
+
+                <TextView
+                    android:id="@+id/see_members_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/teams_see_members"
+                    android:layout_alignParentEnd="true"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:textColor="@color/dirty_dark"
+                    android:gravity="center"
+                    android:paddingStart="20dp"
+                    android:paddingEnd="20dp"/>
+            </RelativeLayout>
 
         </LinearLayout>
 
