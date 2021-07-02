@@ -174,10 +174,11 @@ class FragmentFaq : Fragment(), ISelectedData, OnItemClickListener {
     }
 
     override fun onItemClick(faq: FaqModel?) {
-        detailedFaq(faq)
+
     }
 
     override fun onLongItemClick(faq: FaqModel?) {
-        Toast.makeText(requireContext(), "long", Toast.LENGTH_SHORT).show()
+        //Toast.makeText(requireContext(), "long", Toast.LENGTH_SHORT).show()
+        detailedFaq(faq)
     }
 }
