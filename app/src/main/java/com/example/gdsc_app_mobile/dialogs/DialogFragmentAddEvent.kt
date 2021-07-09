@@ -9,25 +9,38 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.WindowManager
-import android.widget.*
+import android.widget.Toast
 import androidx.activity.result.ActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.DialogFragment
 import com.example.gdsc_app_mobile.R
+import com.example.gdsc_app_mobile.Singleton
+import com.example.gdsc_app_mobile.UploadUtility
+import com.example.gdsc_app_mobile.databinding.CalendarDialogAddEventBinding
 import com.example.gdsc_app_mobile.interfaces.ISelectedEvent
+import com.example.gdsc_app_mobile.models.EventModel
+import com.example.gdsc_app_mobile.services.ApiClient
 import com.github.dhaval2404.imagepicker.ImagePicker
 import com.squareup.picasso.Picasso
 import jp.wasabeef.picasso.transformations.CropCircleTransformation
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+import java.io.File
+import java.time.Instant
+import java.time.format.DateTimeFormatter
 
 
-class DialogFragmentAddEvent: DialogFragment() {
+class DialogFragmentAddEvent(): DialogFragment() {
 
     lateinit var listener: ISelectedEvent
-    lateinit var image: ImageView
-    lateinit var addEvent: Button
-    lateinit var title: EditText
-    lateinit var description: EditText
     lateinit var imageUri : Uri
+    lateinit var image : File
+
+    private var _eventBinding: CalendarDialogAddEventBinding? = null
+    private val eventBinding get() = _eventBinding!!
+
+    private lateinit var newEvent : EventModel
 
     private val startForEventImageResult =
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result: ActivityResult ->
@@ -40,39 +53,83 @@ class DialogFragmentAddEvent: DialogFragment() {
                 imageUri = fileUri
 
                 Picasso.get().load(imageUri).transform(CropCircleTransformation())
-                    .into(image)
+                    .into(eventBinding.eventImage)
             }
         }
 
     override fun onCreateView(inflater: LayoutInflater,
                               container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
-        val view: View = inflater.inflate(R.layout.calendar_dialog_add_event, container,false)
+        _eventBinding = CalendarDialogAddEventBinding.inflate(inflater, container, false)
+        val view = eventBinding.root
         //set background transparent
         dialog?.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
         dialog?.window?.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE)
 
-        image = view.findViewById(R.id.event_image)
-        title = view.findViewById(R.id.event_title_text)
-        description = view.findViewById(R.id.event_description_text)
-        addEvent = view.findViewById(R.id.event_add_button)
-
-        image.setOnClickListener{
+        eventBinding.eventImage.setOnClickListener{
             ImagePicker.with(this).compress(1024).maxResultSize(1080, 1080).
                 createIntent { intent -> startForEventImageResult.launch(intent) }
         }
 
-        addEvent.setOnClickListener {//to be worked on
-            listener.onSelectedEvent(title.text.toString(), description.text.toString())
+        eventBinding.eventAddButton.setOnClickListener {//to be worked on
+            assembleEventModel()
+            createPostEvent()
             dialog?.dismiss()
         }
 
         return view
     }
 
+    override fun onDestroy() {
+        super.onDestroy()
+        _eventBinding = null
+    }
+
     //method to add the listener from the fragment in which the dialog is called
     fun addListener(listener: ISelectedEvent){
         this.listener = listener
+    }
+
+    private fun assembleEventModel(){
+
+        val date : String = eventBinding.dateYear.text.toString()+"-"+eventBinding.dateMonth.text.toString()+"-"+eventBinding.dateDay.text.toString()+"T"
+        val from : String = eventBinding.fromHour.text.toString()+":"+eventBinding.fromMins.text.toString()+"000Z"
+        val to : String = eventBinding.toHour.text.toString()+":"+eventBinding.toMins.toString()+"000Z"
+
+        newEvent = EventModel(
+            eventBinding.eventTitleText.text.toString(),
+            eventBinding.eventDescriptionText.text.toString(),
+            imageUri.toString(),
+            date+from,
+            date+to
+        )
+    }
+
+    private fun UploadImage() {
+        UploadUtility(requireActivity()).uploadFile(imageUri)
+    }
+
+    private fun createPostEvent(){
+
+        val eventCall : Call<EventModel> = ApiClient.getService().postEvent(Singleton.getTokenForAuthentication().toString() , newEvent)
+
+        eventCall.enqueue(object : Callback<EventModel> {
+
+            override fun onResponse(call: Call<EventModel>, response: Response<EventModel>) {
+                if(response.isSuccessful){
+                    Toast.makeText(requireContext(), resources.getString(R.string.faq_successfully_posted), Toast.LENGTH_SHORT).show()
+                }
+                else{
+                    Toast.makeText(requireContext(), resources.getString(R.string.something_wrong), Toast.LENGTH_SHORT).show()
+                }
+            }
+
+            override fun onFailure(call: Call<EventModel>, t: Throwable) {
+                Toast.makeText(requireContext(), resources.getString(R.string.something_wrong), Toast.LENGTH_SHORT).show()
+
+            }
+        })
+
     }
 
 }

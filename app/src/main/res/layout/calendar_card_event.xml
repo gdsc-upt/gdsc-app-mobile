@@ -34,18 +34,31 @@
             android:gravity="center"/>
 
         <TextView
+            android:id="@+id/event_time"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="From: "
+            app:layout_constraintTop_toBottomOf="@id/event_img"
+            android:layout_marginTop="20dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:textSize="17sp"
+            />
+
+        <TextView
             android:id="@+id/event_description"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/event_img"
             android:text="Event description"
-            app:layout_constraintTop_toBottomOf="@id/event_img"
+            app:layout_constraintTop_toBottomOf="@id/event_time"
             app:layout_constraintStart_toStartOf="parent"
             android:layout_marginTop="10dp"
             android:layout_marginStart="20dp"
             android:layout_marginEnd="20dp"
             app:layout_constraintBottom_toBottomOf="parent"
             android:layout_marginBottom="10dp"
+            android:textSize="19sp"
             />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

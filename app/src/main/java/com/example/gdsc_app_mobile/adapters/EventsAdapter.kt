@@ -5,6 +5,8 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.gdsc_app_mobile.databinding.CalendarCardEventBinding
 import com.example.gdsc_app_mobile.models.EventModel
+import java.time.format.DateTimeFormatter
+import java.util.*
 
 class EventsAdapter(val onClick: (EventModel) -> Unit) :
     RecyclerView.Adapter<EventsAdapter.EventsViewHolder>() {
@@ -35,7 +37,18 @@ class EventsAdapter(val onClick: (EventModel) -> Unit) :
         fun bind(event: EventModel) {
             binding.eventTitle.text = event.title
             binding.eventDescription.text = event.description
-            //to do the same with img
+            binding.eventTime.text = parseTime(event.start, event.end)
+            //TODO("Add the corresponding image to event card")
+        }
+
+        private fun parseTime(start : String, end : String) : String{
+            val index1 = 11
+            val index2 = 15
+            val timeStart = start.subSequence(index1, index2)
+            val timeEnd = end.subSequence(index1, index2)
+
+            return "From $timeStart to $timeEnd";
         }
     }
+
 }

@@ -16,5 +16,4 @@ class HelperClass {
             return Base64.decode(this, Base64.DEFAULT).decodeToString()
         }
     }
-
 }

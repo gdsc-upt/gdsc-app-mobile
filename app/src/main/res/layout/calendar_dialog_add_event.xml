@@ -16,7 +16,7 @@
             android:id="@+id/img_add_event"
             android:layout_width="match_parent"
             android:layout_height="200dp"
-            android:layout_margin="20dp"
+
             android:src="@drawable/add_event_img" />
 
         <ImageView
@@ -47,10 +47,135 @@
             android:paddingTop="25dp"
             android:textSize="16sp"
             android:ems="10"
-            android:layout_marginBottom="40dp"
+            android:layout_marginBottom="10dp"
             android:hint="@string/description"
             android:focusableInTouchMode="true"
             android:inputType="textMultiLine" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/date"
+                android:textSize="16sp"
+                android:layout_margin="5dp" />
+
+            <EditText
+                android:id="@+id/date_day"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:inputType="datetime"
+                android:hint="day"
+                android:layout_margin="5dp"
+                android:nextFocusRight="@id/date_month" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=":"
+                android:textSize="16sp"
+                android:layout_margin="5dp"/>
+
+            <EditText
+                android:id="@+id/date_month"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:inputType="datetime"
+                android:hint="month"
+                android:layout_margin="5dp"
+                android:nextFocusRight="@id/date_year"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=":"
+                android:textSize="16sp"
+                android:layout_margin="5dp"/>
+
+            <EditText
+                android:id="@+id/date_year"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:inputType="datetime"
+                android:hint="year"
+                android:layout_margin="5dp"
+                android:nextFocusDown="@id/from_hour"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_gravity="center_horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:text="@string/from"
+                android:layout_margin="5dp"/>
+
+            <EditText
+                android:id="@+id/from_hour"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:inputType="time"
+                android:hint="hour"
+                android:layout_margin="3dp"
+                android:nextFocusRight="@id/from_mins"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=":"
+                android:textSize="16sp"/>
+
+            <EditText
+                android:id="@+id/from_mins"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:inputType="time"
+                android:hint="min"
+                android:layout_margin="3dp"
+                android:nextFocusRight="@id/to_hour"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:text="@string/to"
+                android:layout_margin="5dp" />
+
+            <EditText
+                android:id="@+id/to_hour"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:inputType="time"
+                android:hint="hour"
+                android:layout_margin="3dp"
+                android:nextFocusRight="@id/to_mins"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=":"
+                android:textSize="16sp"/>
+
+            <EditText
+                android:id="@+id/to_mins"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="3dp"
+                android:hint="min"
+                android:inputType="time"
+                android:nextFocusDown="@id/event_add_button" />
+
+        </LinearLayout>
 
         <Button
             android:layout_width="150dp"

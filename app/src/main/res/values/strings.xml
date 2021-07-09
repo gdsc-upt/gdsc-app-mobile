@@ -65,4 +65,10 @@
     <string name="question_to_delete">Delete this event?</string>
     <string name="delete">Delete</string>
     <string name="HOME">HOME</string>
+    <string name="day">day:month:year</string>
+    <string name="date">Date</string>
+    <string name="hh_mm">hh:mm</string>
+    <string name="from">From</string>
+    <string name="to">To</string>
+
 </resources>

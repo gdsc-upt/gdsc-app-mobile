@@ -1,15 +1,14 @@
 package com.example.gdsc_app_mobile.fragments
 
-import android.content.SharedPreferences
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.LayoutInflater
 import androidx.fragment.app.Fragment
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
-import androidx.appcompat.app.AppCompatDelegate
-import androidx.appcompat.widget.SwitchCompat
 import androidx.core.content.ContextCompat
 import androidx.core.view.children
 import androidx.core.view.isVisible
@@ -25,16 +24,21 @@ import com.example.gdsc_app_mobile.databinding.FragmentHomePageBinding
 import com.example.gdsc_app_mobile.dialogs.DialogFragmentAddEvent
 import com.example.gdsc_app_mobile.interfaces.ISelectedEvent
 import com.example.gdsc_app_mobile.models.EventModel
+import com.example.gdsc_app_mobile.services.ApiClient
 import com.kizitonwose.calendarview.model.CalendarDay
 import com.kizitonwose.calendarview.model.CalendarMonth
 import com.kizitonwose.calendarview.model.DayOwner
 import com.kizitonwose.calendarview.ui.DayBinder
 import com.kizitonwose.calendarview.ui.MonthHeaderFooterBinder
 import com.kizitonwose.calendarview.ui.ViewContainer
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 import java.time.*
 import java.time.format.DateTimeFormatter
 import java.time.temporal.WeekFields
 import java.util.*
+import kotlin.collections.ArrayList
 
 class FragmentHomePage: Fragment(), ISelectedEvent{
 
@@ -42,7 +46,7 @@ class FragmentHomePage: Fragment(), ISelectedEvent{
         AlertDialog.Builder(requireContext())
             .setMessage(R.string.question_to_delete)
             .setPositiveButton(R.string.delete) { _, _ ->
-                deleteEvent(it)
+                //deleteEvent(it)
             }
             .setNegativeButton(R.string.close, null)
             .show()
@@ -64,7 +68,7 @@ class FragmentHomePage: Fragment(), ISelectedEvent{
     ): View? {
         _homePageBinding = FragmentHomePageBinding.inflate(inflater, container, false)
         (activity as MainActivity).toolbar.findViewById<TextView>(R.id.toolbar_title).text = getString(
-                    R.string.HOME)
+            R.string.HOME)
         val view = homePageBinding.root
 
         homePageBinding.calendarRv.apply {
@@ -86,6 +90,7 @@ class FragmentHomePage: Fragment(), ISelectedEvent{
             homePageBinding.homePageCalendar.post {
                 // Show today's events initially.
                 selectDate(today, homePageBinding)
+                loadEvents()
             }
         }
 
@@ -122,11 +127,7 @@ class FragmentHomePage: Fragment(), ISelectedEvent{
                             dotView.visibility = View.INVISIBLE
                         }
                         selectedDate -> {
-<<<<<<< HEAD
                             textView.setTextColor(ContextCompat.getColor(requireContext(), R.color.dark_green))
-=======
-                            textView.setTextColor(ContextCompat.getColor(requireContext(), R.color.purple_500))
->>>>>>> home_page
                             textView.setBackgroundResource(R.drawable.today_background)
                             dotView.visibility = View.INVISIBLE
                         }
@@ -163,7 +164,7 @@ class FragmentHomePage: Fragment(), ISelectedEvent{
                     container.legendLayout.tag = month.yearMonth
                     container.legendLayout.children.map { it as TextView }.forEachIndexed { index, tv ->
                         tv.text = daysOfWeek[index].name.first().toString()
-//                        tv.setTextColor(ContextCompat.getColor(requireContext(), R.color.black))
+                        tv.setTextColor(ContextCompat.getColor(requireContext(), R.color.black))
                     }
                 }
             }
@@ -171,12 +172,14 @@ class FragmentHomePage: Fragment(), ISelectedEvent{
 
         homePageBinding.eventAddEventButton.setOnClickListener{
             addEvent()
+            loadEvents()
         }
 
 
         return view
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     private fun selectDate(date: LocalDate, binding: FragmentHomePageBinding) {
         if (selectedDate != date) {
             val oldDate = selectedDate
@@ -214,16 +217,50 @@ class FragmentHomePage: Fragment(), ISelectedEvent{
         dialog.show(requireActivity().supportFragmentManager, "AddEventDialog")
     }
 
-    override fun deleteEvent(it: EventModel) {
-        TODO("Not yet implemented")
+    fun deleteEvent(it : EventModel){
+        //TODO("implement")
     }
 
-    override fun onSelectedEvent(title: String, description: String) {
-        TODO("Not yet implemented")
-    }
+    fun loadEvents(){
 
-    override fun createPost(title: String, description: String) {
-        TODO("Not yet implemented")
+        val eventCall : Call<List<EventModel>> = ApiClient.getService().getAllEvents()
+
+        val allEvents = ArrayList<EventModel>()
+
+        eventCall.enqueue(object : Callback<List<EventModel>>{
+            override fun onResponse(
+                call: Call<List<EventModel>>,
+                response: Response<List<EventModel>>
+            ) {
+                if (response.isSuccessful){
+
+
+
+                    val eventList: List<EventModel>? = response.body()
+                    if(eventList != null)
+                        for(event in eventList)
+                        {
+                            allEvents.add(event)
+                            println(event.title)
+                        }
+
+                    for (event in allEvents){
+                        //get date from event
+                        val date : LocalDate = event.getDate()
+
+                        events[date] = events[date].orEmpty().plus(event)
+                    }
+
+
+                }else{
+                    Toast.makeText(requireContext(), resources.getString(R.string.something_wrong), Toast.LENGTH_SHORT).show()
+                }
+            }
+
+            override fun onFailure(call: Call<List<EventModel>>, t: Throwable) {
+                Toast.makeText(requireContext(), resources.getString(R.string.something_wrong), Toast.LENGTH_SHORT).show()
+            }
+        })
     }
 
     override fun onDestroy() {
