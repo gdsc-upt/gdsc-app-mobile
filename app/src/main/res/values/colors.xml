@@ -47,7 +47,6 @@
     <color name="web_search_icon">@color/black</color>
     <color name="web_search_magnifying">@color/black</color>
 
-
     <!--  GDSC Color-->
     <color name="gdsc_green">#34A755</color>
     <color name="gdsc_blue">#4385F5</color>

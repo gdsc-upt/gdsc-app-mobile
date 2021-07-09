@@ -75,6 +75,7 @@
     <string name="contact_dialog_subject">Subject</string>
     <string name="contact_dialog_message">Your message</string>
     <string name="contact_submit_message">SUBMIT MESSAGE</string>
+    <string name="arrow">Arrow</string>
 
     <!-- Teams Fragment -->
     <string name="team">Team</string>

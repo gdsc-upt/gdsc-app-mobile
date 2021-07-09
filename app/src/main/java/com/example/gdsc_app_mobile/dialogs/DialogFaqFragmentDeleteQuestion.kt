@@ -84,7 +84,7 @@ class DialogFaqFragmentDeleteQuestion : DialogFragment() {
             faqDeleteYes.visibility = View.VISIBLE
 
             faqDeleteYes.setOnClickListener {
-                listener.deletePosition(position)
+                listener.deleteFaq(faq)
                 dialog?.dismiss()
             }
             faqDeleteNo.setOnClickListener {
