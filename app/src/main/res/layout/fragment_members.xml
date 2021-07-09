@@ -40,9 +40,8 @@
                     android:layout_alignParentBottom="true"/>
             </RelativeLayout>
 
-            <ListView
-                android:background="@color/white_dark"
-                android:id="@+id/members_list_view"
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/members_recycler_view"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"/>
 
