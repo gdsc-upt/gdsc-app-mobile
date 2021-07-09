@@ -6,16 +6,21 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
-import androidx.appcompat.widget.Toolbar
 import com.example.gdsc_app_mobile.HelperClass
 import com.example.gdsc_app_mobile.R
+import com.example.gdsc_app_mobile.Singleton
 import com.example.gdsc_app_mobile.activities.MainActivity
 import com.example.gdsc_app_mobile.adapters.MembersAdapter
+import com.example.gdsc_app_mobile.interfaces.ISelectedDataMembers
 import com.example.gdsc_app_mobile.models.MemberModel
 import com.example.gdsc_app_mobile.models.TeamsModel
+import com.example.gdsc_app_mobile.services.ApiClient
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 //This fragment is used to show the list of members for each team(when a fragment like this starts, a team is required)
-class FragmentMembers() : Fragment() {
+class FragmentMembers() : Fragment(), ISelectedDataMembers {
 
     lateinit var team: TeamsModel
     lateinit var allMembers: ArrayList<MemberModel>
@@ -23,10 +28,10 @@ class FragmentMembers() : Fragment() {
     var position: Int = 0
     lateinit var backButton: Button
     lateinit var teamMembers: ArrayList<MemberModel>
+    lateinit var addMemberButton: ImageView
 
-    constructor(team: TeamsModel, allMembers: ArrayList<MemberModel>, position: Int) : this() {
+    constructor(team: TeamsModel, position: Int) : this() {
         this.team = team
-        this.allMembers = allMembers
         this.position = position
     }
 
@@ -42,6 +47,9 @@ class FragmentMembers() : Fragment() {
 
         tvTeamTitle = view.findViewById(R.id.members_team_title)
         backButton = view.findViewById(R.id.button_members_back_to_teams)
+        addMemberButton = view.findViewById(R.id.add_member)
+
+        HelperClass.adminRole(addMemberButton)
 
         tvTeamTitle.text = team.name    //Setting the name of the team
 
@@ -49,9 +57,41 @@ class FragmentMembers() : Fragment() {
 
         backButtonCLicked()     //Back button click listener
 
-        setListView(view)       //Displaying only the members of this team
+        getAllMembers()
+
+        addMemberClicked()
 
         return view
+    }
+
+    //This method get all the members from backend and put them in allMembers list
+    fun getAllMembers() {
+
+        allMembers = ArrayList()
+
+        val memberCall: Call<List<MemberModel>> = ApiClient.getService().getMembers()
+
+        memberCall.enqueue(object : Callback<List<MemberModel>> {
+            override fun onResponse(
+                call: Call<List<MemberModel>>,
+                response: Response<List<MemberModel>>
+            ) {
+                if(response.isSuccessful) {
+                    val members : List<MemberModel>? = response.body()
+                    if(members != null)
+                        for(member in members)
+                            allMembers.add(member)
+                    setListView(requireView())
+                }
+                else
+                    Toast.makeText(requireContext(), resources.getString(R.string.something_wrong), Toast.LENGTH_SHORT).show()
+            }
+
+            override fun onFailure(call: Call<List<MemberModel>>, t: Throwable) {
+                Toast.makeText(requireContext(), resources.getString(R.string.something_wrong), Toast.LENGTH_SHORT).show()
+            }
+
+        })
     }
 
     private fun setListView(view: View) {
@@ -62,7 +102,9 @@ class FragmentMembers() : Fragment() {
                 teamMembers.add(member)     //Adding only the members with the same teamId as the ID of the team
 
         val adapter = MembersAdapter(requireActivity(), teamMembers)
-        adapter.position = position     //We set the position of the team in the list (for coloring)
+        adapter.activity = requireActivity()
+        adapter.listener = this
+        adapter.positionColoring = position     //We set the position of the team in the list (for coloring)
         val listView : ListView = view.findViewById(R.id.members_list_view)
         listView.adapter = adapter
 
@@ -82,6 +124,38 @@ class FragmentMembers() : Fragment() {
         backButton.setOnClickListener {
             requireActivity().supportFragmentManager.popBackStack()     //Get back to teams fragment
         }
+    }
+
+    private fun addMemberClicked() {
+        //TODO
+    }
+
+    fun getMemberId(position: Int): String{
+        return allMembers[position].id
+    }
+
+    override fun deleteMember(position: Int) {
+        val deleteMemberCall = ApiClient.getService().deleteMember(Singleton.getTokenForAuthentication().toString(), getMemberId(position))
+
+        deleteMemberCall.enqueue(object : Callback<MemberModel> {
+            override fun onResponse(call: Call<MemberModel>, response: Response<MemberModel>) {
+                if(response.isSuccessful)
+                    getAllMembers()
+                else {
+                    Toast.makeText(
+                        requireContext(),
+                        response.code().toString(),
+                        Toast.LENGTH_SHORT
+                    ).show()
+
+                }
+            }
+
+            override fun onFailure(call: Call<MemberModel>, t: Throwable) {
+                Toast.makeText(requireContext(), resources.getString(R.string.something_wrong), Toast.LENGTH_SHORT).show()
+            }
+
+        })
     }
 
 }

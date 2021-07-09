@@ -33,4 +33,6 @@ interface ApiService {
     @DELETE("v1/teams/{id}")
     fun deleteTeam(@Header("Authorization") authHeader : String,@Path("id") id: String?): Call<TeamsModel>
 
+    @DELETE("v1/members/{id}")
+    fun deleteMember(@Header("Authorization") authHeader : String,@Path("id") id: String?): Call<MemberModel>
 }

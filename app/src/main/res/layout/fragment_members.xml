@@ -14,17 +14,31 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
 
-            <TextView
-                android:background="@color/gdsc_yellow"
-                android:id="@+id/members_team_title"
+            <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="100dp"
-                android:paddingTop="10dp"
-                android:paddingBottom="10dp"
-                android:textColor="@color/black"
-                android:textSize="30sp"
-                android:textStyle="bold"
-                android:gravity="center"/>
+                android:layout_height="120dp">
+
+                <TextView
+                    android:background="@color/gdsc_yellow"
+                    android:id="@+id/members_team_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="120dp"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
+                    android:textColor="@color/black"
+                    android:textSize="30sp"
+                    android:textStyle="bold"
+                    android:gravity="center"/>
+
+                <ImageView
+                    android:id="@+id/add_member"
+                    android:src="@drawable/ic_person_add"
+                    android:padding="8dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentBottom="true"/>
+            </RelativeLayout>
 
             <ListView
                 android:background="@color/white_dark"
