@@ -10,10 +10,10 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <ListView
-            android:id="@+id/teams_list_view"
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/teams_recycler_view"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent"/>
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/add_team_button"

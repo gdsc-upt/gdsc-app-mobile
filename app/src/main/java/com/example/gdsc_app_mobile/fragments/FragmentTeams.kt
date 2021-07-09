@@ -6,27 +6,33 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.*
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.gdsc_app_mobile.HelperClass
 import com.example.gdsc_app_mobile.R
 import com.example.gdsc_app_mobile.activities.MainActivity
-import com.example.gdsc_app_mobile.adapters.TeamsAdapter
 import com.example.gdsc_app_mobile.interfaces.ISelectedDataTeams
 import com.example.gdsc_app_mobile.models.TeamsModel
 import com.example.gdsc_app_mobile.services.ApiClient
 import com.example.gdsc_app_mobile.Singleton
+import com.example.gdsc_app_mobile.adapters.RVAdapterTeams
 import com.example.gdsc_app_mobile.dialogs.DialogAccept
 import com.example.gdsc_app_mobile.dialogs.DialogAddTeam
 import com.example.gdsc_app_mobile.interfaces.ISelectedAccept
+import com.example.gdsc_app_mobile.interfaces.OnItemClickListener
+import com.example.gdsc_app_mobile.models.FaqModel
 import com.example.gdsc_app_mobile.models.TeamsPostModel
 
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class FragmentTeams : Fragment(), ISelectedDataTeams, ISelectedAccept {
+class FragmentTeams : Fragment(), ISelectedDataTeams, ISelectedAccept, OnItemClickListener {
 
     private lateinit var teams: ArrayList<TeamsModel>
     private lateinit var addTeamButton: Button
+    private lateinit var recyclerView: RecyclerView
+    private lateinit var rvTeamsAdapter: RVAdapterTeams
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -37,6 +43,13 @@ class FragmentTeams : Fragment(), ISelectedDataTeams, ISelectedAccept {
         val view = inflater.inflate(R.layout.fragment_teams, container, false)
         val toolbar = (activity as MainActivity).toolbar
         HelperClass.setToolbarStyle(context, toolbar, "teams")
+
+        // initialize recycler view
+        recyclerView = view.findViewById(R.id.teams_recycler_view)
+        rvTeamsAdapter = RVAdapterTeams(activity as MainActivity, this)
+        rvTeamsAdapter.listenerFragment = this
+        recyclerView.layoutManager = LinearLayoutManager(activity)
+        recyclerView.adapter = rvTeamsAdapter
 
         getTeams()      //Getting the teams from backend
 
@@ -64,12 +77,8 @@ class FragmentTeams : Fragment(), ISelectedDataTeams, ISelectedAccept {
                     val teamsList: List<TeamsModel>? = response.body()
                     if(teamsList != null)
                         for(team in teamsList)
-                            teams.add(team)                                                 //Adding to the list all the teams read from backend
-                    val adapter = TeamsAdapter(requireActivity(), teams)
-                    adapter.addListener(this@FragmentTeams)                          //This is used to tell the adapter who is the listener
-                    val listView: ListView = view!!.findViewById(R.id.teams_list_view)
-                    listView.divider = null                                                 //No horizontal line between items
-                    listView.adapter = adapter
+                            teams.add(team)
+                    teamsList?.let { rvTeamsAdapter.setTeam(it) }
                 }
                 else
                     Toast.makeText(requireContext(), resources.getString(R.string.something_wrong), Toast.LENGTH_SHORT).show()
@@ -168,5 +177,13 @@ class FragmentTeams : Fragment(), ISelectedDataTeams, ISelectedAccept {
     //This method is applied from DialogAccept if the YES button is clicked
     override fun acceptYes(position: Int) {
         deleteTeam(position)
+    }
+
+    override fun onItemClick(faq: FaqModel?) {
+        TODO("Not yet implemented")
+    }
+
+    override fun onLongItemClick(faq: FaqModel?) {
+        TODO("Not yet implemented")
     }
 }

@@ -159,10 +159,6 @@ class FragmentFaq : Fragment(), ISelectedData, OnItemClickListener {
         Toast.makeText(context, "Question: $question Answer: $answer",Toast.LENGTH_LONG).show()
         createPost(question, answer)
     }
-
-    override fun deletePosition(position: Int) {
-        deleteFaq(position)
-    }
     
     override fun onItemClick(faq: FaqModel?) {
 
