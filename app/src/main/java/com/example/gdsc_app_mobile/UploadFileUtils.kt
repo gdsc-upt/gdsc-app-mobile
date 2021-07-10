@@ -69,10 +69,10 @@ class URIPathHelper(){
         val column = "_data"
         val projection = arrayOf(column)
         try {
-            cursor = uri?.let { context.getContentResolver().query(it, projection, selection, selectionArgs,null) }
+            cursor = uri?.let { context.contentResolver.query(it, projection, selection, selectionArgs,null) }
             if (cursor != null && cursor.moveToFirst()) {
-                val column_index: Int = cursor.getColumnIndexOrThrow(column)
-                return cursor.getString(column_index)
+                val columnIndex: Int = cursor.getColumnIndexOrThrow(column)
+                return cursor.getString(columnIndex)
             }
         } finally {
             if (cursor != null) cursor.close()
@@ -98,17 +98,17 @@ public class UploadUtility(activity: Activity) {
 
     var activity = activity;
     var dialog: ProgressDialog? = null
-    var serverURL: String = "https://handyopinion.com/tutorials/UploadToServer.php"
-    var serverUploadDirectoryPath: String = "https://handyopinion.com/tutorials/uploads/"
+    var serverURL: String = "https://api.gdscupt.tech/v1/api/files/"
     val client = OkHttpClient()
 
-    fun uploadFile(sourceFileUri: Uri, uploadedFileName: String? = null) : FileModel{
+    lateinit var file : FileModel
+
+    fun uploadFile(sourceFileUri: Uri, uploadedFileName: String? = null){
         val pathFromUri = URIPathHelper().getPath(activity,sourceFileUri)
         return uploadFile(File(pathFromUri), uploadedFileName)
     }
 
-    fun uploadFile(sourceFile: File, uploadedFileName: String? = null) : FileModel{
-        lateinit var entity : FileModel
+    fun uploadFile(sourceFile: File, uploadedFileName: String? = null){
         Thread {
             val mimeType = getMimeType(sourceFile);
             if (mimeType == null) {
@@ -120,20 +120,22 @@ public class UploadUtility(activity: Activity) {
             try {
                 val requestBody: RequestBody =
                     MultipartBody.Builder().setType(MultipartBody.FORM)
-                        .addFormDataPart("uploaded_file", fileName,sourceFile.asRequestBody(mimeType.toMediaTypeOrNull()))
+                        .addFormDataPart("uploaded_file", fileName, sourceFile.asRequestBody(mimeType.toMediaTypeOrNull()))
                         .build()
 
-                val request: Request = Request.Builder().url(serverURL).post(requestBody).build()
+
+                val request: Request = Request.Builder()
+                    .url(serverURL)
+                    .addHeader("Authorization", "Bearer "+Singleton.getTokenForAuthentication().toString())
+                    .post(requestBody)
+                    .build()
 
                 val response: Response = client.newCall(request).execute()
 
+                // RESPONSE NOT SUCCESFUL !?
                 if (response.isSuccessful) {
-                    Log.d("File upload","success, path: $serverUploadDirectoryPath$fileName")
-                    showToast("File uploaded successfully at $serverUploadDirectoryPath$fileName")
-
                     val gson = Gson()
-                    entity = gson.fromJson(response.body.toString(), FileModel::class.java)
-
+                    file = gson.fromJson(response.body.toString(), FileModel::class.java)
 
                 } else {
                     Log.e("File upload", "failed")
@@ -146,8 +148,6 @@ public class UploadUtility(activity: Activity) {
             }
             toggleProgressDialog(false)
         }.start()
-
-        return entity
 
     }
 

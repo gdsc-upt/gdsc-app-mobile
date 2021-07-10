@@ -34,11 +34,10 @@ class DialogFragmentAddEvent(): DialogFragment() {
     lateinit var listener: ISelectedEvent
     lateinit var imageUri : Uri
     lateinit var file : FileModel
+    lateinit var newEvent : EventModel
 
     private var _eventBinding: CalendarDialogAddEventBinding? = null
     private val eventBinding get() = _eventBinding!!
-
-    private lateinit var newEvent : EventModel
 
     private val startForEventImageResult =
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result: ActivityResult ->
@@ -53,7 +52,6 @@ class DialogFragmentAddEvent(): DialogFragment() {
                 Picasso.get().load(imageUri).transform(CropCircleTransformation())
                     .into(eventBinding.eventImage)
             }
-            UploadImage()
         }
 
     override fun onCreateView(inflater: LayoutInflater,
@@ -71,7 +69,9 @@ class DialogFragmentAddEvent(): DialogFragment() {
         }
 
         eventBinding.eventAddButton.setOnClickListener {//to be worked on
+            UploadImage() //upload img and get response body path to add to event model it coresponds to
             assembleEventModel()
+            Toast.makeText(requireContext(), newEvent.toString(), Toast.LENGTH_LONG).show()
             createPostEvent()
             dialog?.dismiss()
         }
@@ -98,16 +98,17 @@ class DialogFragmentAddEvent(): DialogFragment() {
         newEvent = EventModel(
             eventBinding.eventTitleText.text.toString(),
             eventBinding.eventDescriptionText.text.toString(),
-            imageUri.toString(),
+            file.path,
             date+from,
             date+to
         )
     }
 
     private fun UploadImage() {
-        file = UploadUtility(requireActivity()).uploadFile(imageUri)
+        val uploadUtility = UploadUtility(requireActivity())
+        uploadUtility.uploadFile(imageUri)
+        Toast.makeText(requireContext(),uploadUtility.file.path, Toast.LENGTH_LONG).show()
     }
-
 
     private fun createPostEvent(){
 
