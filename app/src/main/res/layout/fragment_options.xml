@@ -24,8 +24,8 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentStart="true"
                 android:paddingTop="10dp"
-                android:text="Dark mode"
-                android:textSize="20dp" />
+                android:text="@string/dark_mode"
+                android:textSize="20sp" />
 
             <androidx.appcompat.widget.SwitchCompat
                 android:id="@+id/switch_dark_mode"

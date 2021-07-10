@@ -75,5 +75,20 @@
     <string name="contact_dialog_subject">Subject</string>
     <string name="contact_dialog_message">Your message</string>
     <string name="contact_submit_message">SUBMIT MESSAGE</string>
+
+    <!--  Fragment Teams  -->
+    <string name="see_members">See Members</string>
+
+    <!--  Card View FAQ  -->
     <string name="arrow">Arrow</string>
+
+    <!--  Fragment Options  -->
+    <string name="dark_mode">Dark mode</string>
+
+    <!--  User Dialog  -->
+    <string name="username">Username</string>
+    <string name="my_profile">My Profile</string>
+    <string name="some_text">some text</string>
+    <string name="some_info">Some info</string>
+    <string name="badges">Badges</string>
 </resources>

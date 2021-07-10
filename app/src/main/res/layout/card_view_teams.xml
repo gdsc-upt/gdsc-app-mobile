@@ -18,7 +18,6 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:textSize="20sp"
-        android:text="something"
         android:textStyle="bold"/>
 
     <TextView
@@ -27,6 +26,6 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
         android:layout_margin="7dp"
-        android:text="See Members" />
+        android:text="@string/see_members" />
 
 </androidx.cardview.widget.CardView>
