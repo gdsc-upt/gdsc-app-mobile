@@ -19,6 +19,7 @@ import com.example.gdsc_app_mobile.UploadUtility
 import com.example.gdsc_app_mobile.databinding.CalendarDialogAddEventBinding
 import com.example.gdsc_app_mobile.interfaces.ISelectedEvent
 import com.example.gdsc_app_mobile.models.EventModel
+import com.example.gdsc_app_mobile.models.FileModel
 import com.example.gdsc_app_mobile.services.ApiClient
 import com.github.dhaval2404.imagepicker.ImagePicker
 import com.squareup.picasso.Picasso
@@ -26,16 +27,13 @@ import jp.wasabeef.picasso.transformations.CropCircleTransformation
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import java.io.File
-import java.time.Instant
-import java.time.format.DateTimeFormatter
 
 
 class DialogFragmentAddEvent(): DialogFragment() {
 
     lateinit var listener: ISelectedEvent
     lateinit var imageUri : Uri
-    lateinit var image : File
+    lateinit var file : FileModel
 
     private var _eventBinding: CalendarDialogAddEventBinding? = null
     private val eventBinding get() = _eventBinding!!
@@ -55,6 +53,7 @@ class DialogFragmentAddEvent(): DialogFragment() {
                 Picasso.get().load(imageUri).transform(CropCircleTransformation())
                     .into(eventBinding.eventImage)
             }
+            UploadImage()
         }
 
     override fun onCreateView(inflater: LayoutInflater,
@@ -106,8 +105,9 @@ class DialogFragmentAddEvent(): DialogFragment() {
     }
 
     private fun UploadImage() {
-        UploadUtility(requireActivity()).uploadFile(imageUri)
+        file = UploadUtility(requireActivity()).uploadFile(imageUri)
     }
+
 
     private fun createPostEvent(){
 

@@ -234,8 +234,6 @@ class FragmentHomePage: Fragment(), ISelectedEvent{
             ) {
                 if (response.isSuccessful){
 
-
-
                     val eventList: List<EventModel>? = response.body()
                     if(eventList != null)
                         for(event in eventList)

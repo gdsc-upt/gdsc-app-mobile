@@ -13,14 +13,14 @@ import android.provider.MediaStore
 import android.util.Log
 import android.webkit.MimeTypeMap
 import android.widget.Toast
+import com.example.gdsc_app_mobile.models.FileModel
+import com.google.gson.Gson
 import okhttp3.*
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.RequestBody.Companion.asRequestBody
-import okhttp3.internal.http.promisesBody
 import java.io.File
 
-
-class URIPathHelper(activity: Activity) {
+class URIPathHelper(){
 
     fun getPath(context: Context, uri: Uri): String? {
         val isKitKatorAbove = Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT
@@ -69,7 +69,7 @@ class URIPathHelper(activity: Activity) {
         val column = "_data"
         val projection = arrayOf(column)
         try {
-            cursor = uri?.let { context.contentResolver.query(it, projection, selection, selectionArgs,null) }
+            cursor = uri?.let { context.getContentResolver().query(it, projection, selection, selectionArgs,null) }
             if (cursor != null && cursor.moveToFirst()) {
                 val column_index: Int = cursor.getColumnIndexOrThrow(column)
                 return cursor.getString(column_index)
@@ -91,9 +91,10 @@ class URIPathHelper(activity: Activity) {
     fun isMediaDocument(uri: Uri): Boolean {
         return "com.android.providers.media.documents" == uri.authority
     }
+
 }
 
-class UploadUtility(activity: Activity) {
+public class UploadUtility(activity: Activity) {
 
     var activity = activity;
     var dialog: ProgressDialog? = null
@@ -101,16 +102,13 @@ class UploadUtility(activity: Activity) {
     var serverUploadDirectoryPath: String = "https://handyopinion.com/tutorials/uploads/"
     val client = OkHttpClient()
 
-    fun uploadFile(sourceFilePath: String, uploadedFileName: String? = null) {
-        uploadFile(File(sourceFilePath), uploadedFileName)
+    fun uploadFile(sourceFileUri: Uri, uploadedFileName: String? = null) : FileModel{
+        val pathFromUri = URIPathHelper().getPath(activity,sourceFileUri)
+        return uploadFile(File(pathFromUri), uploadedFileName)
     }
 
-    fun uploadFile(sourceFileUri: Uri, uploadedFileName: String? = null) {
-        val pathFromUri = URIPathHelper(this.activity).getPath(activity,sourceFileUri)
-        uploadFile(File(pathFromUri), uploadedFileName)
-    }
-
-    fun uploadFile(sourceFile: File, uploadedFileName: String? = null) {
+    fun uploadFile(sourceFile: File, uploadedFileName: String? = null) : FileModel{
+        lateinit var entity : FileModel
         Thread {
             val mimeType = getMimeType(sourceFile);
             if (mimeType == null) {
@@ -126,15 +124,20 @@ class UploadUtility(activity: Activity) {
                         .build()
 
                 val request: Request = Request.Builder().url(serverURL).post(requestBody).build()
+
                 val response: Response = client.newCall(request).execute()
 
-                if(response.isSuccessful){
-                        Log.d("File upload","success, path: $serverUploadDirectoryPath$fileName")
-                        showToast("File uploaded successfully at $serverUploadDirectoryPath$fileName")
+                if (response.isSuccessful) {
+                    Log.d("File upload","success, path: $serverUploadDirectoryPath$fileName")
+                    showToast("File uploaded successfully at $serverUploadDirectoryPath$fileName")
 
-                    } else {
-                        Log.e("File upload", "failed")
-                        showToast("File uploading failed")
+                    val gson = Gson()
+                    entity = gson.fromJson(response.body.toString(), FileModel::class.java)
+
+
+                } else {
+                    Log.e("File upload", "failed")
+                    showToast("File uploading failed")
                 }
             } catch (ex: Exception) {
                 ex.printStackTrace()
@@ -143,6 +146,9 @@ class UploadUtility(activity: Activity) {
             }
             toggleProgressDialog(false)
         }.start()
+
+        return entity
+
     }
 
     // url = file path or whatever suitable URL you want.
