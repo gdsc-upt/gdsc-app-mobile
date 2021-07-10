@@ -98,8 +98,7 @@ public class UploadUtility(activity: Activity) {
 
     var activity = activity;
     var dialog: ProgressDialog? = null
-    var serverURL: String = "https://handyopinion.com/tutorials/UploadToServer.php"
-    var serverUploadDirectoryPath: String = "https://handyopinion.com/tutorials/uploads/"
+    var serverURL: String = "https://api.gdscupt.tech/v1/api/files/"
     val client = OkHttpClient()
 
     fun uploadFile(sourceFileUri: Uri, uploadedFileName: String? = null) : FileModel{
@@ -128,9 +127,6 @@ public class UploadUtility(activity: Activity) {
                 val response: Response = client.newCall(request).execute()
 
                 if (response.isSuccessful) {
-                    Log.d("File upload","success, path: $serverUploadDirectoryPath$fileName")
-                    showToast("File uploaded successfully at $serverUploadDirectoryPath$fileName")
-
                     val gson = Gson()
                     entity = gson.fromJson(response.body.toString(), FileModel::class.java)
 

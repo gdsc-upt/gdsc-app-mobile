@@ -30,12 +30,12 @@ interface ApiService {
     @GET("v1/events")
     fun getAllEvents(): Call<List<EventModel>>
 
-    @Multipart
+    /*@Multipart
     @POST("api/v1/files")
     fun upload(
         @Part("description") description: RequestBody?,
         @Part file: Part?
-    ): Call<ResponseBody?>?
+    ): Call<ResponseBody?>?*/
 
 
 }
