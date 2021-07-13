@@ -6,15 +6,18 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.*
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.gdsc_app_mobile.HelperClass
 import com.example.gdsc_app_mobile.services.ApiClient
-import com.example.gdsc_app_mobile.adapters.FaqAdapter
 import com.example.gdsc_app_mobile.R
 import com.example.gdsc_app_mobile.Singleton
 import com.example.gdsc_app_mobile.activities.MainActivity
+import com.example.gdsc_app_mobile.adapters.RVAdapterFaq
 import com.example.gdsc_app_mobile.dialogs.DialogFaqFragmentDeleteQuestion
 import com.example.gdsc_app_mobile.dialogs.DialogFragmentFaqAddQuestion
 import com.example.gdsc_app_mobile.interfaces.ISelectedData
+import com.example.gdsc_app_mobile.interfaces.OnItemClickListener
 import com.example.gdsc_app_mobile.models.FaqModel
 import com.example.gdsc_app_mobile.models.FaqPostModel
 import retrofit2.Call
@@ -22,10 +25,12 @@ import retrofit2.Callback
 import retrofit2.Response
 import kotlin.collections.ArrayList
 
-class FragmentFaq : Fragment(), ISelectedData {
+class FragmentFaq : Fragment(), ISelectedData, OnItemClickListener {
 
     private lateinit var addFaqButton: Button
     private lateinit var faqs: ArrayList<FaqModel>
+    private lateinit var recyclerView: RecyclerView
+    private lateinit var rvFaqAdapter: RVAdapterFaq
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -39,8 +44,14 @@ class FragmentFaq : Fragment(), ISelectedData {
 
         addFaqButton = view.findViewById(R.id.add_faq_button)
 
-        adminRole()
-
+        HelperClass.adminRole(addFaqButton)
+        
+        // initialize recycler view
+        recyclerView = view.findViewById(R.id.faq_recycler_view)
+        rvFaqAdapter = RVAdapterFaq(activity as MainActivity, this)
+        recyclerView.layoutManager = LinearLayoutManager(activity)
+        recyclerView.adapter = rvFaqAdapter
+        
         getFaqs()
 
         addFaqButton.setOnClickListener {
@@ -65,15 +76,7 @@ class FragmentFaq : Fragment(), ISelectedData {
                     if(faqList != null)
                         for(faq in faqList)
                             faqs.add(faq)
-                    val adapter = FaqAdapter(requireActivity(), faqs)
-                    val listView: ListView = view!!.findViewById(R.id.faq_list_view)
-                    listView.adapter = adapter
-                    listView.divider = null
-                    listView.isClickable = true
-
-                    listView.setOnItemClickListener { parent, view, position, id ->
-                        detailedFaq(position)
-                    }
+                    faqList?.let { rvFaqAdapter.setFaq(it) }
                 }
                 else
                     Toast.makeText(requireContext(), resources.getString(R.string.something_wrong), Toast.LENGTH_SHORT).show()
@@ -121,17 +124,16 @@ class FragmentFaq : Fragment(), ISelectedData {
         })
     }
 
-    fun detailedFaq(_position: Int) {
+    private fun detailedFaq(faq: FaqModel?) {
         val dialog = DialogFaqFragmentDeleteQuestion()
         dialog.addListener(this)
-        dialog.setFaq(faqs[_position])
-        dialog.setPosition(_position)
+        faq?.let { dialog.setFaq(it) }
         dialog.show(requireActivity().supportFragmentManager, "DeleteQuestionDialog")
     }
 
-    private fun deleteFaq(position: Int) {
+    override fun deleteFaq(faq: FaqModel?) {
 
-        val id = faqs[position].id
+        val id = faq?.id
 
         val deleteFaqCall = ApiClient.getService().deleteFaq(Singleton.getTokenForAuthentication().toString(), id)
 
@@ -155,16 +157,15 @@ class FragmentFaq : Fragment(), ISelectedData {
     // This method is called in AddQuestion Dialog
     override fun onSelectedData(question: String, answer: String) {
         Toast.makeText(context, "Question: $question Answer: $answer",Toast.LENGTH_LONG).show()
-        //HERE YOU SHOULD CALL CREATE POST method
         createPost(question, answer)
     }
+    
+    override fun onItemClick(faq: FaqModel?) {
 
-    override fun deletePosition(position: Int) {
-        deleteFaq(position)
     }
 
-    private fun adminRole() {
-        if(Singleton.getTokenInfo() == null)
-            addFaqButton.visibility = View.GONE
+    override fun onLongItemClick(faq: FaqModel?) {
+        //Toast.makeText(requireContext(), "long", Toast.LENGTH_SHORT).show()
+        detailedFaq(faq)
     }
 }

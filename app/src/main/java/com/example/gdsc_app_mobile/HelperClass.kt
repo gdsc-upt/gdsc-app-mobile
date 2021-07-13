@@ -5,6 +5,7 @@ import android.graphics.Typeface
 import android.provider.Settings.Global.getString
 import android.util.Base64
 import android.view.Gravity
+import android.view.View
 import android.widget.LinearLayout
 import android.widget.RelativeLayout
 import android.widget.TextView
@@ -67,6 +68,14 @@ class HelperClass {
             textView.typeface = Typeface.DEFAULT
             textView.textSize = 15f
             layout.gravity = Gravity.CENTER_VERTICAL
+        }
+
+        fun adminRole(view: View) {
+            when {
+                Singleton.getTokenInfo() == null -> view.visibility = View.GONE
+                Singleton.getTokenInfo()?.roles == "admin" -> view.visibility = View.VISIBLE
+                else -> view.visibility = View.GONE
+            }
         }
     }
 }

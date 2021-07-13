@@ -6,16 +6,25 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
-import androidx.appcompat.widget.Toolbar
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.gdsc_app_mobile.HelperClass
 import com.example.gdsc_app_mobile.R
+import com.example.gdsc_app_mobile.Singleton
 import com.example.gdsc_app_mobile.activities.MainActivity
-import com.example.gdsc_app_mobile.adapters.MembersAdapter
+import com.example.gdsc_app_mobile.adapters.RVAdapterMembers
+import com.example.gdsc_app_mobile.interfaces.ISelectedDataMembers
+import com.example.gdsc_app_mobile.interfaces.OnItemClickListener
+import com.example.gdsc_app_mobile.models.FaqModel
 import com.example.gdsc_app_mobile.models.MemberModel
 import com.example.gdsc_app_mobile.models.TeamsModel
+import com.example.gdsc_app_mobile.services.ApiClient
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 //This fragment is used to show the list of members for each team(when a fragment like this starts, a team is required)
-class FragmentMembers() : Fragment() {
+class FragmentMembers() : Fragment(), ISelectedDataMembers, OnItemClickListener {
 
     lateinit var team: TeamsModel
     lateinit var allMembers: ArrayList<MemberModel>
@@ -23,10 +32,12 @@ class FragmentMembers() : Fragment() {
     var position: Int = 0
     lateinit var backButton: Button
     lateinit var teamMembers: ArrayList<MemberModel>
+    lateinit var addMemberButton: ImageView
+    private lateinit var recyclerView: RecyclerView
+    private lateinit var rvMembersAdapter: RVAdapterMembers
 
-    constructor(team: TeamsModel, allMembers: ArrayList<MemberModel>, position: Int) : this() {
+    constructor(team: TeamsModel, position: Int) : this() {
         this.team = team
-        this.allMembers = allMembers
         this.position = position
     }
 
@@ -42,6 +53,16 @@ class FragmentMembers() : Fragment() {
 
         tvTeamTitle = view.findViewById(R.id.members_team_title)
         backButton = view.findViewById(R.id.button_members_back_to_teams)
+        addMemberButton = view.findViewById(R.id.add_member)
+
+        // initialize recycler view
+        recyclerView = view.findViewById(R.id.members_recycler_view)
+        rvMembersAdapter = RVAdapterMembers(activity as MainActivity, this, position, requireActivity())
+        rvMembersAdapter.listenerFragment = this
+        recyclerView.layoutManager = LinearLayoutManager(activity)
+        recyclerView.adapter = rvMembersAdapter
+
+        HelperClass.adminRole(addMemberButton)
 
         tvTeamTitle.text = team.name    //Setting the name of the team
 
@@ -49,26 +70,54 @@ class FragmentMembers() : Fragment() {
 
         backButtonCLicked()     //Back button click listener
 
-        setListView(view)       //Displaying only the members of this team
+        getAllMembers()         //Get all members from backend
+
+        addMemberClicked()      //Add member button functionality
 
         return view
     }
 
-    private fun setListView(view: View) {
+    //This method get all the members from backend and put them in allMembers list
+    fun getAllMembers() {
+
+        allMembers = ArrayList()
+
+        val memberCall: Call<List<MemberModel>> = ApiClient.getService().getMembers()
+
+        memberCall.enqueue(object : Callback<List<MemberModel>> {
+            override fun onResponse(
+                call: Call<List<MemberModel>>,
+                response: Response<List<MemberModel>>
+            ) {
+                if(response.isSuccessful) {
+                    val members : List<MemberModel>? = response.body()
+                    if(members != null)
+                        for(member in members)
+                            allMembers.add(member)
+                    setListView()
+                }
+                else
+                    Toast.makeText(requireContext(), resources.getString(R.string.something_wrong), Toast.LENGTH_SHORT).show()
+            }
+
+            override fun onFailure(call: Call<List<MemberModel>>, t: Throwable) {
+                Toast.makeText(requireContext(), resources.getString(R.string.something_wrong), Toast.LENGTH_SHORT).show()
+            }
+
+        })
+    }
+
+    private fun setListView() {
 
         teamMembers = ArrayList()
         for(member in allMembers)
             if(team.id == member.teamId)
                 teamMembers.add(member)     //Adding only the members with the same teamId as the ID of the team
 
-        val adapter = MembersAdapter(requireActivity(), teamMembers)
-        adapter.position = position     //We set the position of the team in the list (for coloring)
-        val listView : ListView = view.findViewById(R.id.members_list_view)
-        listView.adapter = adapter
-
-        listView.divider = null     //No horizontal line between items
+        teamMembers?.let { rvMembersAdapter.setMember(it) }     //Set the member list for recyclerView
     }
 
+    //This is used to color the header of the page
     private fun colorPage(card: View) {
         when(position % 4) {
             0 -> card.setBackgroundColor(requireActivity().getColor(R.color.gdsc_yellow))
@@ -80,11 +129,43 @@ class FragmentMembers() : Fragment() {
 
     private fun backButtonCLicked() {
         backButton.setOnClickListener {
-            requireActivity().supportFragmentManager.beginTransaction()
-                .replace(R.id.container_fragment, FragmentTeams())      //New fragment
-                .commit()
-            requireActivity().supportFragmentManager.popBackStack()     //Because there was not used back button, this fragment will remain in the stack, so we need to remove it programmatically
+            requireActivity().supportFragmentManager.popBackStack()     //Get back to teams fragment
         }
     }
+
+    private fun addMemberClicked() {
+        //TODO
+    }
+
+    fun getMemberId(position: Int): String{
+        return allMembers[position].id
+    }
+
+    override fun deleteMember(position: Int) {
+        val deleteMemberCall = ApiClient.getService().deleteMember(Singleton.getTokenForAuthentication().toString(), getMemberId(position))
+
+        deleteMemberCall.enqueue(object : Callback<MemberModel> {
+            override fun onResponse(call: Call<MemberModel>, response: Response<MemberModel>) {
+                if(response.isSuccessful)
+                    getAllMembers()
+                else {
+                    Toast.makeText(
+                        requireContext(),
+                        response.code().toString(),
+                        Toast.LENGTH_SHORT
+                    ).show()
+
+                }
+            }
+
+            override fun onFailure(call: Call<MemberModel>, t: Throwable) {
+                Toast.makeText(requireContext(), resources.getString(R.string.something_wrong), Toast.LENGTH_SHORT).show()
+            }
+
+        })
+    }
+
+    override fun onItemClick(faq: FaqModel?) {}
+    override fun onLongItemClick(faq: FaqModel?) {}
 
 }
