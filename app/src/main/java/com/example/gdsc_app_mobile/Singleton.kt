@@ -8,12 +8,20 @@ object Singleton {
 
     private var token: String? = null
     private var tokenInfo: TokenInfoModel? = null
+    private var language: String? = null
 
     fun setTokenInfo(tok: TokenInfoModel?) {
         tokenInfo = tok
     }
     fun getTokenInfo(): TokenInfoModel? {
         return tokenInfo
+    }
+
+    fun setLanguage(str: String) {
+        language = str
+    }
+    fun getLanguage(): String? {
+        return language
     }
 
     fun getToken(): String? {

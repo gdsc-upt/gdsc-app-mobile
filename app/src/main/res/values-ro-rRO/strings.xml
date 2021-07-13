@@ -1,0 +1,95 @@
+<resources>
+    <string name="app_name">GDSC UPT</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <!--  LogIn/Register Message  -->
+    <string name="developer_students_club">Developer Students Club</string>
+    <string name="university">Politehnica University of Timisoara</string>
+    <string name="made_with">Made with</string>
+    <string name="made_by_gdsc_upt_team">by GDSC-UPT Team</string>
+
+    <!--  LogIn/Register Form  -->
+    <string name="enter_your_email">Introduceți email</string>
+    <string name="enter_your_username">Introduceți numele de utilizator</string>
+    <string name="login_me">Conectează-mă</string>
+    <string name="log_in">Autentificare</string>
+    <string name="already_registered">Deja înregistrat?</string>
+    <string name="don_t_have_an_account">Nu aveți un cont?</string>
+    <string name="register_here">Înregistrați-vă aici!</string>
+    <string name="valid_credential">Vă rugăm să introduceți acreditări valide</string>
+    <string name="register">Inregistreaza-te</string>
+    <string name="confirm_your_password">Confirmă parola</string>
+    <string name="enter_your_password">Introduceți parola</string>
+
+    <!-- Languages -->
+    <string name="romanianLanguage">Română</string>
+    <string name="englishLanguage">Engleză</string>
+
+    <!--  Navigation Drawer  -->
+    <string name="open">open</string>
+    <string name="close">close</string>
+    <string name="welcome_to_dsc">Bun venit la DSC</string>
+    <string name="articles">Articole</string>
+    <string name="teams">Echipe</string>
+    <string name="nav_contact">Contact</string>
+    <string name="suggestions">Sugestii</string>
+    <string name="nav_about_us">Despre noi</string>
+    <string name="nav_faq">FAQ</string>
+    <string name="nav_options">Opțiuni</string>
+    <string name="nav_logout">Deconectează-te</string>
+    <string name="nav_other">Alte</string>
+
+    <!-- FAQ Fragment-->
+    <string name="yes">Da</string>
+    <string name="no">Nu</string>
+    <string name="sure_want_delete">Ești sigur că vrei să ștergi acest element?</string>
+    <string name="something_wrong">Ceva n-a mers bine</string>
+    <string name="faq_successfully_posted">Întrebări frecvente postate cu succes</string>
+    <string name="no_question">Nici o întrebare scrisă</string>
+    <string name="no_answer">Nici un răspuns scris</string>
+    <string name="faq_delete">Șterge</string>
+    <string name="question">Întrebare</string>
+    <string name="answer">Răspuns</string>
+    <string name="faq_add">Adăugați faq</string>
+
+    <!--teams-->
+    <string name="teams_see_members">Vedeți membrii</string>
+
+    <!--  Drawer items  -->
+    <string name="FragmentTeamsTitle">ECHIPE</string>
+    <string name="FragmentSuggestionsTitle">SUGESTII</string>
+    <string name="FragmentOptionsTitle">OPȚIUNI</string>
+    <string name="FragmentFaqTitle">FAQ</string>
+    <string name="FragmentContactTitle">Hai să vorbim</string>
+    <string name="FragmentArticlesTitle">ARTICOLE</string>
+    <string name="FragmentAboutUsTitle">DESPRE NOI</string>
+
+    <!-- Contact Fragment  -->
+    <string name="contact_successfully_posted">Mesaj trimis</string>
+    <string name="dsc_mail">dsc.upt@gmail.com</string>
+    <string name="dsc_address">Timisoara, Romania</string>
+
+    <!--  Contact Fragment Dialog  -->
+    <string name="contact_dialog_name">Nume</string>
+    <string name="contact_dialog_email">Email</string>
+    <string name="contact_dialog_subject">Subiect</string>
+    <string name="contact_dialog_message">Mesajul tau</string>
+    <string name="contact_submit_message">TRIMITE MESAJUL</string>
+
+    <!--  Fragment Teams  -->
+    <string name="see_members">Vezi membri</string>
+
+    <!--  Card View FAQ  -->
+    <string name="arrow">Arrow</string>
+
+    <!--  Fragment Options  -->
+    <string name="dark_mode">Dark mode</string>
+    <string name="change_language">Schimbați limba</string>
+
+    <!--  User Dialog  -->
+    <string name="username">Nume de utilizator</string>
+    <string name="my_profile">Profilul meu</string>
+    <string name="some_text">some text</string>
+    <string name="some_info">Some info</string>
+    <string name="badges">Badges</string>
+</resources>

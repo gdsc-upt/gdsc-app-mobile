@@ -91,4 +91,5 @@
     <string name="some_text">some text</string>
     <string name="some_info">Some info</string>
     <string name="badges">Badges</string>
+    <string name="change_language">Change Language</string>
 </resources>
