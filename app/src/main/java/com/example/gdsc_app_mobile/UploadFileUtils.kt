@@ -123,16 +123,15 @@ public class UploadUtility(activity: Activity) {
                         .addFormDataPart("uploaded_file", fileName, sourceFile.asRequestBody(mimeType.toMediaTypeOrNull()))
                         .build()
 
-
                 val request: Request = Request.Builder()
                     .url(serverURL)
-                    .addHeader("Authorization", "Bearer "+Singleton.getTokenForAuthentication().toString())
+                    .addHeader("Authorization", Singleton.getTokenForAuthentication().toString())
                     .post(requestBody)
                     .build()
 
                 val response: Response = client.newCall(request).execute()
 
-                // RESPONSE NOT SUCCESFUL !?
+                // RESPONSE NOT SUCESSFUL !?
                 if (response.isSuccessful) {
                     val gson = Gson()
                     file = gson.fromJson(response.body.toString(), FileModel::class.java)
@@ -143,7 +142,7 @@ public class UploadUtility(activity: Activity) {
                 }
             } catch (ex: Exception) {
                 ex.printStackTrace()
-                Log.e("File upload", "failed")
+                Log.e("File upload", "failed again")
                 showToast("File uploading failed")
             }
             toggleProgressDialog(false)

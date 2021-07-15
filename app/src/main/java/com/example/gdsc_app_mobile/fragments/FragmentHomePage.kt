@@ -90,7 +90,6 @@ class FragmentHomePage: Fragment(), ISelectedEvent{
             homePageBinding.homePageCalendar.post {
                 // Show today's events initially.
                 selectDate(today, homePageBinding)
-                loadEvents()
             }
         }
 
@@ -172,7 +171,7 @@ class FragmentHomePage: Fragment(), ISelectedEvent{
 
         homePageBinding.eventAddEventButton.setOnClickListener{
             addEvent()
-            loadEvents()
+            //loadEvents()
         }
 
 

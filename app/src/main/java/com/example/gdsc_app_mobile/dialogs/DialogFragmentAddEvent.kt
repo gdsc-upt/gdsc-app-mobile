@@ -70,9 +70,8 @@ class DialogFragmentAddEvent(): DialogFragment() {
 
         eventBinding.eventAddButton.setOnClickListener {//to be worked on
             UploadImage() //upload img and get response body path to add to event model it coresponds to
-            assembleEventModel()
-            Toast.makeText(requireContext(), newEvent.toString(), Toast.LENGTH_LONG).show()
-            createPostEvent()
+            //assembleEventModel()
+            //createPostEvent()
             dialog?.dismiss()
         }
 
@@ -92,8 +91,8 @@ class DialogFragmentAddEvent(): DialogFragment() {
     private fun assembleEventModel(){
 
         val date : String = eventBinding.dateYear.text.toString()+"-"+eventBinding.dateMonth.text.toString()+"-"+eventBinding.dateDay.text.toString()+"T"
-        val from : String = eventBinding.fromHour.text.toString()+":"+eventBinding.fromMins.text.toString()+"000Z"
-        val to : String = eventBinding.toHour.text.toString()+":"+eventBinding.toMins.toString()+"000Z"
+        val from : String = eventBinding.fromHour.text.toString()+":"+eventBinding.fromMins.text.toString()+".+03:00"
+        val to : String = eventBinding.toHour.text.toString()+":"+eventBinding.toMins.text.toString()+".+03:00"
 
         newEvent = EventModel(
             eventBinding.eventTitleText.text.toString(),
@@ -107,7 +106,6 @@ class DialogFragmentAddEvent(): DialogFragment() {
     private fun UploadImage() {
         val uploadUtility = UploadUtility(requireActivity())
         uploadUtility.uploadFile(imageUri)
-        Toast.makeText(requireContext(),uploadUtility.file.path, Toast.LENGTH_LONG).show()
     }
 
     private fun createPostEvent(){
