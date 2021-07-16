@@ -1,6 +1,7 @@
 package com.example.gdsc_app_mobile.services
 
 import com.example.gdsc_app_mobile.models.*
+import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import okhttp3.ResponseBody
 import retrofit2.Call
@@ -30,12 +31,14 @@ interface ApiService {
     @GET("v1/events")
     fun getAllEvents(): Call<List<EventModel>>
 
-    /*@Multipart
+    /*
+    @Multipart
     @POST("api/v1/files")
     fun upload(
         @Part("description") description: RequestBody?,
-        @Part file: Part?
-    ): Call<ResponseBody?>?*/
+        @Part file: MultipartBody.Part
+    ): Call<ResponseBody?>?
+     */
 
 
 }

@@ -13,6 +13,7 @@ import android.provider.MediaStore
 import android.util.Log
 import android.webkit.MimeTypeMap
 import android.widget.Toast
+import com.example.gdsc_app_mobile.models.FaqModel
 import com.example.gdsc_app_mobile.models.FileModel
 import com.google.gson.Gson
 import okhttp3.*
@@ -98,7 +99,7 @@ public class UploadUtility(activity: Activity) {
 
     var activity = activity;
     var dialog: ProgressDialog? = null
-    var serverURL: String = "https://api.gdscupt.tech/v1/api/files/"
+    var serverURL: String = "https://api.gdscupt.tech/api/v1/files"
     val client = OkHttpClient()
 
     lateinit var file : FileModel
@@ -116,16 +117,18 @@ public class UploadUtility(activity: Activity) {
                 return@Thread
             }
             val fileName: String = if (uploadedFileName == null)  sourceFile.name else uploadedFileName
+            Log.i("PLS", fileName)
             toggleProgressDialog(true)
             try {
                 val requestBody: RequestBody =
                     MultipartBody.Builder().setType(MultipartBody.FORM)
                         .addFormDataPart("uploaded_file", fileName, sourceFile.asRequestBody(mimeType.toMediaTypeOrNull()))
                         .build()
+                Log.i("PLM", requestBody.toString())
 
                 val request: Request = Request.Builder()
                     .url(serverURL)
-                    .addHeader("Authorization", Singleton.getTokenForAuthentication().toString())
+                    .header("Authorization", Singleton.getTokenForAuthentication().toString())
                     .post(requestBody)
                     .build()
 
@@ -134,11 +137,13 @@ public class UploadUtility(activity: Activity) {
                 // RESPONSE NOT SUCESSFUL !?
                 if (response.isSuccessful) {
                     val gson = Gson()
-                    file = gson.fromJson(response.body.toString(), FileModel::class.java)
-
+                    val body = response.body?.string()
+                    Log.i("PLS", gson.toJson(body))
+                    val fileList  = gson.fromJson(body, Array<FileModel>::class.java).toList()
+                    Log.i("INFO", fileList.toString())
                 } else {
-                    Log.e("File upload", "failed")
-                    showToast("File uploading failed")
+                    Log.e("File upload", response.code.toString())
+                    showToast(response.code.toString())
                 }
             } catch (ex: Exception) {
                 ex.printStackTrace()

@@ -97,7 +97,7 @@ class DialogFragmentAddEvent(): DialogFragment() {
         newEvent = EventModel(
             eventBinding.eventTitleText.text.toString(),
             eventBinding.eventDescriptionText.text.toString(),
-            file.path,
+            file.id,
             date+from,
             date+to
         )
