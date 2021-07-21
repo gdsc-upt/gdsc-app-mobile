@@ -114,7 +114,7 @@ class DialogFragmentAddEvent : DialogFragment() {
                 Log.i("PLM", requestBody.toString())
 
                 val request: okhttp3.Request = okhttp3.Request.Builder()
-                    .url("https://dev.api.gdscupt.tech/api/v1/files")
+                    .url("https://dev.api.gdscupt.tech/v1/files")
                     .header("Authorization", Singleton.getTokenForAuthentication().toString())
                     .post(requestBody)
                     .build()
