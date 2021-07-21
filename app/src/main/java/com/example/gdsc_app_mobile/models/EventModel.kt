@@ -6,12 +6,12 @@ import java.util.*
 
 data class EventModel(
     var title: String, var description: String,
-    var image: String, var start: String, var end: String) {
+    var imageId: String, var start: String, var end: String) {
 
     private val formatter = DateTimeFormatter.ofPattern("yyyy-mm-dd", Locale.ENGLISH)
 
     override fun toString(): String {
-        return "EventModel(title='$title', description='$description', image='$image', start='$start', end='$end')"
+        return "EventModel(title='$title', description='$description', image='$imageId', start='$start', end='$end')"
     }
 
     fun getDate(): LocalDate {

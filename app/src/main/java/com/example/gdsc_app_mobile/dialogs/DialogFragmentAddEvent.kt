@@ -17,6 +17,7 @@ import androidx.fragment.app.DialogFragment
 import com.example.gdsc_app_mobile.R
 import com.example.gdsc_app_mobile.Singleton
 import com.example.gdsc_app_mobile.URIPathHelper
+import com.example.gdsc_app_mobile.activities.MainActivity
 import com.example.gdsc_app_mobile.databinding.CalendarDialogAddEventBinding
 import com.example.gdsc_app_mobile.interfaces.ISelectedEvent
 import com.example.gdsc_app_mobile.models.EventModel
@@ -34,8 +35,10 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import java.io.File
+import java.text.SimpleDateFormat
 import java.time.*
 import java.time.format.DateTimeFormatter
+import java.util.*
 
 
 class DialogFragmentAddEvent : DialogFragment() {
@@ -82,6 +85,7 @@ class DialogFragmentAddEvent : DialogFragment() {
         eventBinding.eventAddButton.setOnClickListener {//to be worked on
             UploadImageUploadEvent(eventBinding) //upload img and get response body path to add to event model it coresponds to
             dialog?.dismiss()
+            Toast.makeText(requireContext(), resources.getString(R.string.event_posted), Toast.LENGTH_SHORT).show()
         }
 
         return view
@@ -110,7 +114,7 @@ class DialogFragmentAddEvent : DialogFragment() {
                 Log.i("PLM", requestBody.toString())
 
                 val request: okhttp3.Request = okhttp3.Request.Builder()
-                    .url("https://api.gdscupt.tech/api/v1/files")
+                    .url("https://dev.api.dscupt.tech/api/v1/files")
                     .header("Authorization", Singleton.getTokenForAuthentication().toString())
                     .post(requestBody)
                     .build()
@@ -168,16 +172,14 @@ class DialogFragmentAddEvent : DialogFragment() {
             10
         )
 
-        Log.i("DATA", dateFrom.toString())
-        Log.i("DATA", dateTo.toString())
-
         val newEvent = EventModel(
             eventBinding.eventTitleText.text.toString(),
             eventBinding.eventDescriptionText.text.toString(),
             file.id,
-            "$dateFrom.+03:00",
-            "$dateTo.+03:00"
+            "$dateFrom+03:00",
+            "$dateTo+03:00"
         )
+
         Log.i("INFOOO", newEvent.toString())
 
         val eventCall: Call<EventModel> = ApiClient.getService()
@@ -187,11 +189,8 @@ class DialogFragmentAddEvent : DialogFragment() {
 
             override fun onResponse(call: Call<EventModel>, response: Response<EventModel>) {
                 if (response.isSuccessful) {
-                    Toast.makeText(
-                        requireActivity(),
-                        resources.getString(R.string.event_posted),
-                        Toast.LENGTH_SHORT
-                    ).show()
+                    Log.i("WORKIMG", response.raw().toString())
+
                 } else {
                     Log.e("ERR", response.raw().toString())
                 }

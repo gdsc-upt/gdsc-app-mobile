@@ -171,7 +171,6 @@ class FragmentHomePage: Fragment(), ISelectedEvent{
 
         homePageBinding.eventAddEventButton.setOnClickListener{
             addEvent()
-            //loadEvents()
         }
 
 
