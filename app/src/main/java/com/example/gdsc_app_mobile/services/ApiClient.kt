@@ -9,7 +9,7 @@ class ApiClient {
         private fun getRetrofit(): Retrofit {
             val okhttpClient: OkHttpClient = OkHttpClient().newBuilder().build()
             return Retrofit.Builder()
-                .baseUrl("https://dev.api.dscupt.tech/")
+                .baseUrl("https://dev.api.gdscupt.tech/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .client(okhttpClient)
                 .build()

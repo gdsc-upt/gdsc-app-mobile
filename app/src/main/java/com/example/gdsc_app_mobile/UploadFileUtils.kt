@@ -100,7 +100,7 @@ public class UploadUtility(activity: Activity) {
 
     var activity = activity;
     var dialog: ProgressDialog? = null
-    var serverURL: String = "https://api.gdscupt.tech/api/v1/files"
+    var serverURL: String = "https://dev.api.gdscupt.tech/api/v1/files"
     val client = OkHttpClient()
 
     lateinit var file : FileModel
