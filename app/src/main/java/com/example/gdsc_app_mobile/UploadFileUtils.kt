@@ -70,6 +70,7 @@ class URIPathHelper(){
         val column = "_data"
         val projection = arrayOf(column)
         try {
+            context.grantUriPermission(context.packageName, uri, 0)
             cursor = uri?.let { context.contentResolver.query(it, projection, selection, selectionArgs,null) }
             if (cursor != null && cursor.moveToFirst()) {
                 val columnIndex: Int = cursor.getColumnIndexOrThrow(column)

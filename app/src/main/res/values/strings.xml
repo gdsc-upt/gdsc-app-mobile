@@ -71,4 +71,7 @@
     <string name="from">From</string>
     <string name="to">To</string>
 
+    <!-- Home   -->
+    <string name="event_posted">Event successfully posted.</string>
+
 </resources>

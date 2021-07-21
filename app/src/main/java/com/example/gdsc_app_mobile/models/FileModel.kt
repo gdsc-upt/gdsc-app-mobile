@@ -1,9 +1,9 @@
 package com.example.gdsc_app_mobile.models
 
-class FileModel(var id : String, var created : String, var updated : String,
-                var name: String, var path : String, var extension : String, var size : Int) {
+class FileModel(
+    var id: String, var name: String, var path: String) {
     override fun toString(): String {
-        return "$id,$created,$updated,$name,$path,$extension,$size"
+        return "$id,,$name,$path"
     }
 
 }

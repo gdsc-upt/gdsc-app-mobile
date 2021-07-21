@@ -34,14 +34,14 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import java.io.File
+import java.time.*
+import java.time.format.DateTimeFormatter
 
 
 class DialogFragmentAddEvent : DialogFragment() {
 
     lateinit var listener: ISelectedEvent
     lateinit var imageUri: Uri
-    lateinit var file: FileModel
-    lateinit var newEvent: EventModel
 
     private var _eventBinding: CalendarDialogAddEventBinding? = null
     private val eventBinding get() = _eventBinding!!
@@ -53,8 +53,10 @@ class DialogFragmentAddEvent : DialogFragment() {
 
             if (resultCode == Activity.RESULT_OK) {
                 //Image Uri will not be null for RESULT_OK
-                val fileUri = data?.data!!
-                imageUri = fileUri
+                //val imageUri = data?.data!!
+                if (data != null) {
+                    imageUri = data.data!!
+                }
 
                 Picasso.get().load(imageUri).transform(CropCircleTransformation())
                     .into(eventBinding.eventImage)
@@ -78,9 +80,7 @@ class DialogFragmentAddEvent : DialogFragment() {
         }
 
         eventBinding.eventAddButton.setOnClickListener {//to be worked on
-            UploadImage() //upload img and get response body path to add to event model it coresponds to
-            //assembleEventModel()
-            //createPostEvent()
+            UploadImageUploadEvent(eventBinding) //upload img and get response body path to add to event model it coresponds to
             dialog?.dismiss()
         }
 
@@ -97,25 +97,7 @@ class DialogFragmentAddEvent : DialogFragment() {
         this.listener = listener
     }
 
-    private fun assembleEventModel() {
-
-        val date: String =
-            eventBinding.dateYear.text.toString() + "-" + eventBinding.dateMonth.text.toString() + "-" + eventBinding.dateDay.text.toString() + "T"
-        val from: String =
-            eventBinding.fromHour.text.toString() + ":" + eventBinding.fromMins.text.toString() + ".+03:00"
-        val to: String =
-            eventBinding.toHour.text.toString() + ":" + eventBinding.toMins.text.toString() + ".+03:00"
-
-        newEvent = EventModel(
-            eventBinding.eventTitleText.text.toString(),
-            eventBinding.eventDescriptionText.text.toString(),
-            file.id,
-            date + from,
-            date + to
-        )
-    }
-
-    private fun UploadImage() {
+    private fun UploadImageUploadEvent(eventBinding: CalendarDialogAddEventBinding) {
         Thread {
             val file = File(URIPathHelper().getPath(requireActivity(), imageUri))
             try {
@@ -147,6 +129,9 @@ class DialogFragmentAddEvent : DialogFragment() {
                     val files =
                         gson.fromJson(body ?: """[{"err": "plm"}]""", Array<FileModel>::class.java)
                     Log.i("MERE", files.size.toString())
+
+                    createPostEvent(files[0], eventBinding)
+
                 } else {
                     Log.e("CPLM", response.message)
                     Log.e("CPLM", response.code.toString())
@@ -161,7 +146,39 @@ class DialogFragmentAddEvent : DialogFragment() {
         }.start()
     }
 
-    private fun createPostEvent() {
+    private fun createPostEvent(file : FileModel, eventBinding: CalendarDialogAddEventBinding) {
+
+        val dateFrom = LocalDate.of(
+            eventBinding.dateYear.text.toString().toInt(),
+            eventBinding.dateMonth.text.toString().toInt(),
+            eventBinding.dateDay.text.toString().toInt()
+        ).atTime(
+            eventBinding.fromHour.text.toString().toInt(),
+            eventBinding.fromMins.text.toString().toInt(),
+            10
+        )
+
+        val dateTo = LocalDate.of(
+            eventBinding.dateYear.text.toString().toInt(),
+            eventBinding.dateMonth.text.toString().toInt(),
+            eventBinding.dateDay.text.toString().toInt()
+        ).atTime(
+            eventBinding.toHour.text.toString().toInt(),
+            eventBinding.toMins.text.toString().toInt(),
+            10
+        )
+
+        Log.i("DATA", dateFrom.toString())
+        Log.i("DATA", dateTo.toString())
+
+        val newEvent = EventModel(
+            eventBinding.eventTitleText.text.toString(),
+            eventBinding.eventDescriptionText.text.toString(),
+            file.id,
+            "$dateFrom.+03:00",
+            "$dateTo.+03:00"
+        )
+        Log.i("INFOOO", newEvent.toString())
 
         val eventCall: Call<EventModel> = ApiClient.getService()
             .postEvent(Singleton.getTokenForAuthentication().toString(), newEvent)
@@ -171,16 +188,12 @@ class DialogFragmentAddEvent : DialogFragment() {
             override fun onResponse(call: Call<EventModel>, response: Response<EventModel>) {
                 if (response.isSuccessful) {
                     Toast.makeText(
-                        requireContext(),
-                        resources.getString(R.string.faq_successfully_posted),
+                        requireActivity(),
+                        resources.getString(R.string.event_posted),
                         Toast.LENGTH_SHORT
                     ).show()
                 } else {
-                    Toast.makeText(
-                        requireContext(),
-                        resources.getString(R.string.something_wrong),
-                        Toast.LENGTH_SHORT
-                    ).show()
+                    Log.e("ERR", response.raw().toString())
                 }
             }
 
