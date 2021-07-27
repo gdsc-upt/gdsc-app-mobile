@@ -11,7 +11,7 @@ data class EventModel(
     private val formatter = DateTimeFormatter.ofPattern("yyyy-mm-dd", Locale.ENGLISH)
 
     override fun toString(): String {
-        return "EventModel(title='$title', description='$description', image='$imageId', start='$start', end='$end')"
+        return "EventModel(title='$title', \ndescription='$description', \nimageId='$imageId', \nstart='$start', \nend='$end')"
     }
 
     fun getDate(): LocalDate {
